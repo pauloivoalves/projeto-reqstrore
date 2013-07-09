@@ -1,13 +1,13 @@
 package br.ufc.si.DAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 
 import br.ufc.si.Interfaces.IVersaoRequisito;
+import br.ufc.si.model.Requisito;
 import br.ufc.si.model.VersaoRequisito;
 import br.ufc.si.util.HibernateUtil;
 
@@ -62,9 +62,16 @@ public class VersaoRequisitoDAO implements IVersaoRequisito {
 	public List<VersaoRequisito> List(String idRequisito) {
 		Session session = HibernateUtil.getSession();
 		try {
-			Criteria criteria = session.createCriteria(VersaoRequisito.class)
-					.add(Restrictions.eqProperty("idRequisito", idRequisito));
-			return criteria.list();
+			List<VersaoRequisito> ListVersao = session.createCriteria(VersaoRequisito.class).list();
+			List<VersaoRequisito> listaRetorno = new ArrayList<VersaoRequisito>();
+			
+				for (VersaoRequisito versaoRequisito : ListVersao) {
+					if(versaoRequisito.getIdRequisito().getId() != Integer.parseInt(idRequisito)){
+						listaRetorno.add(versaoRequisito);
+					}
+				}
+			
+			return listaRetorno;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -85,5 +92,14 @@ public class VersaoRequisitoDAO implements IVersaoRequisito {
 		}
 		return null;
 	}
+
+	public void AddVersaoRequisito(Requisito requisito, String descricao) {
+		VersaoRequisito versao = new VersaoRequisito();
+		versao.setDescricaoVersao(descricao);
+		versao.setIdRequisito(requisito);
+		
+		this.save(versao);
+	}
+	
 
 }

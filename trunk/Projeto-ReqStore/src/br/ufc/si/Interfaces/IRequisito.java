@@ -11,7 +11,7 @@ public interface IRequisito {
 
 	public void delete(Requisito requisito);
 
-	public List<Requisito> List(String idProjeto);
+	public List<Requisito> List(String projeto);
 
 	public Requisito SearchById(String id);
 }

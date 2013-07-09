@@ -2,7 +2,6 @@ package br.ufc.si.DAO;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -65,8 +64,13 @@ public class ProjetoDAO implements IProjeto {
 	public List<Projeto> List() {
 		Session session = HibernateUtil.getSession();
 		try {
-			Criteria criteria = session.createCriteria(Projeto.class);
-			return criteria.list();
+			List<Projeto> listaProjetos = session.createCriteria(Projeto.class).list();
+			
+			for (Projeto projeto : listaProjetos) {
+				Hibernate.initialize(projeto.getRequisitos());
+			}
+			
+			return listaProjetos;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
