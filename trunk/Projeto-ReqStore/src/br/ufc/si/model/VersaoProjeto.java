@@ -19,6 +19,18 @@ public class VersaoProjeto {
 	@JoinColumn(name = "Id_Projeto")
 	private Projeto idProjeto;
 
+	public VersaoProjeto(String descricaoVersao, Projeto idProjeto) {
+		super();
+		this.descricaoVersao = descricaoVersao;
+		this.idProjeto = idProjeto;
+	}
+
+	
+	public VersaoProjeto() {
+		super();
+	}
+
+
 	public int getId() {
 		return Id;
 	}

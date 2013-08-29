@@ -7,10 +7,12 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
+import br.com.caelum.vraptor.ioc.Component;
 import br.ufc.si.Interfaces.IProjeto;
 import br.ufc.si.model.Projeto;
 import br.ufc.si.util.HibernateUtil;
 
+@Component
 public class ProjetoDAO implements IProjeto {
 
 	public void save(Projeto projeto) {
@@ -64,12 +66,13 @@ public class ProjetoDAO implements IProjeto {
 	public List<Projeto> List() {
 		Session session = HibernateUtil.getSession();
 		try {
-			List<Projeto> listaProjetos = session.createCriteria(Projeto.class).list();
-			
+			List<Projeto> listaProjetos = session.createCriteria(Projeto.class)
+					.list();
+
 			for (Projeto projeto : listaProjetos) {
 				Hibernate.initialize(projeto.getRequisitos());
 			}
-			
+
 			return listaProjetos;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -88,7 +91,7 @@ public class ProjetoDAO implements IProjeto {
 					.add(Restrictions.like("nome", "%" + name + "%")).list();
 			for (Projeto projeto : listaProjetos) {
 				Hibernate.initialize(projeto.getRequisitos());
-			}		
+			}
 			return listaProjetos;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -97,7 +100,7 @@ public class ProjetoDAO implements IProjeto {
 		}
 		return null;
 	}
-	
+
 	public Projeto SearchById(String id) {
 		Session session = HibernateUtil.getSession();
 
@@ -107,6 +110,16 @@ public class ProjetoDAO implements IProjeto {
 			e.printStackTrace();
 		} finally {
 			session.close();
+		}
+		return null;
+	}
+
+	public Projeto getProjetoById(int id) {
+		try {
+			Session session = HibernateUtil.getSession();
+			return (Projeto) session.get(Projeto.class, id);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return null;
 	}

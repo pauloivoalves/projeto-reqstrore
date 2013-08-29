@@ -15,7 +15,7 @@ public interface IVersaoRequisito {
 
 	public void delete(VersaoRequisito versao);
 
-	public List<VersaoRequisito> List(String idRequisito);
-
 	public VersaoRequisito SearchById(int id);
+
+	List<VersaoRequisito> List(Requisito requisito);
 }

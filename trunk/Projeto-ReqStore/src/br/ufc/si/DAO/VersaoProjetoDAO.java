@@ -7,10 +7,13 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
+import br.com.caelum.vraptor.ioc.Component;
 import br.ufc.si.Interfaces.IVersaoProjeto;
+import br.ufc.si.model.Projeto;
 import br.ufc.si.model.VersaoProjeto;
 import br.ufc.si.util.HibernateUtil;
 
+@Component
 public class VersaoProjetoDAO implements IVersaoProjeto {
 
 	public void save(VersaoProjeto versaoProjeto) {
@@ -59,11 +62,12 @@ public class VersaoProjetoDAO implements IVersaoProjeto {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<VersaoProjeto> List(String idProjeto) {
+	public List<VersaoProjeto> List(Projeto projeto) {
 		Session session = HibernateUtil.getSession();
 		try {
 			Criteria criteria = session.createCriteria(VersaoProjeto.class)
-					.add(Restrictions.eqProperty("idProjeto", idProjeto));
+					.add(Restrictions.eqProperty("idProjeto",
+							Integer.toString(projeto.getId())));
 			return criteria.list();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -73,7 +77,7 @@ public class VersaoProjetoDAO implements IVersaoProjeto {
 		return null;
 	}
 
-	public VersaoProjeto SearchById(int id) {
+	public VersaoProjeto getVersaoById(int id) {
 		Session session = HibernateUtil.getSession();
 
 		try {

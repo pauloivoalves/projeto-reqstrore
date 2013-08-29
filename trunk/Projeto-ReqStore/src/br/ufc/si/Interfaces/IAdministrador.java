@@ -15,4 +15,6 @@ public interface IAdministrador {
 	public List<Administrador> List();
 
 	public List<Administrador> SearchByName(String name);
+
+	public Administrador getAdministradorById(Integer id);
 }

@@ -7,10 +7,13 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
+import br.com.caelum.vraptor.ioc.Component;
 import br.ufc.si.Interfaces.IRequisito;
+import br.ufc.si.model.Projeto;
 import br.ufc.si.model.Requisito;
 import br.ufc.si.util.HibernateUtil;
 
+@Component
 public class RequisitoDAO implements IRequisito {
 
 	public void save(Requisito requisito) {
@@ -57,10 +60,12 @@ public class RequisitoDAO implements IRequisito {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Requisito> List(String idProjeto) {
+	public List<Requisito> List(Projeto projeto) {
 		Session session = HibernateUtil.getSession();
 		try {
-			Criteria criteria = session.createCriteria(Requisito.class).add(Restrictions.eqProperty("projeto", idProjeto));
+			Criteria criteria = session.createCriteria(Requisito.class).add(
+					Restrictions.eqProperty("projeto",
+							Integer.toString(projeto.getId())));
 			return criteria.list();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -70,7 +75,7 @@ public class RequisitoDAO implements IRequisito {
 		return null;
 	}
 
-	public Requisito SearchById(String id) {
+	public Requisito getRequisitoById(int id) {
 		Session session = HibernateUtil.getSession();
 
 		try {
@@ -82,6 +87,4 @@ public class RequisitoDAO implements IRequisito {
 		}
 		return null;
 	}
-
-
 }

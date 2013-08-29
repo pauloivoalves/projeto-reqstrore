@@ -2,6 +2,7 @@ package br.ufc.si.Interfaces;
 
 import java.util.List;
 
+import br.ufc.si.model.Projeto;
 import br.ufc.si.model.Requisito;
 
 public interface IRequisito {
@@ -11,7 +12,8 @@ public interface IRequisito {
 
 	public void delete(Requisito requisito);
 
-	public List<Requisito> List(String projeto);
+	public Requisito getRequisitoById(int id);
 
-	public Requisito SearchById(String id);
+	public List<Requisito> List(Projeto projeto);
+
 }

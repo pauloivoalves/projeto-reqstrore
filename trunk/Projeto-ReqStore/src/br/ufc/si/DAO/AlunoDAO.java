@@ -7,61 +7,53 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import br.ufc.si.Interfaces.IAlunoDao;
+import br.com.caelum.vraptor.ioc.Component;
+import br.ufc.si.Interfaces.IAluno;
 import br.ufc.si.model.Aluno;
 import br.ufc.si.util.HibernateUtil;
 
-public class AlunoDAO implements IAlunoDao {
-	public void save(Aluno aluno) {
-		Session session = HibernateUtil.getSession();
-		Transaction t = session.beginTransaction();
+@Component
+public class AlunoDAO implements IAluno {
 
+	public void save(Aluno aluno) {
 		try {
+			Session session = HibernateUtil.getSession();
+			Transaction t = session.beginTransaction();
 			session.save(aluno);
 			t.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
-
-		} finally {
-			session.close();
 		}
 	}
 
 	public void delete(Aluno aluno) {
-		Session session = HibernateUtil.getSession();
-		Transaction t = session.beginTransaction();
-
 		try {
+			Session session = HibernateUtil.getSession();
+			Transaction t = session.beginTransaction();
+
 			session.delete(aluno);
 			t.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
-
-		} finally {
-			session.close();
 		}
 	}
 
 	public void update(Aluno aluno) {
-		Session session = HibernateUtil.getSession();
-		Transaction t = session.beginTransaction();
-
 		try {
+			Session session = HibernateUtil.getSession();
+			Transaction t = session.beginTransaction();
+
 			session.update(aluno);
 			t.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 
-		} finally {
-			session.close();
 		}
 	}
 
 	public Aluno getAlunoById(Integer id) {
-
-		Session session = HibernateUtil.getSession();
-
 		try {
+			Session session = HibernateUtil.getSession();
 			return (Aluno) session.get(Aluno.class, id);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -71,15 +63,15 @@ public class AlunoDAO implements IAlunoDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Aluno> List() {
-		Session session = HibernateUtil.getSession();
 		try {
+			Session session = HibernateUtil.getSession();
+
 			Criteria criteria = session.createCriteria(Aluno.class);
 			return criteria.list();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
-
 	}
 
 	@SuppressWarnings("unchecked")
@@ -93,6 +85,5 @@ public class AlunoDAO implements IAlunoDao {
 			e.printStackTrace();
 		}
 		return null;
-
 	}
 }

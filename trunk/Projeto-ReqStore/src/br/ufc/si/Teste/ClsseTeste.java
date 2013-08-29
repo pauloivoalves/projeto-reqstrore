@@ -7,10 +7,12 @@ import antlr.collections.impl.LList;
 import br.ufc.si.DAO.AlunoDAO;
 import br.ufc.si.DAO.ProjetoDAO;
 import br.ufc.si.DAO.RequisitoDAO;
+import br.ufc.si.DAO.VersaoProjetoDAO;
 import br.ufc.si.DAO.VersaoRequisitoDAO;
-import br.ufc.si.Interfaces.IAlunoDao;
+import br.ufc.si.Interfaces.IAluno;
 import br.ufc.si.Interfaces.IProjeto;
 import br.ufc.si.Interfaces.IRequisito;
+import br.ufc.si.Interfaces.IVersaoProjeto;
 import br.ufc.si.Interfaces.IVersaoRequisito;
 import br.ufc.si.Tipos.PrioridadeRequisito;
 import br.ufc.si.Tipos.TipoProjeto;
@@ -25,34 +27,32 @@ import br.ufc.si.model.VersaoRequisito;
 public class ClsseTeste {
 		
 	public static void main(String[] args) {
-//		Aluno aluno = new Aluno();
-//		IAlunoDao alunoDAO = new AlunoDAO();
-		IRequisito reqDAO = new RequisitoDAO();
+
 		Projeto proj = new Projeto();
 		IProjeto projDAO = new ProjetoDAO();
-		Requisito req = new Requisito();
+		IVersaoProjeto versaoDAO = new VersaoProjetoDAO();
 		
-		VersaoRequisito Vreq = new VersaoRequisito();
-		IVersaoRequisito VreqDao = new VersaoRequisitoDAO();
-		
-		
-		VersaoProjeto Vproj = new VersaoProjeto();
-		
+		proj = projDAO.getProjetoById(38);
+				
+		//versaoDAO.save(Vproj);
 		//-------------------------------------------------------------------
 		
-		
-		List<Projeto> proList = projDAO.List();
-		
-		proj = proList.get(0);
-		
-		for (Requisito requsito : proj.getRequisitos()) {
-			System.out.println("Requisito: " + requsito.getId());
-				for (VersaoRequisito versao : requsito.getVersoesRequisito()) {
-					System.out.println("\t Versao do requisito " + versao.getDescricaoVersao());
-				}
-		}
+		//projDAO.save(proj);
 		
 		
+		System.out.println("Proj > Nome do projeto > " + proj.getNome() );
+		System.out.println("\nProj > Versao > Nome do projeto > " + proj.getVersoesProjeto().get(0).getIdProjeto().getNome());
+		
+		proj.setNome("Nome diferente");
+		System.out.println("\nProj > Novo nome > " + proj.getNome());
+		
+		VersaoProjeto versao = proj.getVersoesProjeto().get(0);
+		
+		
+		System.out.println("\n\tRecuperando versao");
+		proj = versao.getIdProjeto();
+		
+		System.out.println("versao recuperada > nome > " + proj.getNome() + "\nVersao recuperada > id > " + proj.getId());
 		
 		
 		

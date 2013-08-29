@@ -1,16 +1,19 @@
 package br.ufc.si.DAO;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
+import br.com.caelum.vraptor.ioc.Component;
 import br.ufc.si.Interfaces.IVersaoRequisito;
 import br.ufc.si.model.Requisito;
 import br.ufc.si.model.VersaoRequisito;
 import br.ufc.si.util.HibernateUtil;
 
+@Component
 public class VersaoRequisitoDAO implements IVersaoRequisito {
 
 	public void save(VersaoRequisito versao) {
@@ -59,19 +62,13 @@ public class VersaoRequisitoDAO implements IVersaoRequisito {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<VersaoRequisito> List(String idRequisito) {
+	public List<VersaoRequisito> List(Requisito requisito) {
 		Session session = HibernateUtil.getSession();
 		try {
-			List<VersaoRequisito> ListVersao = session.createCriteria(VersaoRequisito.class).list();
-			List<VersaoRequisito> listaRetorno = new ArrayList<VersaoRequisito>();
-			
-				for (VersaoRequisito versaoRequisito : ListVersao) {
-					if(versaoRequisito.getIdRequisito().getId() != Integer.parseInt(idRequisito)){
-						listaRetorno.add(versaoRequisito);
-					}
-				}
-			
-			return listaRetorno;
+			Criteria criteria = session.createCriteria(VersaoRequisito.class)
+					.add(Restrictions.eqProperty("idRequisito",
+							Integer.toString(requisito.getId())));
+			return criteria.list();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -97,9 +94,8 @@ public class VersaoRequisitoDAO implements IVersaoRequisito {
 		VersaoRequisito versao = new VersaoRequisito();
 		versao.setDescricaoVersao(descricao);
 		versao.setIdRequisito(requisito);
-		
+
 		this.save(versao);
 	}
-	
 
 }

@@ -7,10 +7,12 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
+import br.com.caelum.vraptor.ioc.Component;
 import br.ufc.si.Interfaces.IAdministrador;
 import br.ufc.si.model.Administrador;
 import br.ufc.si.util.HibernateUtil;
 
+@Component
 public class AdministradorDAO implements IAdministrador {
 
 	public void save(Administrador admin) {
@@ -92,4 +94,13 @@ public class AdministradorDAO implements IAdministrador {
 		return null;
 	}
 
+	public Administrador getAdministradorById(Integer id) {
+		try {
+			Session session = HibernateUtil.getSession();
+			return (Administrador) session.get(Administrador.class, id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

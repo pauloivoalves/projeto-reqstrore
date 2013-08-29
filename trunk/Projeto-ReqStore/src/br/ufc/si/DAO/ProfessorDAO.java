@@ -7,10 +7,12 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
+import br.com.caelum.vraptor.ioc.Component;
 import br.ufc.si.Interfaces.IProfessor;
 import br.ufc.si.model.Professor;
 import br.ufc.si.util.HibernateUtil;
 
+@Component
 public class ProfessorDAO implements IProfessor {
 
 	public void save(Professor professor) {
@@ -89,4 +91,15 @@ public class ProfessorDAO implements IProfessor {
 		return null;
 
 	}
+	
+	public Professor getProfessorById(Integer id) {
+		try {
+			Session session = HibernateUtil.getSession();
+			return (Professor) session.get(Professor.class, id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 }

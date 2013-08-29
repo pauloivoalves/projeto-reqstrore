@@ -2,6 +2,7 @@ package br.ufc.si.Interfaces;
 
 import java.util.List;
 
+import br.ufc.si.model.Projeto;
 import br.ufc.si.model.VersaoProjeto;
 
 public interface IVersaoProjeto {
@@ -11,7 +12,7 @@ public interface IVersaoProjeto {
 
 	public void delete(VersaoProjeto versao);
 
-	public List<VersaoProjeto> List(String idProjeto);
+	public List<VersaoProjeto> List(Projeto projeto);
 
-	public VersaoProjeto SearchById(int id);
+	public VersaoProjeto getVersaoById(int id);
 }

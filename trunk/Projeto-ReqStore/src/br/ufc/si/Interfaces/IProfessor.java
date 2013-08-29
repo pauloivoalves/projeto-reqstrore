@@ -15,4 +15,6 @@ public interface IProfessor {
 	public List<Professor> List();
 
 	public List<Professor> SearchByName(String name);
+
+	public Professor getProfessorById(Integer id);
 }

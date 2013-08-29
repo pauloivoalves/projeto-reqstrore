@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.ufc.si.model.Aluno;
 
-public interface IAlunoDao {
+public interface IAluno {
 
 	public void save(Aluno aluno);
 
@@ -15,5 +15,7 @@ public interface IAlunoDao {
 	public List<Aluno> List();
 
 	public List<Aluno> SearchByName(String name);
+	
+	public Aluno getAlunoById(Integer id);
 
 }
