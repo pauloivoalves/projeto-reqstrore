@@ -2,7 +2,7 @@ package br.ufc.si.DAO;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -63,10 +63,16 @@ public class RequisitoDAO implements IRequisito {
 	public List<Requisito> List(Projeto projeto) {
 		Session session = HibernateUtil.getSession();
 		try {
-			Criteria criteria = session.createCriteria(Requisito.class).add(
-					Restrictions.eqProperty("projeto",
-							Integer.toString(projeto.getId())));
-			return criteria.list();
+			List<Requisito> requisitos = session
+					.createCriteria(Requisito.class)
+					.add(Restrictions.eqProperty("projeto",
+							Integer.toString(projeto.getId()))).list();
+
+			for (Requisito requisito : requisitos) {
+				Hibernate.initialize(requisito.getVersoesRequisito());
+			}
+
+			return requisitos;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -79,7 +85,9 @@ public class RequisitoDAO implements IRequisito {
 		Session session = HibernateUtil.getSession();
 
 		try {
-			return (Requisito) session.get(Requisito.class, id);
+			Requisito req = (Requisito) session.get(Requisito.class, id);
+			Hibernate.initialize(req.getVersoesRequisito());
+			return req;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

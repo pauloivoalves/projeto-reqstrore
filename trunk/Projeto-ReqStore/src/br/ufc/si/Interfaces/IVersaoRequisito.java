@@ -6,8 +6,6 @@ import br.ufc.si.model.Requisito;
 import br.ufc.si.model.VersaoRequisito;
 
 public interface IVersaoRequisito {
-	
-	public void AddVersaoRequisito(Requisito requisito, String descricao);
 
 	public void save(VersaoRequisito versao);
 
@@ -17,5 +15,5 @@ public interface IVersaoRequisito {
 
 	public VersaoRequisito SearchById(int id);
 
-	List<VersaoRequisito> List(Requisito requisito);
+	public List<VersaoRequisito> List(Requisito requisito);
 }

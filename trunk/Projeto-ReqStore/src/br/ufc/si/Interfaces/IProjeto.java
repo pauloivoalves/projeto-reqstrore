@@ -16,7 +16,5 @@ public interface IProjeto {
 
 	public List<Projeto> SearchByName(String name);
 	
-	public Projeto SearchById(String id);
-
 	public Projeto getProjetoById(int id);
 }

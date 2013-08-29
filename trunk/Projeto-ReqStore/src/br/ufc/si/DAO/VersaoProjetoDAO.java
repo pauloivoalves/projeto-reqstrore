@@ -2,7 +2,7 @@ package br.ufc.si.DAO;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -65,10 +65,16 @@ public class VersaoProjetoDAO implements IVersaoProjeto {
 	public List<VersaoProjeto> List(Projeto projeto) {
 		Session session = HibernateUtil.getSession();
 		try {
-			Criteria criteria = session.createCriteria(VersaoProjeto.class)
+			List<VersaoProjeto> Vprojetos = session
+					.createCriteria(VersaoProjeto.class)
 					.add(Restrictions.eqProperty("idProjeto",
-							Integer.toString(projeto.getId())));
-			return criteria.list();
+							Integer.toString(projeto.getId()))).list();
+
+			for (VersaoProjeto versaoProjeto : Vprojetos) {
+				Hibernate.initialize(versaoProjeto.getIdProjeto());
+			}
+
+			return Vprojetos;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -81,7 +87,10 @@ public class VersaoProjetoDAO implements IVersaoProjeto {
 		Session session = HibernateUtil.getSession();
 
 		try {
-			return (VersaoProjeto) session.get(VersaoProjeto.class, id);
+			VersaoProjeto versaoProjeto = (VersaoProjeto) session.get(
+					VersaoProjeto.class, id);
+			Hibernate.initialize(versaoProjeto.getIdProjeto());
+			return versaoProjeto;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

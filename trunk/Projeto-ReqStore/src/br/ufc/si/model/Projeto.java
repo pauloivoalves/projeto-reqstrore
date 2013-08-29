@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import br.ufc.si.Tipos.TipoProjeto;
@@ -21,6 +23,10 @@ public class Projeto {
 	@Column(name = "Nome_Projeto", nullable = false, length = 30)
 	private String nome;
 
+	@ManyToOne
+	@JoinColumn(name = "Criador")
+	private Usuario criador;
+	
 	@Column(name = "Tipo_Projeto", nullable = false)
 	private TipoProjeto tipoProjeto;
 

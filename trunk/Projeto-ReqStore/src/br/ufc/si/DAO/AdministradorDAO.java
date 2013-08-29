@@ -2,7 +2,7 @@ package br.ufc.si.DAO;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -67,8 +67,13 @@ public class AdministradorDAO implements IAdministrador {
 	public java.util.List<Administrador> List() {
 		Session session = HibernateUtil.getSession();
 		try {
-			Criteria criteria = session.createCriteria(Administrador.class);
-			return criteria.list();
+			List<Administrador> admins = session.createCriteria(
+					Administrador.class).list();
+
+			for (Administrador administrador : admins) {
+				Hibernate.initialize(administrador.getProjetos());
+			}
+			return admins;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -82,10 +87,15 @@ public class AdministradorDAO implements IAdministrador {
 		Session session = HibernateUtil.getSession();
 		try {
 
-			List<Administrador> admin = session
+			List<Administrador> admins = session
 					.createCriteria(Administrador.class)
 					.add(Restrictions.like("nome", "%" + name + "%")).list();
-			return admin;
+
+			for (Administrador administrador : admins) {
+				Hibernate.initialize(administrador.getProjetos());
+			}
+
+			return admins;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -97,7 +107,11 @@ public class AdministradorDAO implements IAdministrador {
 	public Administrador getAdministradorById(Integer id) {
 		try {
 			Session session = HibernateUtil.getSession();
-			return (Administrador) session.get(Administrador.class, id);
+			Administrador admin = (Administrador) session.get(
+					Administrador.class, id);
+			Hibernate.initialize(admin.getProjetos());
+			return admin;
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

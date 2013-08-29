@@ -2,7 +2,7 @@ package br.ufc.si.DAO;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -54,7 +54,10 @@ public class AlunoDAO implements IAluno {
 	public Aluno getAlunoById(Integer id) {
 		try {
 			Session session = HibernateUtil.getSession();
-			return (Aluno) session.get(Aluno.class, id);
+			Aluno aluno = (Aluno) session.get(Aluno.class, id);
+			Hibernate.initialize(aluno.getProjetos());
+
+			return aluno;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -65,9 +68,11 @@ public class AlunoDAO implements IAluno {
 	public List<Aluno> List() {
 		try {
 			Session session = HibernateUtil.getSession();
+			List<Aluno> alunos = session.createCriteria(Aluno.class).list();
+			for (Aluno aluno : alunos) {
+				Hibernate.initialize(aluno.getProjetos());
+			}
 
-			Criteria criteria = session.createCriteria(Aluno.class);
-			return criteria.list();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -80,6 +85,9 @@ public class AlunoDAO implements IAluno {
 			Session session = HibernateUtil.getSession();
 			List<Aluno> alunos = session.createCriteria(Aluno.class)
 					.add(Restrictions.like("nome", "%" + name + "%")).list();
+			for (Aluno aluno : alunos) {
+				Hibernate.initialize(aluno.getProjetos());
+			}
 			return alunos;
 		} catch (Exception e) {
 			e.printStackTrace();

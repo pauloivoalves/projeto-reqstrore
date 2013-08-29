@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
 @Entity
 public class VersaoRequisito {
 	@Id
@@ -18,6 +19,16 @@ public class VersaoRequisito {
 	@ManyToOne
 	@JoinColumn(name = "Id_Requisito")
 	private Requisito idRequisito;
+
+	public VersaoRequisito() {
+		super();
+	}
+
+	public VersaoRequisito(String descricaoVersao, Requisito idRequisito) {
+		super();
+		this.descricaoVersao = descricaoVersao;
+		this.idRequisito = idRequisito;
+	}
 
 	public int getId() {
 		return Id;

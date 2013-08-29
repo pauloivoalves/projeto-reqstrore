@@ -101,23 +101,12 @@ public class ProjetoDAO implements IProjeto {
 		return null;
 	}
 
-	public Projeto SearchById(String id) {
-		Session session = HibernateUtil.getSession();
-
-		try {
-			return (Projeto) session.get(Projeto.class, id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return null;
-	}
-
 	public Projeto getProjetoById(int id) {
 		try {
 			Session session = HibernateUtil.getSession();
-			return (Projeto) session.get(Projeto.class, id);
+			Projeto projeto = (Projeto) session.get(Projeto.class, id);
+			Hibernate.initialize(projeto.getRequisitos());
+			return projeto;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

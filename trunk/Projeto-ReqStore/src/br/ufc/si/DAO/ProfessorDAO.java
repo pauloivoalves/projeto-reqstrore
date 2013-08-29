@@ -2,7 +2,7 @@ package br.ufc.si.DAO;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -64,11 +64,16 @@ public class ProfessorDAO implements IProfessor {
 	public List<Professor> List() {
 		Session session = HibernateUtil.getSession();
 		try {
-			Criteria criteria = session.createCriteria(Professor.class);
-			return criteria.list();
+			List<Professor> professores = session.createCriteria(
+					Professor.class).list();
+
+			for (Professor professor : professores) {
+				Hibernate.initialize(professor.getProjetos());
+			}
+			return professores;
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			session.close();
 		}
 		return null;
@@ -79,27 +84,35 @@ public class ProfessorDAO implements IProfessor {
 	public List<Professor> SearchByName(String name) {
 		Session session = HibernateUtil.getSession();
 		try {
-		
-			List<Professor> professor = session.createCriteria(Professor.class)
+
+			List<Professor> professores = session
+					.createCriteria(Professor.class)
 					.add(Restrictions.like("nome", "%" + name + "%")).list();
-			return professor;
+
+			for (Professor professor : professores) {
+				Hibernate.initialize(professor.getProjetos());
+			}
+			return professores;
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			session.close();
 		}
 		return null;
 
 	}
-	
+
 	public Professor getProfessorById(Integer id) {
 		try {
 			Session session = HibernateUtil.getSession();
-			return (Professor) session.get(Professor.class, id);
+			Professor professor = (Professor) session.get(Professor.class, id);
+			Hibernate.initialize(professor.getProjetos());
+
+			return professor;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
+
 }

@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 
 import br.ufc.si.Tipos.TipoProjeto;
 
@@ -28,6 +29,9 @@ public abstract class Usuario {
 
 	@Column(name = "Senha", nullable = false, length = 10)
 	private String senha;
+
+	@OneToMany(mappedBy = "criador")
+	private List<Projeto> projetos;
 
 	public abstract List<Projeto> Buscarprojetos(String nomeProjeto);
 
@@ -76,6 +80,14 @@ public abstract class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public List<Projeto> getProjetos() {
+		return projetos;
+	}
+
+	public void setProjetos(List<Projeto> projetos) {
+		this.projetos = projetos;
 	}
 
 }
