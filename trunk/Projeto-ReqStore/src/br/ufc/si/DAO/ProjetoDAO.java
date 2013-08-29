@@ -39,11 +39,9 @@ public class ProjetoDAO implements IProjeto {
 			t.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
-
 		} finally {
 			session.close();
 		}
-
 	}
 
 	public void delete(Projeto projeto) {
@@ -102,13 +100,15 @@ public class ProjetoDAO implements IProjeto {
 	}
 
 	public Projeto getProjetoById(int id) {
+		Session session = HibernateUtil.getSession();
 		try {
-			Session session = HibernateUtil.getSession();
 			Projeto projeto = (Projeto) session.get(Projeto.class, id);
 			Hibernate.initialize(projeto.getRequisitos());
 			return projeto;
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally{
+			session.close();
 		}
 		return null;
 	}

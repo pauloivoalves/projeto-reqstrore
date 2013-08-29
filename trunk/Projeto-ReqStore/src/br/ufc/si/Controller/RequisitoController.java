@@ -3,11 +3,13 @@ package br.ufc.si.Controller;
 import java.util.List;
 
 import br.com.caelum.vraptor.Path;
+import br.com.caelum.vraptor.Resource;
 import br.ufc.si.DAO.RequisitoDAO;
 import br.ufc.si.Interfaces.IRequisito;
 import br.ufc.si.model.Projeto;
 import br.ufc.si.model.Requisito;
 
+@Resource
 public class RequisitoController {
 	private final IRequisito requisitoDAO;
 
@@ -36,7 +38,7 @@ public class RequisitoController {
 		return this.requisitoDAO.getRequisitoById(requisito.getId());
 	}
 
-	@Path("/Requisito/lista")
+	@Path("/Requisito/lista/{projeto.Id}")
 	public List<Requisito> ListaRequisitos(Projeto projeto) {
 		return this.requisitoDAO.List(projeto);
 	}

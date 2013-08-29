@@ -3,6 +3,8 @@ package br.ufc.si.Teste;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Session;
+
 import antlr.collections.impl.LList;
 import br.ufc.si.DAO.AlunoDAO;
 import br.ufc.si.DAO.ProjetoDAO;
@@ -22,41 +24,40 @@ import br.ufc.si.model.Projeto;
 import br.ufc.si.model.Requisito;
 import br.ufc.si.model.VersaoProjeto;
 import br.ufc.si.model.VersaoRequisito;
+import br.ufc.si.util.HibernateUtil;
 
 @SuppressWarnings("unused")
 public class ClsseTeste {
 		
 	public static void main(String[] args) {
-
-		Projeto proj = new Projeto();
 		IProjeto projDAO = new ProjetoDAO();
 		IVersaoProjeto versaoDAO = new VersaoProjetoDAO();
+		IAluno alunoDAO = new AlunoDAO();
 		
-		proj = projDAO.getProjetoById(38);
-				
-		//versaoDAO.save(Vproj);
-		//-------------------------------------------------------------------
+		Projeto proj = new Projeto();
+//			proj.setNome("Teste de adição de versao");
+//			proj.setDescricao("Testar dando um Update em um prjeto salava suas versoes");
+//			proj.setPontuacao(10);
+//			proj.setTipoProjeto(TipoProjeto.DESKTOP);
+//			projDAO.save(proj);
+			
+		Aluno aluno = new Aluno();
+//		aluno.setNome("Paulo");
+//		aluno.setEmail("teste@email.com");
+//		aluno.setSenha("senha");
+//		alunoDAO.save(aluno);
 		
-		//projDAO.save(proj);
+		proj = projDAO.getProjetoById(2);
+		aluno = alunoDAO.getAlunoById(1);
 		
+//		List<Projeto> projetos = new ArrayList<Projeto>();
+//		projetos.add(proj);
+
+		//aluno.setProjetos(projetos);
+		//alunoDAO.update(aluno);
 		
-		System.out.println("Proj > Nome do projeto > " + proj.getNome() );
-		System.out.println("\nProj > Versao > Nome do projeto > " + proj.getVersoesProjeto().get(0).getIdProjeto().getNome());
-		
-		proj.setNome("Nome diferente");
-		System.out.println("\nProj > Novo nome > " + proj.getNome());
-		
-		VersaoProjeto versao = proj.getVersoesProjeto().get(0);
-		
-		
-		System.out.println("\n\tRecuperando versao");
-		proj = versao.getIdProjeto();
-		
-		System.out.println("versao recuperada > nome > " + proj.getNome() + "\nVersao recuperada > id > " + proj.getId());
-		
-		
-		
-		
+		proj.setCriador(aluno);
+		projDAO.update(proj);
 		System.out.println("Temrinou!");
 	}
 

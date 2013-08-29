@@ -3,6 +3,7 @@ package br.ufc.si.Controller;
 import java.util.List;
 
 import br.com.caelum.vraptor.Path;
+import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.ufc.si.DAO.ProjetoDAO;
 import br.ufc.si.Interfaces.IProjeto;
@@ -10,6 +11,7 @@ import br.ufc.si.model.Projeto;
 import br.ufc.si.model.Requisito;
 import br.ufc.si.model.VersaoProjeto;
 
+@Resource
 public class ProjetoController {
 	private final IProjeto projetoDAO;
 	private final Result result;

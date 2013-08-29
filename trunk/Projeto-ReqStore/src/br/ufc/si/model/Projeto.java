@@ -26,7 +26,7 @@ public class Projeto {
 	@ManyToOne
 	@JoinColumn(name = "Criador")
 	private Usuario criador;
-	
+
 	@Column(name = "Tipo_Projeto", nullable = false)
 	private TipoProjeto tipoProjeto;
 
@@ -44,6 +44,14 @@ public class Projeto {
 
 	public int getId() {
 		return Id;
+	}
+
+	public Usuario getCriador() {
+		return criador;
+	}
+
+	public void setCriador(Usuario criador) {
+		this.criador = criador;
 	}
 
 	public void setId(int id) {

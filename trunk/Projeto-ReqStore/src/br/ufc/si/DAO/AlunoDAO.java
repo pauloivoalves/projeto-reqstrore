@@ -16,58 +16,63 @@ import br.ufc.si.util.HibernateUtil;
 public class AlunoDAO implements IAluno {
 
 	public void save(Aluno aluno) {
+		Session session = HibernateUtil.getSession();
+		Transaction t = session.beginTransaction();
 		try {
-			Session session = HibernateUtil.getSession();
-			Transaction t = session.beginTransaction();
 			session.save(aluno);
 			t.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			session.close();
 		}
 	}
 
 	public void delete(Aluno aluno) {
+		Session session = HibernateUtil.getSession();
+		Transaction t = session.beginTransaction();
 		try {
-			Session session = HibernateUtil.getSession();
-			Transaction t = session.beginTransaction();
-
 			session.delete(aluno);
 			t.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			session.close();
 		}
 	}
 
 	public void update(Aluno aluno) {
+		Session session = HibernateUtil.getSession();
+		Transaction t = session.beginTransaction();
 		try {
-			Session session = HibernateUtil.getSession();
-			Transaction t = session.beginTransaction();
-
 			session.update(aluno);
 			t.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
-
+		} finally {
+			session.close();
 		}
 	}
 
 	public Aluno getAlunoById(Integer id) {
+		Session session = HibernateUtil.getSession();
 		try {
-			Session session = HibernateUtil.getSession();
 			Aluno aluno = (Aluno) session.get(Aluno.class, id);
 			Hibernate.initialize(aluno.getProjetos());
 
 			return aluno;
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			session.close();
 		}
 		return null;
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Aluno> List() {
+		Session session = HibernateUtil.getSession();
 		try {
-			Session session = HibernateUtil.getSession();
 			List<Aluno> alunos = session.createCriteria(Aluno.class).list();
 			for (Aluno aluno : alunos) {
 				Hibernate.initialize(aluno.getProjetos());
@@ -75,14 +80,16 @@ public class AlunoDAO implements IAluno {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			session.close();
 		}
 		return null;
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Aluno> SearchByName(String name) {
+		Session session = HibernateUtil.getSession();
 		try {
-			Session session = HibernateUtil.getSession();
 			List<Aluno> alunos = session.createCriteria(Aluno.class)
 					.add(Restrictions.like("nome", "%" + name + "%")).list();
 			for (Aluno aluno : alunos) {
@@ -91,6 +98,8 @@ public class AlunoDAO implements IAluno {
 			return alunos;
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			session.close();
 		}
 		return null;
 	}
