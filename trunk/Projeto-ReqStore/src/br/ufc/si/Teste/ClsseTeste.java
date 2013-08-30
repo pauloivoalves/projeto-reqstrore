@@ -47,17 +47,36 @@ public class ClsseTeste {
 //		aluno.setSenha("senha");
 //		alunoDAO.save(aluno);
 		
-		proj = projDAO.getProjetoById(2);
-		aluno = alunoDAO.getAlunoById(1);
+		//proj = projDAO.getProjetoById(1);
+		//aluno = alunoDAO.getAlunoById(1);
 		
 //		List<Projeto> projetos = new ArrayList<Projeto>();
 //		projetos.add(proj);
 
 		//aluno.setProjetos(projetos);
-		//alunoDAO.update(aluno);
+		//alunoDAO.save(aluno);
 		
-		proj.setCriador(aluno);
-		projDAO.update(proj);
+		//proj.setCriador(aluno);
+		//projDAO.save(proj);
+		
+		aluno = alunoDAO.getAlunoById(2);
+		proj = projDAO.getProjetoById(1);
+		
+		//proj.setCriador(aluno);
+		//projDAO.update(proj);
+		
+		RequisitoDAO reqDAO = new RequisitoDAO();
+		Requisito req = new Requisito();
+		
+//		req.setDescricao("Teste");
+//		req.setPrioridadeRequisito(PrioridadeRequisito.DESEJAVEL);
+//		req.setTipoRequisito(TipoRequisito.NAO_FUNCIONAL);	
+//		req.setProjeto(proj);
+//		
+//		reqDAO.save(req);
+		System.out.println(proj.getRequisitos().get(0).getDescricao() + " ID: " + proj.getRequisitos().get(0).getId());
+		
+		
 		System.out.println("Temrinou!");
 	}
 

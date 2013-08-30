@@ -8,8 +8,7 @@ import br.com.caelum.vraptor.Result;
 import br.ufc.si.DAO.ProjetoDAO;
 import br.ufc.si.Interfaces.IProjeto;
 import br.ufc.si.model.Projeto;
-import br.ufc.si.model.Requisito;
-import br.ufc.si.model.VersaoProjeto;
+import br.ufc.si.model.Usuario;
 
 @Resource
 public class ProjetoController {
@@ -27,21 +26,10 @@ public class ProjetoController {
 		this.projetoDAO.save(projeto);
 		result.redirectTo(this.ListaProjetos());
 	}
-	
-	@Path("/Projeto/novaVersao")
-	public void AdicionaVersao(Projeto projeto, String decricao_versao){
-		List<VersaoProjeto> versoes = projeto.getVersoesProjeto();
-		
-		VersaoProjeto nova_versao = new VersaoProjeto(decricao_versao, projeto);
-		versoes.add(nova_versao);
-		projeto.setVersoesProjeto(versoes);
-		projetoDAO.update(projeto);
-				
-	}
 
-	@Path("/Projeto/novoRequisito")
-	public void AdicionaRequisitoProjeto(Projeto projeto, List<Requisito> requisitos) {
-		projeto.setRequisitos(requisitos);
+	@Path("/Projeto/responsavel")
+	public void AdicionaResponsavel(Projeto projeto, Usuario usuario) {
+		projeto.setCriador(usuario);
 		projetoDAO.update(projeto);
 	}
 

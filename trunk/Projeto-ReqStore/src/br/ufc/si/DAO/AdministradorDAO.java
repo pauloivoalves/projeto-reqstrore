@@ -105,8 +105,8 @@ public class AdministradorDAO implements IAdministrador {
 	}
 
 	public Administrador getAdministradorById(Integer id) {
+		Session session = HibernateUtil.getSession();
 		try {
-			Session session = HibernateUtil.getSession();
 			Administrador admin = (Administrador) session.get(
 					Administrador.class, id);
 			Hibernate.initialize(admin.getProjetos());
@@ -114,6 +114,8 @@ public class AdministradorDAO implements IAdministrador {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			session.close();
 		}
 		return null;
 	}

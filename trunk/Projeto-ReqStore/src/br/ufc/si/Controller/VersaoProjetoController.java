@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
+import br.com.caelum.vraptor.Result;
 import br.ufc.si.DAO.VersaoProjetoDAO;
 import br.ufc.si.Interfaces.IVersaoProjeto;
 import br.ufc.si.model.Projeto;
@@ -12,15 +13,18 @@ import br.ufc.si.model.VersaoProjeto;
 @Resource
 public class VersaoProjetoController {
 	private final IVersaoProjeto versaoDAO;
+	Result result;
 
-	public VersaoProjetoController(VersaoProjetoDAO versaoDAO) {
+	public VersaoProjetoController(VersaoProjetoDAO versaoDAO, Result result) {
 		super();
 		this.versaoDAO = versaoDAO;
+		this.result = result;
 	}
 
 	@Path("/VersaoProjeto/novo")
 	public void AdicionaVersaoProjeto(VersaoProjeto versao) {
 		this.versaoDAO.save(versao);
+		result.redirectTo(this.ListaProjetos(versao.getIdProjeto()));
 	}
 
 	@Path("/VersaoProjeto/remove")
