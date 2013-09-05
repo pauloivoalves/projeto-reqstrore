@@ -14,7 +14,14 @@
 					<img alt="" src="imagens/Logo.png">
 				</div>
 				<div id = "menu">
-				 	
+				 	<table>
+				 		<tr>
+				 			<td><label>Home</label></td>
+				 			<td><label>Sobre</label></td>
+				 			<td><label>Ajuda</label></td>
+				 			<td><label>Entrar</label></td>
+				 		</tr>
+				 	</table>
 				</div>
 				<div id = "inner_content_div" >
 				

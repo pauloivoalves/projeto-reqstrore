@@ -5,15 +5,17 @@ body {
 	font-family: Calibri, sans serif;
 	font-size: 12px;
 	line-height: 1.5em;
-	background-color: #fff;
-	background-repeat: no-repeat;
-	background-position: top center;
+	background-color: black
 }
 
 #tudo {
 	width: 970px;
 	margin: 0 auto;
-	text-align: left;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -400px;
+	margin-left: -485px;
 }
 
 #topo {
@@ -27,6 +29,17 @@ body {
 	background-image: url('../imagens/top_menu.png');
 	background-repeat: no-repeat;
 	margin-left: -20px;
+	text-align: center;;
+}
+
+#menu table tr td {
+	text-align: center; 
+	margin-top : 31px;
+	color: white;
+	font-family: sans-serif;
+	font-weight: lighter;
+	padding: 15px 10px 0px 10px;
+	margin-top: 31px;
 }
 
 #content {
@@ -37,6 +50,8 @@ body {
 	background-repeat: repeat;
 	margin-left: 20px;
 	text-align: center;
+	padding-top: 10px;
+	border-radius: 10px;
 }
 
 #inner_content_div {
@@ -76,10 +91,8 @@ body {
 	background-image: url("../imagens/footer.png");
 	background-repeat: no-repeat;
 	color: white;
-	text-align: center;
 	font-family: sans-serif;
 	font-weight: lighter;
-	
 	margin-left: -20px;
 	padding-top: 40px;
 	overflow: visible;
