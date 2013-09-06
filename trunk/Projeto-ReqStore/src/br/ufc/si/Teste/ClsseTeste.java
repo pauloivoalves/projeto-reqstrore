@@ -7,11 +7,13 @@ import org.hibernate.Session;
 
 import antlr.collections.impl.LList;
 import br.ufc.si.DAO.AlunoDAO;
+import br.ufc.si.DAO.ProfessorDAO;
 import br.ufc.si.DAO.ProjetoDAO;
 import br.ufc.si.DAO.RequisitoDAO;
 import br.ufc.si.DAO.VersaoProjetoDAO;
 import br.ufc.si.DAO.VersaoRequisitoDAO;
 import br.ufc.si.Interfaces.IAluno;
+import br.ufc.si.Interfaces.IProfessor;
 import br.ufc.si.Interfaces.IProjeto;
 import br.ufc.si.Interfaces.IRequisito;
 import br.ufc.si.Interfaces.IVersaoProjeto;
@@ -20,6 +22,7 @@ import br.ufc.si.Tipos.PrioridadeRequisito;
 import br.ufc.si.Tipos.TipoProjeto;
 import br.ufc.si.Tipos.TipoRequisito;
 import br.ufc.si.model.Aluno;
+import br.ufc.si.model.Professor;
 import br.ufc.si.model.Projeto;
 import br.ufc.si.model.Requisito;
 import br.ufc.si.model.VersaoProjeto;
@@ -32,7 +35,7 @@ public class ClsseTeste {
 	public static void main(String[] args) {
 		IProjeto projDAO = new ProjetoDAO();
 		IVersaoProjeto versaoDAO = new VersaoProjetoDAO();
-		IAluno alunoDAO = new AlunoDAO();
+		IProfessor alunoDAO = new ProfessorDAO();
 		
 		Projeto proj = new Projeto();
 //			proj.setNome("Teste de adição de versao");
@@ -41,11 +44,11 @@ public class ClsseTeste {
 //			proj.setTipoProjeto(TipoProjeto.DESKTOP);
 //			projDAO.save(proj);
 			
-		Aluno aluno = new Aluno();
-//		aluno.setNome("Paulo");
-//		aluno.setEmail("teste@email.com");
-//		aluno.setSenha("senha");
-//		alunoDAO.save(aluno);
+		Professor aluno = new Professor();
+		aluno.setNome("Paulo");
+		aluno.setEmail("teste@email.com");
+		aluno.setSenha("senha");
+		alunoDAO.save(aluno);
 		
 		//proj = projDAO.getProjetoById(1);
 		//aluno = alunoDAO.getAlunoById(1);
@@ -59,8 +62,8 @@ public class ClsseTeste {
 		//proj.setCriador(aluno);
 		//projDAO.save(proj);
 		
-		aluno = alunoDAO.getAlunoById(2);
-		proj = projDAO.getProjetoById(1);
+//		aluno = alunoDAO.getAlunoById(2);
+//		proj = projDAO.getProjetoById(1);
 		
 		//proj.setCriador(aluno);
 		//projDAO.update(proj);
@@ -74,8 +77,8 @@ public class ClsseTeste {
 //		req.setProjeto(proj);
 //		
 //		reqDAO.save(req);
-		System.out.println(proj.getRequisitos().get(0).getDescricao() + " ID: " + proj.getRequisitos().get(0).getId());
-		
+//		System.out.println(proj.getRequisitos().get(0).getDescricao() + " ID: " + proj.getRequisitos().get(0).getId());
+//		
 		
 		System.out.println("Temrinou!");
 	}

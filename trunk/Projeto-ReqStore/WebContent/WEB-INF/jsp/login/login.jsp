@@ -5,7 +5,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<script type="text/javascript" src="js/Script.js"></script>
 		<link href="css/Style.css" rel="stylesheet" type="text/css"/>
-		<title>Home</title>
+		<title>ReqSore - LoginLogin</title>
 	</head>
 	<body>
 		<div id = "tudo">
@@ -26,10 +26,20 @@
 				 		</tr>
 				 	</table>
 				</div>
-				<div id = "inner_content_div" >
-				
-				</div>
-				<div id = "footer_menu">
+			<div id="inner_content_div">
+				<form action="${pageContext.request.contextPath}/autenticar" method="post">
+				    E-mail: <input type="text" name="usuario.email"/>
+				    Senha: <input type="password" name="usuario.senha"/>
+				    <select name = "tipo_usuario">
+				    	<option value="1">Aluno</option>
+				    	<option value="2">Professor</option>
+				    	<option value="3">Administrador</option>
+				    	
+				    </select>
+				    <input type="submit" value="Acessar"/>
+				</form>
+			</div>
+			<div id = "footer_menu">
 					<table>
 						<tr>
 							<td><a target="_blank" href = "https://sistemas.quixada.ufc.br/apps2/sippa/index.jsp">SIPPA</a></td>

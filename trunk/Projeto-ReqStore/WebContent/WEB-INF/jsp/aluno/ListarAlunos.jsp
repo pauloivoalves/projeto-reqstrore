@@ -27,7 +27,7 @@
 				 	</table>
 				</div>
 				<div id = "inner_content_div" >
-				
+							 TESTETESTETESTETESTETESTETESTETESTETESTETESTETESTE
 				</div>
 				<div id = "footer_menu">
 					<table>

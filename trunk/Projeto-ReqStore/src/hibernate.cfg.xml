@@ -13,6 +13,8 @@
 
 		<mapping class="br.ufc.si.model.Usuario" />
 		<mapping class="br.ufc.si.model.Aluno" />
+		<mapping class="br.ufc.si.model.Professor" />
+		<mapping class="br.ufc.si.model.Administrador" />
 		<mapping class="br.ufc.si.model.Projeto" />
 		<mapping class="br.ufc.si.model.Requisito" />
 		<mapping class="br.ufc.si.model.VersaoProjeto" />
