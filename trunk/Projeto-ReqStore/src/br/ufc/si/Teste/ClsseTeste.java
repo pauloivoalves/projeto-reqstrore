@@ -35,7 +35,7 @@ public class ClsseTeste {
 	public static void main(String[] args) {
 		IProjeto projDAO = new ProjetoDAO();
 		IVersaoProjeto versaoDAO = new VersaoProjetoDAO();
-		IProfessor alunoDAO = new ProfessorDAO();
+		IAluno alunoDAO = new AlunoDAO();
 		
 		Projeto proj = new Projeto();
 //			proj.setNome("Teste de adição de versao");
@@ -44,11 +44,16 @@ public class ClsseTeste {
 //			proj.setTipoProjeto(TipoProjeto.DESKTOP);
 //			projDAO.save(proj);
 			
-		Professor aluno = new Professor();
+		Aluno aluno = new Aluno();
 		aluno.setNome("Paulo");
-		aluno.setEmail("teste@email.com");
+		aluno.setEmail("asd@email.com");
 		aluno.setSenha("senha");
-		alunoDAO.save(aluno);
+//		alunoDAO.save(aluno);
+		
+		
+		Aluno alusno  = new Aluno();
+		alusno = alunoDAO.carrega(aluno);
+		System.out.println(alusno.getNome());
 		
 		//proj = projDAO.getProjetoById(1);
 		//aluno = alunoDAO.getAlunoById(1);

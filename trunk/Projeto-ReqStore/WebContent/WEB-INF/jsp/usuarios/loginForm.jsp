@@ -3,11 +3,38 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<script type="text/javascript" src="js/Script.js"></script>
+		<script type="text/javascript" src="js/JQuerry.js"></script>
 		<link href="css/Style.css" rel="stylesheet" type="text/css"/>
-		<title>ReqSore - LoginLogin</title>
-	</head>
+			<title>ReqSore - LoginLogin</title>
+	
+	
+	<script type="text/javascript">
+		$(window).load(function() {
+			$('#usuario').val($('#tipo_usuario option:selected').val());
+			$('#email').attr('name', "aluno.email");
+			$('#senha').attr('name', "aluno.senha");
+			
+		});
+	
+		function MudaTipoUsuario() {
+			$('#usuario').val($('#tipo_usuario option:selected').val());
+			
+			if($('#usuario').val() == '1'){
+				$('#email').attr('name', "aluno.email");
+				$('#senha').attr('name', "aluno.senha");
+			}else if($('#usuario').val() == '2'){
+				$('#email').attr('name', "professor.email");
+				$('#senha').attr('name', "professor.senha");
+			}else{
+				$('#email').attr('name', "administrador.email");
+				$('#senha').attr('name', "administrador.senha");				
+			}
+		}
+		
+	</script>
+</head>
 	<body>
+	<input type="hidden" name = "usuario" value = "" id = "usuario">
 		<div id = "tudo">
 			<div id = "content">
 				<div id = "topo">
@@ -23,20 +50,25 @@
 				 			<td><label>Ajuda</label></td>
 				 			<td><img src = "imagens/separador.png"> </td>
 				 			<td><label>Entrar</label></td>
+				 			<c:if test="${usuarioWeb.logado}">
+				 				<a href="<c:url value="/logout"/>">Logout</a>
+    						</c:if>
 				 		</tr>
 				 	</table>
 				</div>
 			<div id="inner_content_div">
-				<form action="${pageContext.request.contextPath}/autenticar" method="post">
-				    E-mail: <input type="text" name="usuario.email"/>
-				    Senha: <input type="password" name="usuario.senha"/>
-				    <select name = "tipo_usuario">
-				    	<option value="1">Aluno</option>
-				    	<option value="2">Professor</option>
-				    	<option value="3">Administrador</option>
-				    	
-				    </select>
-				    <input type="submit" value="Acessar"/>
+				<form action="<c:url value="/login"/>" method="POST">
+				  <fieldset>
+				    <legend>Efetue o login</legend>
+				        
+				    <label for="Email">Login:</label>
+				      <input id="email" type="text" name="aluno.email"/>
+				
+				    <label for="senha">Senha:</label>
+				      <input id="senha" type="password" name="aluno.senha"/>
+				
+				    <button type="submit">Login</button>
+				  </fieldset>
 				</form>
 			</div>
 			<div id = "footer_menu">

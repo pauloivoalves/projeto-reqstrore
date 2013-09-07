@@ -44,6 +44,16 @@ body {
 	margin-top: 31px;
 }
 
+#menu table tr td label {
+	cursor: pointer;
+	text-decoration: none;
+	color: white;
+}
+
+#menu table tr td a {
+	text-decoration: none;
+}
+
 #content {
 	width: 920px;
 	padding-top: 10px;

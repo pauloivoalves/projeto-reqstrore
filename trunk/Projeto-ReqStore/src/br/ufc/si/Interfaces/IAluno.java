@@ -18,4 +18,6 @@ public interface IAluno {
 	
 	public Aluno getAlunoById(Integer id);
 
+	Aluno carrega(Aluno aluno);
+
 }
