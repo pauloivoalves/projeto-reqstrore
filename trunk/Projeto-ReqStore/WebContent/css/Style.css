@@ -38,22 +38,6 @@ body {
 	text-align: center;
 }
 
-#menu table tr td {
-	margin-top: 31px;
-	padding: 15px 10px 0px 10px;
-	margin-top: 31px;
-}
-
-#menu table tr td label {
-	cursor: pointer;
-	text-decoration: none;
-	color: white;
-}
-
-#menu table tr td a {
-	text-decoration: none;
-}
-
 #content {
 	width: 920px;
 	padding-top: 10px;
@@ -66,13 +50,42 @@ body {
 }
 
 #inner_content_div {
+	height: 340px;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	background-image: url("../imagens/inner_Content_backgroud.png");
 	background-repeat: repeat;
 	margin: 0px 20px 0px 20px;
-	height: 400px;
-	margin: 0px 20px 0px 20px;
+	padding-top: 30px;
+}
+
+#left {
+	float: left;
+	background-image: url("../imagens/logo2.png");
+	height: 200px;
+	width: 300px;
+	background-repeat: no-repeat;
+	margin-top: 50px;
+	margin-left: 20px;
+	display: table-cell;
+	vertical-align: middle;
+	width: 25%;
+}
+
+#center {
+	float: left;
+	width: 5%;
+}
+
+#right {
+	height: 200px;
+	float: right;
+	width: 65%;
+	margin-top: 20px;
+	margin-right: 20px;
+	text-align: justify;
+	color: black;
+	
 }
 
 #footer_menu {

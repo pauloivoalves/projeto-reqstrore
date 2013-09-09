@@ -21,6 +21,11 @@ public class AlunoController {
 		this.result = result;
 	}
 
+	@Path("/Aluno/home")
+	public void AlunoHome(){
+		
+	}
+	
 	@Path("/Aluno/novo")
 	public void AdicionaAluno(Aluno aluno) {
 		this.alunoDAO.save(aluno);

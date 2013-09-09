@@ -36,7 +36,7 @@ public class UsuariosController {
 	@Path("/logout")
 	  public void logout() {
 	    usuarioWeb.logout();
-	    result.redirectTo(AlunoController.class).ListarAlunos();
+	    result.redirectTo(IndexController.class).index();
 	  }
 
 	@Post("/login")
@@ -50,6 +50,6 @@ public class UsuariosController {
 		
 		usuarioWeb.login(carregado);
 
-		result.redirectTo(IndexController.class).index();
+		result.redirectTo(AlunoController.class).AlunoHome();
 	}
 }

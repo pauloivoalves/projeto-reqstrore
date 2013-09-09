@@ -1,0 +1,82 @@
+/*
+LEVEL ONE
+*/
+ul.dropdown {
+	position: relative;
+	margin: 0;
+	padding: 0;
+    width: 50%;
+    margin-left:-100px;
+    margin: auto;
+}
+
+ul.dropdown li {
+	float: left;
+	padding: 10px 0;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	list-style: none;
+	position: relative;
+}
+
+ul.dropdown li a {
+	text-decoration: none;
+	color: white;
+	padding: 10px	 20px 0 23px;
+}
+
+ul.dropdown a:hover {
+	color: #666;
+	background: url(bg_li.png) 0 -21px no-repeat;
+}
+
+/*
+LEVEL TWO
+*/
+ul.dropdown ul {
+	visibility: hidden;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	display: block;
+	width: 200px;
+	background: #8bb806;
+	padding: 5px;
+	border-radius: 10px;
+	border: 1px solid #D6D6D6;
+}
+
+ul.dropdown ul li {
+	float: none;
+	font-size: 12px;
+	border-bottom: 1px solid #CCC;
+	padding: 0;
+}
+
+ul.dropdown ul li a {
+	display: block;
+	padding: 10px 5px;
+	background: none;
+}
+
+ul.dropdown ul li a:hover {
+	background-image: url("../imagens/hover_submenu.png");
+	background-repeat: repeat-x;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-ms-border-radius: 5px;
+}
+
+/*
+LEVEL THREE
+*/
+ul.dropdown ul ul {
+	left: 100%;
+	top: 0;
+	background: #EAEAEA;
+}
+
+ul.dropdown li:hover>ul {
+	visibility: visible;
+}

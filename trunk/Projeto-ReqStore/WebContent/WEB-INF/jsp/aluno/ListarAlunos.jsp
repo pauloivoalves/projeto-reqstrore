@@ -16,13 +16,13 @@
 				<div id = "menu">
 				 	<table align="center">
 				 		<tr>
-				 			<td><label>Home</label></td>
+				 			<td><a href="<c:url value="/"/>">Home</a></td>	
 				 			<td><img src = "imagens/separador.png"> </td>
 				 			<td><label>Sobre</label></td>
 				 			<td><img src = "imagens/separador.png"> </td>
 				 			<td><label>Ajuda</label></td>
 				 			<td><img src = "imagens/separador.png"> </td>
-				 			<td><label>Entrar</label></td>
+				 			<td><a href="<c:url value="/login"/>">Login</a></td>
 				 		</tr>
 				 	</table>
 				</div>
