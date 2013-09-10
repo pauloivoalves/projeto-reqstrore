@@ -1,10 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1"%>  
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<script type="text/javascript" src="js/Script.js"></script>
+<script type="text/javascript" src="../js/Script.js"></script>
+<script type="text/javascript" src="../js/JQuerry.js"></script>
 <link href="../css/Style.css" rel="stylesheet" type="text/css" />
 <link type="text/css" href="../css/menu.css" rel="stylesheet" />
 
@@ -24,7 +26,7 @@
 					<li><img src="../imagens/separador.png"></li>
 					<li><a href="#">Projetos</a>
 						<ul class="submenu">
-							<li><a href="#">Listar projetos</a></li>
+							<li><a href="<c:url value="/Projeto/lista"/>">Listar projetos</a></li>
 							<li><a href="#">Buscar Projetos</a></li>
 							<li><a href="#">Meus Projetos</a></li>
 						</ul></li>
@@ -45,19 +47,32 @@
 				</ul>
 			</div>
 			<div id="inner_content_div">
-				<div id="left"></div>
-				<div id="center">
-					<img src="../imagens/separador2.png">
+
+				<div id="inner_top">
+					<div class="page_tittle">
+						<p>Listar projetos</p>
+					</div>
 				</div>
+				<div id="inner_content">
+					<table align="center">
+						<thead>
+							<tr>
+								<td><label>Projeto</label></td>
+								<td><label>Tipo</label></td>
+								<td><label>Porntua&ccedil;&atilde;o</label></td>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${projetoList}" var="projeto">
+								<tr>
+									<td>${projeto.nome }</td>
+									<td>${projeto.tipoProjeto }</td>
+									<td>${projeto.pontuacao }</td>
+								</tr>
+							</c:forEach>
+						</tbody>
 
-
-				<div id="right">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Vestibulum dapibus malesuada lacus a varius. Nam tincidunt neque
-						in lacus egestas rutrum sed tincidunt quam. Nullam nec tempus
-						odio. Aliquam cursus tellus sed felis varius, a volutpat magna
-						varius. Aliquam quis varius massa. Vestibulum fringilla mauris
-						quis nunc porta ultrices non ut dui. </p>
+					</table>
 				</div>
 
 			</div>
