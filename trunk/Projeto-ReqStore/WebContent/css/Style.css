@@ -100,6 +100,11 @@ body {
 	margin: 0 auto;
 }
 
+#lista_projetos tbody tr:hover {
+	background-color: #83b000;
+	cursor: pointer;
+}
+
 #inner_content {
 	width: 90%;
 	margin: 0 auto;
@@ -109,29 +114,32 @@ body {
 	width: 100%;
 }
 
-#inner_content table thead tr td {
+#inner_content table thead tr {
 	background: #555555;
 	color: white;
+}
+
+#inner_content table thead tr td {
 	border-left: 0px;
 	border-right: 0px;
 	font: 18px;
 	border-radius: 5px;
 }
 
+#inner_content table tbody tr {
+	background: #dddddd;
+	color: black;
+}
+
 #inner_content table tbody tr td {
-	background: #dddddd;
-	color: black;
 	border-radius: 5px;
 	padding: 5px 0px 5px 0px;
 }
 
-#inner_content table tbody tr td  {
-	background: #dddddd;
+#inner_content table tbody tr td a {
+	text-decoration: none;
 	color: black;
-	border-radius: 5px;
-	padding: 5px 0px 5px 0px;
 }
-
 
 #inner_middle {
 	height: 5%;

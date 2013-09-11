@@ -43,9 +43,9 @@ public class ProjetoController {
 		this.projetoDAO.update(projeto);
 	}
 
-	@Path("/Projeto/busca/{projeto.Id}")
-	public Projeto BuscaProjetoPorId(Projeto projeto) {
-		return this.projetoDAO.getProjetoById(projeto.getId());
+	@Path("/Projeto/Detalhes")
+	public Projeto Detalhes(int id) {
+		return this.projetoDAO.getProjetoById(id);
 	}
 
 	@Path("/Projeto/lista")

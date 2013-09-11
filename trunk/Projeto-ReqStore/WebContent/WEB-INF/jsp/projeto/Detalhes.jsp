@@ -51,29 +51,38 @@
 
 				<div id="inner_top">
 					<div class="page_tittle">
-						<p>Listar projetos</p>
+						<p>Detalhes do Projeto</p>
 					</div>
 				</div>
+				
+				${projeto.id }
 				<div id="inner_content">
-					<table align="center" id="lista_projetos">
-						<thead>
-							<tr>
-								<td><label>Projeto</label></td>
-								<td><label>Tipo</label></td>
-								<td><label>Porntua&ccedil;&atilde;o</label></td>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${projetoList}" var="projeto">
-								<tr onclick="location.href = 'Detalhes?id=${projeto.id}';">
-									<td>${projeto.nome }</td>
-									<td>${projeto.tipoProjeto }</td>
-									<td>${projeto.pontuacao }</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-
-					</table>
+						<div id = "detalhes">
+							Nome
+							DEcrição
+						</div>
+					
+						<div id = "requisitos">
+							<table align="center" id="lista_projetos">
+								<thead>
+									<tr>
+										<td><label>Descrição</label></td>
+										<td><label>Tipo</label></td>
+										<td><label>Prioridade</label></td>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${projetoList}" var="projeto">
+										<tr onclick="location.href = '<c:url value="detalhes?${projeto.id }"/>';">
+											<td>${projeto.nome }</td>
+											<td>${projeto.tipoProjeto }</td>
+											<td>${projeto.pontuacao }</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						
+						</div>
 				</div>
 
 			</div>
