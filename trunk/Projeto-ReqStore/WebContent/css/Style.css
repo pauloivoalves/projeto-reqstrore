@@ -84,6 +84,14 @@ body {
 	width: 5%;
 }
 
+.descricao {
+	text-align: left;
+	color: black;
+	font-size: 12px;
+	font-family: sans-serif;
+	margin-bottom: 10px;
+}
+
 #right {
 	height: 200px;
 	float: right;
@@ -129,6 +137,24 @@ body {
 #inner_content table tbody tr {
 	background: #dddddd;
 	color: black;
+}
+
+#detalhes2 {
+	color: black;
+	font-size: 12px;
+	font-family: sans-serif;
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+#requisitos {
+	overflow: auto;
+	height: 138px;
+}
+
+#teste{
+	overflow: auto;
+	height: 265px;
 }
 
 #inner_content table tbody tr td {

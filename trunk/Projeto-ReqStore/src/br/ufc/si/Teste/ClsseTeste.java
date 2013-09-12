@@ -37,26 +37,27 @@ public class ClsseTeste {
 		IVersaoProjeto versaoDAO = new VersaoProjetoDAO();
 		IAluno alunoDAO = new AlunoDAO();
 		
-		Projeto proj = new Projeto();
-//			proj.setNome("Teste de adição de versao");
-//			proj.setDescricao("Testar dando um Update em um prjeto salava suas versoes");
-//			proj.setPontuacao(10);
-//			proj.setTipoProjeto(TipoProjeto.DESKTOP);
-//			projDAO.save(proj);
-			
+		
 		Aluno aluno = new Aluno();
-		aluno.setNome("Paulo");
-		aluno.setEmail("asd@email.com");
-		aluno.setSenha("senha");
+		aluno = alunoDAO.getAlunoById(2);
+		
+		
+		Projeto proj = new Projeto();
+			
+			
+		
+//		aluno.setNome("Paulo");
+//		aluno.setEmail("asd@email.com");
+//		aluno.setSenha("senha");
 //		alunoDAO.save(aluno);
+//		
+//		
+//		Aluno alusno  = new Aluno();
+//		alusno = alunoDAO.carrega(aluno);
+//		System.out.println(alusno.getNome());
 		
-		
-		Aluno alusno  = new Aluno();
-		alusno = alunoDAO.carrega(aluno);
-		System.out.println(alusno.getNome());
-		
-		//proj = projDAO.getProjetoById(1);
-		//aluno = alunoDAO.getAlunoById(1);
+//		proj = projDAO.getProjetoById(4);
+		aluno = alunoDAO.getAlunoById(1);
 		
 //		List<Projeto> projetos = new ArrayList<Projeto>();
 //		projetos.add(proj);
@@ -70,18 +71,28 @@ public class ClsseTeste {
 //		aluno = alunoDAO.getAlunoById(2);
 //		proj = projDAO.getProjetoById(1);
 		
-		//proj.setCriador(aluno);
+		
 		//projDAO.update(proj);
 		
 		RequisitoDAO reqDAO = new RequisitoDAO();
 		Requisito req = new Requisito();
 		
-//		req.setDescricao("Teste");
-//		req.setPrioridadeRequisito(PrioridadeRequisito.DESEJAVEL);
-//		req.setTipoRequisito(TipoRequisito.NAO_FUNCIONAL);	
-//		req.setProjeto(proj);
-//		
-//		reqDAO.save(req);
+		for (int i = 0; i < 10; i++) {
+//			req.setDescricao("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
+//			req.setPrioridadeRequisito(PrioridadeRequisito.ESSENCIAL);
+//			req.setTipoRequisito(TipoRequisito.FUNCIONAL);	
+//			req.setProjeto(proj);
+//			
+//			reqDAO.save(req);	
+			
+			proj.setNome("Projeto " + i);
+			proj.setDescricao("Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a mattis sem. Morbi nisl erat, iaculis ac tincidunt sit amet, facilisis ac diam. Vestibulum posuere elit ac massa sodales commodo. Ut et eleifend ligula, ac aliquam mi. Ut ultricies aliquet quam non interdum. Donec eros ipsum, vulputate quis cursus in, consectetur sit amet sapien. Pellentesque sit amet nibh condimentum, tristique posuere.");
+			proj.setPontuacao(5);
+			proj.setTipoProjeto(TipoProjeto.DESKTOP);
+			proj.setCriador(aluno);
+			projDAO.save(proj);
+		}
+		
 //		System.out.println(proj.getRequisitos().get(0).getDescricao() + " ID: " + proj.getRequisitos().get(0).getId());
 //		
 		

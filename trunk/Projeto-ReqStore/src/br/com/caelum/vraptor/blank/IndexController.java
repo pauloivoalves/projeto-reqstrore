@@ -19,6 +19,7 @@ package br.com.caelum.vraptor.blank;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.ufc.si.util.AutorizacaoInterceptor.Liberado;
 
 @Resource
 public class IndexController {
@@ -29,6 +30,7 @@ public class IndexController {
 		this.result = result;
 	}
 
+	@Liberado
 	@Path("/")
 	public void index() {
 		result.include("variable", "VRaptor!");

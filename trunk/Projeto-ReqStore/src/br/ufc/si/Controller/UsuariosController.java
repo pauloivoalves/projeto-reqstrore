@@ -11,6 +11,7 @@ import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.ufc.si.DAO.AlunoDAO;
 import br.ufc.si.model.Aluno;
 import br.ufc.si.util.UsuarioWeb;
+import br.ufc.si.util.AutorizacaoInterceptor.Liberado;
 
 @Resource
 public class UsuariosController {
@@ -28,6 +29,8 @@ public class UsuariosController {
 		this.result = result;
 	}
 
+	
+	@Liberado
 	@Get("/login")
 	public void loginForm() {
 
@@ -39,6 +42,8 @@ public class UsuariosController {
 	    result.redirectTo(IndexController.class).index();
 	  }
 
+	
+	@Liberado
 	@Post("/login")
 	public void login(Aluno aluno) {
 		Aluno carregado = dao.carrega(aluno);
@@ -49,7 +54,6 @@ public class UsuariosController {
 		}
 		
 		usuarioWeb.login(carregado);
-
 		result.redirectTo(AlunoController.class).AlunoHome();
 	}
 }

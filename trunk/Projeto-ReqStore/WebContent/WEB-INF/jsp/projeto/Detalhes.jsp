@@ -1,7 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@page import="br.ufc.si.model.Requisito"%>
+<%@page import="br.ufc.si.model.Projeto"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -51,38 +53,61 @@
 
 				<div id="inner_top">
 					<div class="page_tittle">
-						<p>Detalhes do Projeto</p>
+						<p>
+							<c:out value="${projeto.nome}"></c:out>
+						</p>
 					</div>
 				</div>
-				
-				${projeto.id }
+
 				<div id="inner_content">
-						<div id = "detalhes">
-							Nome
-							DEcrição
+					<div id="detalhes">
+
+						<div class="descricao">
+							<strong>Descrição</strong><br />
+							<br />
+							<c:out value="${projeto.descricao}"></c:out>
 						</div>
-					
-						<div id = "requisitos">
-							<table align="center" id="lista_projetos">
-								<thead>
-									<tr>
-										<td><label>Descrição</label></td>
-										<td><label>Tipo</label></td>
-										<td><label>Prioridade</label></td>
+
+
+						<div id="detalhes2">
+							<strong>Pontuação : </strong>
+							<c:out value="${projeto.pontuacao}"></c:out>
+
+							<Strong>Tipo do Projeto: </Strong>
+							<c:out value="${projeto.tipoProjeto}"></c:out>
+						</div>
+					</div>
+
+					<div id="requisitos">
+						<table align="center" id="lista_projetos">
+							<thead>
+								<tr>
+									<td colspan="3" style="font-size: 14px;"><b>Requisitos</b></td>
+								</tr>
+								
+								<tr>
+									<td><label>Tipo do Requisito</label></td>
+									<td><label>Prioridade do Requisito</label></td>
+									<td><label>Descrição do Requisito</label></td>
+								</tr>
+							</thead>
+							
+							<tbody>
+								<c:forEach items="${projeto.requisitos}" var="requisito">
+									<c:set var="desc1" value="${requisito.descricao }"/>
+									<c:set var="desc2" value="${fn:substring(desc1, 0, 60)}" />
+									
+									
+									<tr onclick="location.href = '<c:url value="detalhes?${projeto.id }"/>';">
+										<td>${requisito.tipoRequisito }</td>
+										<td>${requisito.prioridadeRequisito }</td>
+										<td>${desc2}</td>
 									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${projetoList}" var="projeto">
-										<tr onclick="location.href = '<c:url value="detalhes?${projeto.id }"/>';">
-											<td>${projeto.nome }</td>
-											<td>${projeto.tipoProjeto }</td>
-											<td>${projeto.pontuacao }</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						
-						</div>
+								</c:forEach>
+							</tbody>
+						</table>
+
+					</div>
 				</div>
 
 			</div>

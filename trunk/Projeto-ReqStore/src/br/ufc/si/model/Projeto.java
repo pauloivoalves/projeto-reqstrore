@@ -30,7 +30,7 @@ public class Projeto {
 	@Column(name = "Tipo_Projeto", nullable = false)
 	private TipoProjeto tipoProjeto;
 
-	@Column(name = "Descricao_Projeto", nullable = false, length = 400)
+	@Column(name = "Descricao_Projeto", nullable = false, length = 1000)
 	private String descricao;
 
 	@Column(name = "Pontuacao", nullable = false)

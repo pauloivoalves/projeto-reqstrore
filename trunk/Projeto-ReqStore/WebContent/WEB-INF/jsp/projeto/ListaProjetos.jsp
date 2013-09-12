@@ -55,25 +55,27 @@
 					</div>
 				</div>
 				<div id="inner_content">
-					<table align="center" id="lista_projetos">
-						<thead>
-							<tr>
-								<td><label>Projeto</label></td>
-								<td><label>Tipo</label></td>
-								<td><label>Porntua&ccedil;&atilde;o</label></td>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${projetoList}" var="projeto">
-								<tr onclick="location.href = 'Detalhes?id=${projeto.id}';">
-									<td>${projeto.nome }</td>
-									<td>${projeto.tipoProjeto }</td>
-									<td>${projeto.pontuacao }</td>
+					<div id="teste">
+						<table align="center" id="lista_projetos">
+							<thead>
+								<tr>
+									<td><label>Projeto</label></td>
+									<td><label>Tipo</label></td>
+									<td><label>Porntua&ccedil;&atilde;o</label></td>
 								</tr>
-							</c:forEach>
-						</tbody>
+							</thead>
+							<tbody>
+								<c:forEach items="${projetoList}" var="projeto">
+									<tr onclick="location.href = 'Detalhes?id=${projeto.id}';">
+										<td>${projeto.nome }</td>
+										<td>${projeto.tipoProjeto }</td>
+										<td>${projeto.pontuacao }</td>
+									</tr>
+								</c:forEach>
+							</tbody>
 
-					</table>
+						</table>
+					</div>
 				</div>
 
 			</div>
