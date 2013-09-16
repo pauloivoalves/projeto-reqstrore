@@ -82,6 +82,7 @@ body {
 #center {
 	float: left;
 	width: 5%;
+	margin-top: 25px;
 }
 
 .descricao {
@@ -152,7 +153,7 @@ body {
 	height: 138px;
 }
 
-#teste{
+#lista{
 	overflow: auto;
 	height: 265px;
 }

@@ -27,13 +27,16 @@ public class Requisito {
 	@Column(name = "Tipo_Requisito", nullable = false)
 	private TipoRequisito tipoRequisito;
 
-	@Column(name = "Descricao_Requisio", nullable = false, length = 400)
+	@Column(name = "Descricao_Requisio", nullable = false, length = 600)
 	private String descricao;
+
+	@Column(name = "Foco_Requisio", nullable = false, length = 600)
+	private String foco_requisito;
 
 	@Column(name = "Prioridade_Requisito", nullable = false)
 	private PrioridadeRequisito prioridadeRequisito;
 
-	@OneToMany(mappedBy = "idRequisito", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "idRequisito", fetch = FetchType.EAGER)
 	private List<VersaoRequisito> versoesRequisito;
 
 	public int getId() {
@@ -82,6 +85,14 @@ public class Requisito {
 
 	public void setVersoesRequisito(List<VersaoRequisito> versoesRequisito) {
 		this.versoesRequisito = versoesRequisito;
+	}
+
+	public String getFoco_requisito() {
+		return foco_requisito;
+	}
+
+	public void setFoco_requisito(String foco_requisito) {
+		this.foco_requisito = foco_requisito;
 	}
 
 }

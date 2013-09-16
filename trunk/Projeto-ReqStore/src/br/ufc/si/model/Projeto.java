@@ -33,6 +33,9 @@ public class Projeto {
 	@Column(name = "Descricao_Projeto", nullable = false, length = 1000)
 	private String descricao;
 
+	@Column(name = "Foco_Projeto", nullable = false, length = 1000)
+	private String Foco_projeto;
+
 	@Column(name = "Pontuacao", nullable = false)
 	private int pontuacao;
 
@@ -64,6 +67,14 @@ public class Projeto {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getFoco_projeto() {
+		return Foco_projeto;
+	}
+
+	public void setFoco_projeto(String foco_projeto) {
+		Foco_projeto = foco_projeto;
 	}
 
 	public TipoProjeto getTipoProjeto() {

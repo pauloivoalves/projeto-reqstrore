@@ -55,7 +55,7 @@
 					</div>
 				</div>
 				<div id="inner_content">
-					<div id="teste">
+					<div id="lista">
 						<table align="center" id="lista_projetos">
 							<thead>
 								<tr>

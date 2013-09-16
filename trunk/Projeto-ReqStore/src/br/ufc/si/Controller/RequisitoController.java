@@ -42,5 +42,11 @@ public class RequisitoController {
 	public List<Requisito> ListaRequisitos(Projeto projeto) {
 		return this.requisitoDAO.List(projeto);
 	}
+	
+	
+	@Path("/Requisito/DetalhesRequisito")
+	public Requisito DetalhesRequisito(int id){
+		return requisitoDAO.getRequisitoById(id);
+	}
 
 }

@@ -51,7 +51,7 @@
 				</div>
 
 
-				<div id="right">
+				<div id="right" class = "descricao">
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 						Vestibulum dapibus malesuada lacus a varius. Nam tincidunt neque
 						in lacus egestas rutrum sed tincidunt quam. Nullam nec tempus
