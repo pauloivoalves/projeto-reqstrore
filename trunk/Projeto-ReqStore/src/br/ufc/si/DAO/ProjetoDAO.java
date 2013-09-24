@@ -9,6 +9,7 @@ import org.hibernate.criterion.Restrictions;
 
 import br.com.caelum.vraptor.ioc.Component;
 import br.ufc.si.Interfaces.IProjeto;
+import br.ufc.si.Tipos.TipoProjeto;
 import br.ufc.si.model.Projeto;
 import br.ufc.si.util.HibernateUtil;
 
@@ -87,10 +88,31 @@ public class ProjetoDAO implements IProjeto {
 
 			List<Projeto> listaProjetos = session.createCriteria(Projeto.class)
 					.add(Restrictions.like("nome", "%" + name + "%")).list();
+
 			for (Projeto projeto : listaProjetos) {
 				Hibernate.initialize(projeto.getRequisitos());
 			}
 			return listaProjetos;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	public List<Projeto> BuscaDificuldadeTipo(int dificuldade, TipoProjeto tipo) {
+		Session session = HibernateUtil.getSession();
+		try {
+			@SuppressWarnings("unchecked")
+			List<Projeto> lista = session.createCriteria(Projeto.class)
+					.add(Restrictions.le("pontuacao", dificuldade))
+					.add(Restrictions.eq("tipoProjeto", tipo)).list();
+			
+			for (Projeto projeto : lista) {
+				Hibernate.initialize(projeto);
+			}
+			return lista;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -107,7 +129,7 @@ public class ProjetoDAO implements IProjeto {
 			return projeto;
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			session.close();
 		}
 		return null;

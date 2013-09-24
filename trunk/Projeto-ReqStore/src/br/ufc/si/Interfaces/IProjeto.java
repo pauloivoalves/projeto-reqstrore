@@ -2,6 +2,7 @@ package br.ufc.si.Interfaces;
 
 import java.util.List;
 
+import br.ufc.si.Tipos.TipoProjeto;
 import br.ufc.si.model.Projeto;
 
 public interface IProjeto {
@@ -17,4 +18,6 @@ public interface IProjeto {
 	public List<Projeto> SearchByName(String name);
 	
 	public Projeto getProjetoById(int id);
+
+	public List<Projeto> BuscaDificuldadeTipo(int dificuldade, TipoProjeto tipo);
 }

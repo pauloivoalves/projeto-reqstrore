@@ -3,6 +3,7 @@ package br.ufc.si.Teste;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 
 import antlr.collections.impl.LList;
@@ -34,8 +35,10 @@ public class ClsseTeste {
 		
 	public static void main(String[] args) {
 		IProjeto projDAO = new ProjetoDAO();
+		
 		IVersaoProjeto versaoDAO = new VersaoProjetoDAO();
 		IAluno alunoDAO = new AlunoDAO();
+		
 		Professor prof = new Professor();
 		IProfessor professorDAO = new ProfessorDAO();
 		
@@ -61,7 +64,7 @@ public class ClsseTeste {
 //		proj = projDAO.getProjetoById(4);
 //		aluno = alunoDAO.getAlunoById(1);
 		
-//		List<Projeto> projetos = new ArrayList<Projeto>();
+		List<Projeto> projetos = new ArrayList<Projeto>();
 //		projetos.add(proj);
 
 		//aluno.setProjetos(projetos);
@@ -71,7 +74,13 @@ public class ClsseTeste {
 		//projDAO.save(proj);
 		
 //		aluno = alunoDAO.getAlunoById(2);
-		proj = projDAO.getProjetoById(9);
+		
+		projetos = BuscaNomeRequisito(10, TipoProjeto.DESKTOP, 3, "");
+		
+		
+		for (Projeto projeto : projetos) {
+			System.out.println(projeto.getNome());
+		}
 		
 		
 		//projDAO.update(proj);
@@ -79,14 +88,14 @@ public class ClsseTeste {
 		RequisitoDAO reqDAO = new RequisitoDAO();
 		Requisito req = new Requisito();
 		
-		for (int i = 0; i < 10; i++) {
-			req.setDescricao("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
-			req.setPrioridadeRequisito(PrioridadeRequisito.ESSENCIAL);
-			req.setTipoRequisito(TipoRequisito.NAO_FUNCIONAL);
-			req.setFoco_requisito("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
-			req.setProjeto(proj);
-			
-			reqDAO.save(req);	
+//		for (int i = 0; i < 10; i++) {
+//			req.setDescricao("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
+//			req.setPrioridadeRequisito(PrioridadeRequisito.ESSENCIAL);
+//			req.setTipoRequisito(TipoRequisito.NAO_FUNCIONAL);
+//			req.setFoco_requisito("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
+//			req.setProjeto(proj);
+//			
+//			reqDAO.save(req);	
 			
 //			proj.setNome("Projeto " + i);
 //			proj.setDescricao("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
@@ -95,12 +104,64 @@ public class ClsseTeste {
 //			proj.setFoco_projeto("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
 //			proj.setCriador(aluno);
 //			projDAO.save(proj);
-		}
+			
+			
+		//}
 		
 //		System.out.println(proj.getRequisitos().get(0).getDescricao() + " ID: " + proj.getRequisitos().get(0).getId());
 //		
 		
 		System.out.println("Temrinou!");
+	}
+	
+	public static List<Projeto> BuscaNomeRequisito(int dificuldade, TipoProjeto tipo,  int numReq, String nome){
+		IProjeto dao = new ProjetoDAO(); 
+		List<Projeto> projetos  = dao.BuscaDificuldadeTipo(dificuldade,  tipo);
+		
+		if((numReq > 0) && (!nome.equals(""))){
+			System.out.println("Teste 1");
+			
+			List<Projeto> list = new ArrayList<Projeto>();
+			
+			for (Projeto projeto : projetos) {
+				Hibernate.initialize(projeto.getRequisitos());
+				if((projeto.getNome().equals(nome)) && (projeto.getRequisitos().size() <= numReq)){
+					list.add(projeto);
+				}
+			}
+			
+			for (Projeto projeto : list) {
+				System.out.println(projeto.getNome());
+			}
+			return list;
+		}else if(!nome.equals("")){
+			System.out.println("Teste 2");
+			List<Projeto> list = new ArrayList<Projeto>();
+			
+			for (Projeto projeto : projetos) {
+				Hibernate.initialize(projeto.getRequisitos());
+				
+				if((projeto.getNome().equals(nome))){
+					list.add(projeto);
+					System.err.println("asd");
+				}
+			}
+			return list;
+			
+		}else if(numReq > 0){
+			System.out.println("Teste 3");
+			List<Projeto> list = new ArrayList<Projeto>();
+			
+			for (Projeto projeto : projetos) {
+				Hibernate.initialize(projeto.getRequisitos());
+				
+				if(projeto.getRequisitos().size() <= numReq){
+					list.add(projeto);
+				}
+			}
+			return list;
+		}
+		return null;
 	}
 
 }
