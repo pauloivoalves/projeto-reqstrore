@@ -79,7 +79,7 @@ public class ClsseTeste {
 		
 		
 		for (Projeto projeto : projetos) {
-			System.out.println(projeto.getNome());
+			System.out.println(projeto.getId());
 		}
 		
 		
@@ -161,7 +161,7 @@ public class ClsseTeste {
 			}
 			return list;
 		}
-		return null;
+		return projetos;
 	}
 
 }

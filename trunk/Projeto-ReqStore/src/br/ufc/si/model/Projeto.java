@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import br.ufc.si.Tipos.TipoProjeto;
 
 @Entity
@@ -39,9 +42,11 @@ public class Projeto {
 	@Column(name = "Pontuacao", nullable = false)
 	private int pontuacao;
 
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "projeto")
 	private List<Requisito> requisitos;
 
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "idProjeto")
 	private List<VersaoProjeto> versoesProjeto;
 

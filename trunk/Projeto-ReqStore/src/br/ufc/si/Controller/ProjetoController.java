@@ -1,12 +1,16 @@
 package br.ufc.si.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.hibernate.Hibernate;
 
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.ufc.si.DAO.ProjetoDAO;
 import br.ufc.si.Interfaces.IProjeto;
+import br.ufc.si.Tipos.TipoProjeto;
 import br.ufc.si.model.Projeto;
 import br.ufc.si.model.Usuario;
 
@@ -47,14 +51,59 @@ public class ProjetoController {
 	public Projeto Detalhes(int id) {
 		return this.projetoDAO.getProjetoById(id);
 	}
+	
+	@Path("/Projeto/busca")
+	public void Busca(){
+		
+	}
 
 	@Path("/Projeto/lista")
 	public List<Projeto> ListaProjetos() {
 		return this.projetoDAO.List();
 	}
+	
+	@Path("/Projeto/buscaFiltrada")
+	public List<Projeto> BuscaFiltrada(int dificuldade, TipoProjeto tipo,  int numReq, String nome){
+		IProjeto dao = new ProjetoDAO(); 
+		List<Projeto> projetos  = dao.BuscaDificuldadeTipo(dificuldade,  tipo);
+		
+		if((numReq > 0) && (!nome.equalsIgnoreCase(""))){
+			List<Projeto> list = new ArrayList<Projeto>();
+			
+			for (Projeto projeto : projetos) {
+				Hibernate.initialize(projeto.getRequisitos());
 
-	@Path("/Projeto/busca/{nome}")
-	public List<Projeto> BuscaProjetoPorNome(String nome) {
-		return this.projetoDAO.SearchByName(nome);
+				if((projeto.getNome().equals(nome)) && (projeto.getRequisitos().size() <= numReq)){
+					list.add(projeto);
+				}
+			}
+			return list;
+
+		}else if(!nome.equalsIgnoreCase("")){
+
+			List<Projeto> list = new ArrayList<Projeto>();
+			
+			for (Projeto projeto : projetos) {
+				Hibernate.initialize(projeto.getRequisitos());
+				
+				if((projeto.getNome().equals(nome))){
+					list.add(projeto);
+				}
+			}
+			return list;
+			
+		}else if(numReq > 0){
+			List<Projeto> list = new ArrayList<Projeto>();
+			
+			for (Projeto projeto : projetos) {
+				Hibernate.initialize(projeto.getRequisitos());
+				
+				if(projeto.getRequisitos().size() <= numReq){
+					list.add(projeto);
+				}
+			}
+			return list;
+		}
+		return projetos;
 	}
 }

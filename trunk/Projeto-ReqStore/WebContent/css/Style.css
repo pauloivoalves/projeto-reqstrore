@@ -34,6 +34,33 @@ body {
 	padding-bottom: 10px;
 }
 
+#tipoProjeto {
+	text-align: left;
+	font-size: 16px;
+	color: black;
+	margin-bottom: 10px;
+	height: 40px;
+}
+
+#tituloDificuldade {
+	text-align: left;
+	color: black;
+	height: 55px;
+}
+
+#tituloDificuldade input[type=text] {
+	width: 350px;
+	color: grey;
+	background: #dddddd;
+	border: 0;
+	height: 15px;
+	padding-top: 3px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+}
+
 #menu {
 	width: 960px;
 	height: 65px;
@@ -153,7 +180,7 @@ body {
 	height: 138px;
 }
 
-#lista{
+#lista {
 	overflow: auto;
 	height: 265px;
 }
