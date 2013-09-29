@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Hibernate;
 
+import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
@@ -52,58 +53,39 @@ public class ProjetoController {
 		return this.projetoDAO.getProjetoById(id);
 	}
 	
-	@Path("/Projeto/busca")
-	public void Busca(){
-		
-	}
 
 	@Path("/Projeto/lista")
 	public List<Projeto> ListaProjetos() {
 		return this.projetoDAO.List();
 	}
 	
-	@Path("/Projeto/buscaFiltrada")
-	public List<Projeto> BuscaFiltrada(int dificuldade, TipoProjeto tipo,  int numReq, String nome){
-		IProjeto dao = new ProjetoDAO(); 
-		List<Projeto> projetos  = dao.BuscaDificuldadeTipo(dificuldade,  tipo);
-		
-		if((numReq > 0) && (!nome.equalsIgnoreCase(""))){
-			List<Projeto> list = new ArrayList<Projeto>();
+	@Get("/Projeto/Busca")
+	public List<Projeto> Busca(String nomeProjeto, String pontuacaoProjeto, String tipoProjeto) {
+		if ((nomeProjeto == null) && (pontuacaoProjeto == null) && (tipoProjeto == null)) {
 			
-			for (Projeto projeto : projetos) {
-				Hibernate.initialize(projeto.getRequisitos());
-
-				if((projeto.getNome().equals(nome)) && (projeto.getRequisitos().size() <= numReq)){
-					list.add(projeto);
-				}
-			}
-			return list;
-
-		}else if(!nome.equalsIgnoreCase("")){
-
-			List<Projeto> list = new ArrayList<Projeto>();
+			return null;
 			
-			for (Projeto projeto : projetos) {
-				Hibernate.initialize(projeto.getRequisitos());
+		} else if ((pontuacaoProjeto != null && tipoProjeto !=null) && nomeProjeto == null){
+			
+			List<Projeto> projetos = projetoDAO.BuscaDificuldadeTipo(Integer.parseInt(pontuacaoProjeto), TipoProjeto.valueOf(tipoProjeto));
+			return projetos;
+			
+		}else if(pontuacaoProjeto != null && tipoProjeto !=null && nomeProjeto != null){
+			List<Projeto> projetos = projetoDAO.SearchByName(nomeProjeto);
+			
+			if(projetos.size() != 0){
+				List<Projeto> listRetorno = new ArrayList<Projeto>();
 				
-				if((projeto.getNome().equals(nome))){
-					list.add(projeto);
+				for (Projeto projeto : projetos) {
+					if(projeto.getPontuacao() <= Integer.parseInt(pontuacaoProjeto) && projeto.getTipoProjeto().toString().equals(TipoProjeto.valueOf(tipoProjeto).toString())){
+						Hibernate.initialize(projeto);
+						listRetorno.add(projeto);
+					}
 				}
+				return listRetorno;
 			}
-			return list;
-			
-		}else if(numReq > 0){
-			List<Projeto> list = new ArrayList<Projeto>();
-			
-			for (Projeto projeto : projetos) {
-				Hibernate.initialize(projeto.getRequisitos());
-				
-				if(projeto.getRequisitos().size() <= numReq){
-					list.add(projeto);
-				}
-			}
-			return list;
 		}
-		return projetos;
+		return null;
 	}
+	
 }

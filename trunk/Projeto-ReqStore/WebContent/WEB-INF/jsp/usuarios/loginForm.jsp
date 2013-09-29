@@ -41,9 +41,11 @@
 					<fieldset>
 						<legend>Efetue o login</legend>
 
-						<label for="Email">Login:</label> <input id="email" type="text"
-							name="aluno.email" /> <label for="senha">Senha:</label> <input
-							id="senha" type="password" name="aluno.senha" />
+						<label for="Email">Login:</label> 
+						<input id="email" type="text" name="aluno.email" /> 
+						
+						<label for="senha">Senha:</label> 
+						<input id="senha" type="password" name="aluno.senha" />
 
 						<button type="submit">Login</button>
 					</fieldset>
