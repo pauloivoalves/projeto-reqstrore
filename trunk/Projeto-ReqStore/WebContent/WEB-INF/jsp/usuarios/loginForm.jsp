@@ -37,34 +37,39 @@
 				</ul>
 			</div>
 			<div id="inner_content_div">
-				<form action="<c:url value="/login"/>" method="POST">
-					<fieldset>
-						<legend>Efetue o login</legend>
+				<form name  = "formLogin" id = "formLogin" action="<c:url value="/login"/>" method="POST">
+				<input type = "hidden" name = "tipo_usuario" id = "tipo_usuario">
+				
+					<div id = "login">
 
-						<label for="Email">Login:</label> 
-						<input id="email" type="text" name="aluno.email" /> 
+						<label for="Email">Login:</label> <br>
+						<input id="email" class  = "input_login" type="text" name="aluno.email" /> <br>
 						
-						<label for="senha">Senha:</label> 
-						<input id="senha" type="password" name="aluno.senha" />
+						<label for="senha">Senha:</label> <br>
+						<input  class  = "input_login" id="senha" type="password" name="aluno.senha" /><br>
+						
+						<label for = "select_usuario">Tipo de Usu&aacute;rio</label><br>
+						<select class  = "input_login" name  = "select_usuario" id = "select_usuario">
+							<option value = "Selecione..."></option>
+							<option value = "aluno">Aluno</option>
+							<option value = "professor">Professor</option>
+							<option value = "administrador">Administrador</option>
+						</select>
 
-						<button type="submit">Login</button>
-					</fieldset>
+						<a id = "entrar"href = "#"><img src = "imagens/entrar.png"></a>
+					</div>
 				</form>
 			</div>
 			<div id="footer_menu">
 				<table>
 					<tr>
-						<td><a target="_blank"
-							href="https://sistemas.quixada.ufc.br/apps2/sippa/index.jsp">SIPPA</a></td>
+						<td><a target="_blank" href="https://sistemas.quixada.ufc.br/apps2/sippa/index.jsp">SIPPA</a></td>
 						<td>&bull;</td>
-						<td><a target="_blank"
-							href="https://sistemas.quixada.ufc.br/apps2/savi/index.jsp">SAVI</a></td>
+						<td><a target="_blank" href="https://sistemas.quixada.ufc.br/apps2/savi/index.jsp">SAVI</a></td>
 						<td>&bull;</td>
-						<td><a target="_blank"
-							href="https://sistemas.quixada.ufc.br/apps2/sisac/index.jsp">SISAC</a></td>
+						<td><a target="_blank" href="https://sistemas.quixada.ufc.br/apps2/sisac/index.jsp">SISAC</a></td>
 						<td>&bull;</td>
-						<td><a target="_blank"
-							href="https://sistemas.quixada.ufc.br/SEVEN/">SEVEN</a></td>
+						<td><a target="_blank" href="https://sistemas.quixada.ufc.br/SEVEN/">SEVEN</a></td>
 						<td>&bull;</td>
 						<td><a target="_blank" href="http://www.si3.ufc.br/">SIGAA</a></td>
 					</tr>
@@ -77,4 +82,23 @@
 		</div>
 	</div>
 </body>
+<script type="text/javascript">
+	$('#entrar').click(function(){
+		if($('#email').val() == ""){
+			alert('Campo "E-mail" n\u00e3o preenchido.');
+			$('#email').focus();
+			return false;
+		}else if($('#senha').val() == ""){
+			alert('Campo "Senha" n\u00e3o preencido."');
+			$('#senha').focus();
+		}else if($("#select_usuario option").filter(":selected").val() == "Selecione..."){
+			alert('Campo "Tipo Usu\u00e1rio" n\u00e3o selecionado.');
+			$('#select_usuario').focus();
+			return false;
+		}
+		
+		document.formLogin.submit();	
+	});
+</script>
+
 </html>

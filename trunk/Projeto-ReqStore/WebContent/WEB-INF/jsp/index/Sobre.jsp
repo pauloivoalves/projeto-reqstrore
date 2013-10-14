@@ -9,7 +9,8 @@
 	<link href="css/menu.css" rel="stylesheet" type="text/css" />
 	<link href="css/Style.css" rel="stylesheet" type="text/css" />
 
-<title>Home</title>
+
+<title>Sobre</title>
 </head>
 <body>
 	<div id="tudo">
@@ -35,7 +36,38 @@
 					</c:if>
 				</ul>
 			</div>
-			<div id="inner_content_div"></div>
+			<div id="inner_content_div">
+				<div id="left"></div>
+				<div id="center">
+					<img src="imagens/separador2.png">
+				</div>
+
+
+				<div id="right" class = "descricao">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						Vestibulum dapibus malesuada lacus a varius. Nam tincidunt neque
+						in lacus egestas rutrum sed tincidunt quam. Nullam nec tempus
+						odio. Aliquam cursus tellus sed felis varius, a volutpat magna
+						varius. Aliquam quis varius massa. Vestibulum fringilla mauris
+						quis nunc porta ultrices non ut dui. </p>
+				</div>
+				<div id = "right_botton">
+					<strong id = "desenvolvedores">Desenvolvedores</strong>
+					<p>
+					<label class = "nome_part">Paulo Ivo Alves Pordeus</label><br>
+					<label class = "desc_part">Desenvolvedor e Idealizador</label><br>
+					</p>
+					<p>
+					<label class = "nome_part" >Carla Ilane Moreira Bezerra</label><br>
+					<label class = "desc_part">Idealizadora</label><br>
+					</p>
+					<p>
+					<label class = "nome_part">Lucas Wendell Braboza azevedo</label><br>
+					<label class = "desc_part">Designer</label><br>
+					</p>
+				</div>
+
+			</div>
 			<div id="footer_menu">
 				<table>
 					<tr>

@@ -35,5 +35,11 @@ public class IndexController {
 	public void index() {
 		result.include("variable", "VRaptor!");
 	}
+	
+	@Liberado
+	@Path("/Sobre")
+	public void Sobre() {
+		result.include("variable", "VRaptor!");
+	}
 
 }
