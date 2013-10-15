@@ -118,9 +118,12 @@ body {
 	height: 340px;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
+	border-radius: 10px;
 	background-image: url("../imagens/inner_Content_backgroud.png");
 	background-repeat: repeat;
 	margin: 0px 20px 0px 20px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
 }
 
 #left {
@@ -260,6 +263,23 @@ body {
 	height: 40%;
 	width: 90%;
 	margin: 0 auto;
+}
+
+#porntuacaoProjeto ul {
+	padding: 0px;
+	margin: 0px;
+	list-style: none;
+}
+
+#porntuacaoProjeto ul li {
+	display: inline;
+}
+
+#porntuacaoProjeto ul li img {
+	padding: 2px 5px;
+	display: inline-block;
+	/* visual do link */
+	text-decoration: none;
 }
 
 #footer_menu {

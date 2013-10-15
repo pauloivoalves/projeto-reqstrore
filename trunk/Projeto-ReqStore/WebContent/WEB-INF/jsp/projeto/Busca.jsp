@@ -8,13 +8,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<script type="text/javascript" src="../js/Script.js"></script>
-<script type="text/javascript" src="../js/JQuerry.js"></script>
-<link href="../css/Style.css" rel="stylesheet" type="text/css" />
-<link type="text/css" href="../css/menu.css" rel="stylesheet" />
-
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script type="text/javascript" src="../js/Script.js"></script>
+	<script type="text/javascript" src="../js/JQuerry.js"></script>
+	<link href="../css/Style.css" rel="stylesheet" type="text/css" />
+	<link type="text/css" href="../css/menu.css" rel="stylesheet" />
 <title>Busca de Projetos</title>
 
 </head>
@@ -64,30 +62,36 @@
 	
 					<div id="inner_content">
 						<form name = "formBuscarProjeto" action="/ReqStore/Projeto/Busca">
+						<input type="hidden" name = "primeira"  id = "peimeira" value = "1">
 							<div id="detalhes">
-	
-							<div id = "tituloDificuldade">
-								<div id= "titulo" style = "width: 50%; float: left;">
-									<label for="titulo">Título do Projeto</label><br>	
-									<input type="text" name = "nomeProjeto" value = ""> 
+								<div id = "tituloDificuldade">
+									<div id= "titulo" style = "width: 50%; float: left;">
+										<label for="titulo">Título do Projeto</label><br>	
+										<input type="text" name = "nomeProjeto" value = ""> 
+									</div>
+									
+									<div id= "porntuacaoProjeto" style = "width: 50%; float: right;">
+										<label>Pontuação do Projeto</label><br>
+										<input type = "hidden" id = "pontuacaoProjeto" name = "pontuacaoProjeto" value = "2">
+										<ul>
+											<li id = "iniciante" value = "2"><img style = "cursor:pointer;" title = "2" src = "../imagens/dificuldadeselecionada.png"></li>
+											<li id = "iniciado" value = "4"><img style = "cursor:pointer;" title = "4" src = "../imagens/dificuldade.png"></li>
+											<li id = "medio" value = "6"><img style = "cursor:pointer;" title = "6" src = "../imagens/dificuldade.png"></li>
+											<li id = "dificil" value = "8"><img style = "cursor:pointer;" title = "8" src = "../imagens/dificuldade.png"></li>
+											<li id = "avancado" value = "10"><img style = "cursor:pointer;" title = "10" src = "../imagens/dificuldade.png"></li>
+										</ul>
+									</div>
 								</div>
-								
-								<div id= "porntuacaoProjeto" style = "width: 50%; float: right;">
-									<label>Pontuação do Projeto</label><br>
-									<input id = "pontuacaoProjeto" type="radio" value = "4" name = "pontuacaoProjeto">Pontuação 4
+		
+								<div id="tipoProjeto">
+									<label style = "font-size: 12px;">Tipo do Projeto</label><br>	
+									<input id = "TipoDesk" class = "teste" type="radio" name = "tipoProjeto" value = "DESKTOP"> DESKTOP
+									<input id = "TipoMob" class = "teste" type="radio" name = "tipoProjeto" value = "MOBILE"> MOBILE
+									<input id = "TipoWeb" class = "teste" type="radio" name = "tipoProjeto" value = "WEB"> WEB
+									
+									<a style = "float:right;" id = "buscar" href = "#"><img src = "../imagens/buscarProjetos.png"></a>
 								</div>
 							</div>
-	
-							<div id="tipoProjeto">
-								<label style = "font-size: 12px;">Tipo do Projeto</label><br>	
-								<input id = "TipoDesk" class = "teste" type="radio" name = "tipoProjeto" value = "DESKTOP"> DESKTOP
-								<input id = "TipoMob" class = "teste" type="radio" name = "tipoProjeto" value = "MOBILE"> MOBILE
-								<input id = "TipoWeb" class = "teste" type="radio" name = "tipoProjeto" value = "WEB"> WEB
-							</div>
-							
-							
-							<input id = "buscar" type="submit">
-					</div>
 						</form>
 	
 						<div id="requisitos">
@@ -120,9 +124,11 @@
 
 								</c:when>
 								<c:otherwise>
-											<script type = "text/javascript">
-												alert('Não foram encontrados projetos com os parâmetros definidos.');
-											</script>
+									<script type = "text/javascript">
+										if($('#peimeira').val() != 1){
+											alert('Não foram encontrados projetos com os parâmetros definidos.');
+										}
+									</script>
 								</c:otherwise>
 							</c:choose>
 						</div>
@@ -151,14 +157,53 @@
 		</div>
 	</div>
 	<script type="text/javascript">
+
+	
+	$('#iniciante').click(function(){
+		$('#iniciado > img').attr('src', '../imagens/dificuldade.png');
+		$('#medio > img').attr('src', '../imagens/dificuldade.png');
+		$('#dificil > img').attr('src', '../imagens/dificuldade.png');
+		$('#avancado > img').attr('src', '../imagens/dificuldade.png');
+	});
+	$('#iniciado').click(function(){
+		$('#iniciado > img').attr('src', '../imagens/dificuldadeselecionada.png');
+		$('#iniciante > img').attr('src', '../imagens/dificuldadeselecionada.png');
+		$('#medio > img').attr('src', '../imagens/dificuldade.png');
+		$('#dificil > img').attr('src', '../imagens/dificuldade.png');
+		$('#avancado > img').attr('src', '../imagens/dificuldade.png');
+		$('#pontuacaoProjeto').val('4');
+	});
+	$('#medio').click(function(){
+		$('#medio > img').attr('src', '../imagens/dificuldadeselecionada.png');
+		$('#iniciado > img').attr('src', '../imagens/dificuldadeselecionada.png');
+		$('#iniciante > img').attr('src', '../imagens/dificuldadeselecionada.png');
+		$('#dificil > img').attr('src', '../imagens/dificuldade.png');
+		$('#avancado > img').attr('src', '../imagens/dificuldade.png');
+		$('#pontuacaoProjeto').val('6');
+	});
+	$('#dificil').click(function(){
+		$('#dificil > img').attr('src', '../imagens/dificuldadeselecionada.png');
+		$('#medio > img').attr('src', '../imagens/dificuldadeselecionada.png');
+		$('#iniciado > img').attr('src', '../imagens/dificuldadeselecionada.png');
+		$('#iniciante > img').attr('src', '../imagens/dificuldadeselecionada.png');
+		$('#avancado > img').attr('src', '../imagens/dificuldade.png');
+		$('#pontuacaoProjeto').val('8');
+	});
+	$('#avancado').click(function(){
+		$('#avancado > img').attr('src', '../imagens/dificuldadeselecionada.png');
+		$('#dificil > img').attr('src', '../imagens/dificuldadeselecionada.png');
+		$('#medio > img').attr('src', '../imagens/dificuldadeselecionada.png');
+		$('#iniciado > img').attr('src', '../imagens/dificuldadeselecionada.png');
+		$('#iniciante > img').attr('src', '../imagens/dificuldadeselecionada.png');
+		$('#pontuacaoProjeto').val('10');
+	});
+	
+	
 		$('#buscar').click(function(){
 			
-			if($("#pontuacaoProjeto").is(":checked") == false){
-				
-				alert('Para melhor refinamento da busca você deve selecionar uma dificuldade.');
-				return false;
-				
-			}else if (!$(".teste").is(":checked")){
+			$('#primeira').val('0');
+			
+			if (!$(".teste").is(":checked")){
 				alert ('Para melhor refinamento da busca você deve selecionar um tipo de projeto.');
 				return false;
 			}
