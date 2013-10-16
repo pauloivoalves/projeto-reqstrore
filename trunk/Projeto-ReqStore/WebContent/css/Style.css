@@ -70,6 +70,7 @@ body {
 	color: black;
 	margin-bottom: 10px;
 	height: 40px;
+	width: 565px;
 }
 
 #tituloDificuldade {
@@ -119,11 +120,16 @@ body {
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
+	-webkit-box-shadow: 4px -4px 12px rgba(50, 50, 50, 0.6);
+	-moz-box-shadow: 4px -4px 12px rgba(50, 50, 50, 0.6);
+	box-shadow: 4px -4px 12px rgba(50, 50, 50, 0.6);
 	background-image: url("../imagens/inner_Content_backgroud.png");
 	background-repeat: repeat;
 	margin: 0px 20px 0px 20px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
+	-moz-box-shadow: 4px -4px 12px rgba(50, 50, 50, 0.6);
+	box-shadow: 4px -4px 12px rgba(50, 50, 50, 0.6);
 }
 
 #left {
@@ -154,7 +160,7 @@ body {
 }
 
 #right {
-	height: 140px;
+	height: 125px;
 	float: right;
 	width: 65%;
 	margin-top: 20px;

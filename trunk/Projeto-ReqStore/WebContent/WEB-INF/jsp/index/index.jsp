@@ -35,7 +35,7 @@
 					</c:if>
 				</ul>
 			</div>
-			<div id="inner_content_div"></div>
+			<div id="inner_content_div"><img src = "imagens/reqStorePBL.png"></div>
 			<div id="footer_menu">
 				<table>
 					<tr>
