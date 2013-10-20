@@ -30,6 +30,12 @@ public abstract class Usuario {
 	@Column(name = "Senha", nullable = false, length = 10)
 	private String senha;
 
+	@Column(name = "Confirmado", nullable = false)
+	private boolean confirmado;
+
+	@Column(name = "Confirmacao", nullable = false)
+	private int numero;
+
 	@OneToMany(mappedBy = "criador")
 	private List<Projeto> projetos;
 
@@ -88,6 +94,22 @@ public abstract class Usuario {
 
 	public void setProjetos(List<Projeto> projetos) {
 		this.projetos = projetos;
+	}
+
+	public boolean isConfirmado() {
+		return confirmado;
+	}
+
+	public void setConfirmado(boolean confirmado) {
+		this.confirmado = confirmado;
+	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
 	}
 
 }

@@ -20,4 +20,6 @@ public interface IAluno {
 
 	Aluno carrega(Aluno aluno);
 
+	Aluno buscaPorEmail(Aluno aluno);
+
 }

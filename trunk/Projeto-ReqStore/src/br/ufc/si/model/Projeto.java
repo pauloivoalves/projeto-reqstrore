@@ -39,8 +39,8 @@ public class Projeto {
 	@Column(name = "Foco_Projeto", nullable = false, length = 1000)
 	private String Foco_projeto;
 
-	@Column(name = "Pontuacao", nullable = false)
-	private int pontuacao;
+	@Column(name = "Dificuldade", nullable = false)
+	private int dificuldade;
 
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "projeto")
@@ -98,12 +98,12 @@ public class Projeto {
 		this.descricao = descricao;
 	}
 
-	public int getPontuacao() {
-		return pontuacao;
+	public int getDificuldade() {
+		return dificuldade;
 	}
 
-	public void setPontuacao(int pontuacao) {
-		this.pontuacao = pontuacao;
+	public void setDificuldade(int pontuacao) {
+		this.dificuldade = pontuacao;
 	}
 
 	public List<Requisito> getRequisitos() {

@@ -37,6 +37,16 @@ public class IndexController {
 	}
 	
 	@Liberado
+	@Path("/ops")
+	public void ops() {
+	}
+	
+	@Liberado
+	@Path("/ok")
+	public void ok() {
+	}
+	
+	@Liberado
 	@Path("/Sobre")
 	public void Sobre() {
 		result.include("variable", "VRaptor!");

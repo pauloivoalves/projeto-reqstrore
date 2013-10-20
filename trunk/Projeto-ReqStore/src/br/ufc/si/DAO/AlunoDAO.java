@@ -104,6 +104,20 @@ public class AlunoDAO implements IAluno {
 		return null;
 	}
 
+	public Aluno buscaPorEmail(Aluno aluno) {
+		Session session = HibernateUtil.getSession();
+		try {
+			return (Aluno) session.createCriteria(Aluno.class)
+					.add(Restrictions.eq("email", aluno.getEmail()))
+					.uniqueResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+	
 	public Aluno carrega(Aluno aluno) {
 		Session session = HibernateUtil.getSession();
 		try {

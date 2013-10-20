@@ -17,14 +17,14 @@ import br.ufc.si.util.AutorizacaoInterceptor.Liberado;
 public class UsuariosController {
 
 	private final UsuarioWeb usuarioWeb;
-	private AlunoDAO dao;
+	private AlunoDAO alunoDAO;
 	private Validator validator;
 	private Result result;
 
 	public UsuariosController(AlunoDAO dao, Result result, Validator validator,
 			UsuarioWeb usuarioWeb) {
 		this.usuarioWeb = usuarioWeb;
-		this.dao = dao;
+		this.alunoDAO = dao;
 		this.validator = validator;
 		this.result = result;
 	}
@@ -46,11 +46,23 @@ public class UsuariosController {
 	@Liberado
 	@Post("/login")
 	public void login(Aluno aluno) {
-		Aluno carregado = dao.carrega(aluno);
+		System.out.println("aqui");
+		System.out.println("email - " + aluno.getEmail());
+		System.out.println("senha - " + aluno.getSenha());
+		Aluno carregado = alunoDAO.carrega(aluno);
+		
 		if (carregado == null) {
-			validator.add(new ValidationMessage("Login e/ou senha inválidos",
-					"usuario.login"));
+			validator.add(new ValidationMessage("Login e/ou senha inv&aacute;lidos", ""));
 			validator.onErrorUsePageOf(UsuariosController.class).loginForm();
+		}else if(!carregado.isConfirmado()){
+			System.out.println("numero : " + aluno.getNumero());
+			if(aluno.getNumero() == carregado.getNumero()){
+				carregado.setConfirmado(true);
+				alunoDAO.update(carregado);
+			}else{
+				validator.add(new ValidationMessage("O email informado ainda n&atilde;o foi confirmado", ""));
+				validator.onErrorUsePageOf(UsuariosController.class).loginForm();
+			}
 		}
 		
 		usuarioWeb.login(carregado);

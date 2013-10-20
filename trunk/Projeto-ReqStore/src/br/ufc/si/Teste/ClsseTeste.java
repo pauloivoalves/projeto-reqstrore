@@ -39,76 +39,37 @@ public class ClsseTeste {
 		IVersaoProjeto versaoDAO = new VersaoProjetoDAO();
 		IAluno alunoDAO = new AlunoDAO();
 		
-		Professor prof = new Professor();
-		IProfessor professorDAO = new ProfessorDAO();
 		
-//		prof.setNome("teste");
-//		prof.setEmail("teste@gmail.com");
-//		prof.setSenha("teste");
-//		
-//		professorDAO.save(prof);
 		
 		Aluno aluno = new Aluno();
-		aluno = alunoDAO.getAlunoById(4);
+		aluno = alunoDAO.getAlunoById(1);
 		Projeto proj = new Projeto();
 		
-//		aluno.setNome("email");
+//		
+//		aluno.setNome("Paulo");
 //		aluno.setEmail("email@teste.com");
-//		aluno.setSenha("email");
+//		aluno.setSenha("teste");
+//		aluno.setConfirmado(true);
+//		aluno.setNumero(123);
 //		alunoDAO.save(aluno);
-
-//		Aluno alusno  = new Aluno();
-//		alusno = alunoDAO.carrega(aluno);
-//		System.out.println(alusno.getNome());
-		
-//		proj = projDAO.getProjetoById(4);
-//		aluno = alunoDAO.getAlunoById(1);
-		
-		List<Projeto> projetos = new ArrayList<Projeto>();
-//		projetos.add(proj);
-
-		//aluno.setProjetos(projetos);
-		//alunoDAO.save(aluno);
-		
-		//proj.setCriador(aluno);
-		//projDAO.save(proj);
-		
-//		aluno = alunoDAO.getAlunoById(2);
 		
 		
-		for (Projeto projeto : projetos) {
-			System.out.println(projeto.getId());
+		RequisitoDAO reqDAO = new RequisitoDAO();
+		Requisito req = new Requisito();
+//		
+		for (int i = 10; i <= 21; i++) {
+			proj = projDAO.getProjetoById(i);
+			
+			for (int j = 0; j < 5; j++) {
+				req.setDescricao("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
+				req.setPrioridadeRequisito(PrioridadeRequisito.ESSENCIAL);
+				req.setTipoRequisito(TipoRequisito.NAO_FUNCIONAL);
+				req.setFoco_requisito("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
+				req.setProjeto(proj);
+				
+				reqDAO.save(req);
+			}
 		}
-		
-		
-		//projDAO.update(proj);
-		
-//		RequisitoDAO reqDAO = new RequisitoDAO();
-//		Requisito req = new Requisito();
-//		
-////		for (int i = 0; i < 10; i++) {
-////			req.setDescricao("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
-////			req.setPrioridadeRequisito(PrioridadeRequisito.ESSENCIAL);
-////			req.setTipoRequisito(TipoRequisito.NAO_FUNCIONAL);
-////			req.setFoco_requisito("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
-////			req.setProjeto(proj);
-////			
-////			reqDAO.save(req);	
-//			
-//			proj.setNome("Projeto ");
-//			proj.setDescricao("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
-//			proj.setPontuacao(3);
-//			proj.setTipoProjeto(TipoProjeto.DESKTOP);
-//			proj.setFoco_projeto("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
-//			proj.setCriador(aluno);
-//			projDAO.save(proj);
-//			
-//			
-//		//}
-//		
-//		System.out.println(proj.getRequisitos().get(0).getDescricao() + " ID: " + proj.getRequisitos().get(0).getId());
-//		
-		System.out.println(TipoProjeto.valueOf("WEB"));
 		System.out.println("Temrinou!");
 	}
 	

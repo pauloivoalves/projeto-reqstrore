@@ -77,7 +77,7 @@ public class ProjetoController {
 				List<Projeto> listRetorno = new ArrayList<Projeto>();
 				
 				for (Projeto projeto : projetos) {
-					if(projeto.getPontuacao() <= Integer.parseInt(pontuacaoProjeto) && projeto.getTipoProjeto().toString().equals(TipoProjeto.valueOf(tipoProjeto).toString())){
+					if(projeto.getDificuldade() <= Integer.parseInt(pontuacaoProjeto) && projeto.getTipoProjeto().toString().equals(TipoProjeto.valueOf(tipoProjeto).toString())){
 						Hibernate.initialize(projeto);
 						listRetorno.add(projeto);
 					}
