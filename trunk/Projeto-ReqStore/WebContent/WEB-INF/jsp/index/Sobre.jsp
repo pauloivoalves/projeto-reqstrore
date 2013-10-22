@@ -3,11 +3,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<script type="text/javascript" src="js/JQuerry.js"></script>
-	<script type="text/javascript" src="js/menu.js"></script>
-	
-	<link href="css/menu.css" rel="stylesheet" type="text/css" />
-	<link href="css/Style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/JQuerry.js"></script>
+<script type="text/javascript" src="js/menu.js"></script>
+
+<link href="css/menu.css" rel="stylesheet" type="text/css" />
+<link href="css/Style.css" rel="stylesheet" type="text/css" />
 
 
 <title>Sobre</title>
@@ -43,27 +43,31 @@
 				</div>
 
 
-				<div id="right" class = "descricao">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Vestibulum dapibus malesuada lacus a varius. Nam tincidunt neque
-						in lacus egestas rutrum sed tincidunt quam. Nullam nec tempus
-						odio. Aliquam cursus tellus sed felis varius, a volutpat magna
-						varius. Aliquam quis varius massa. Vestibulum fringilla mauris
-						quis nunc porta ultrices non ut dui. </p>
+				<div id="right" class="descricao">
+					<p>O ReqStore &eacute; uma ferramenta desenvolvida com o
+						intuito de auxiliar a utiliza&ccedil;&atilde;o de metodolgia PBL.
+						A metodologia PBL consiste em uma forma de aprendizagem centrada
+						no aluno, utilizando problemas com caracter&iacute;sticas reais
+						para desenvolver tanto as habilidades t&eacute;cnicas como as
+						habilidades humadas de cogni&ccedil;&atilde;o e
+						comunica&ccedil;&atilde;o nos alunos. Nesse contexto, a ferramenta
+						ReqStore &eacute; utilizada como um reposit&oacute;rio de projetos
+						(ou problemas) disponibilizados para utiliza&ccedil;&atilde;o
+						conjunta com a metodologia PBL.</p>
 				</div>
-				<div id = "right_botton">
-					<strong id = "desenvolvedores">Desenvolvedores</strong>
+				<div id="right_botton">
+					<strong id="desenvolvedores">Desenvolvedores</strong>
 					<p>
-					<label class = "nome_part">Paulo Ivo Alves Pordeus</label><br>
-					<label class = "desc_part">Desenvolvedor e Idealizador</label><br>
+						<label class="nome_part">Paulo Ivo Alves Pordeus</label><br>
+						<label class="desc_part">Desenvolvedor e Idealizador</label><br>
 					</p>
 					<p>
-					<label class = "nome_part" >Carla Ilane Moreira Bezerra</label><br>
-					<label class = "desc_part">Idealizadora</label><br>
+						<label class="nome_part">Carla Ilane Moreira Bezerra</label><br>
+						<label class="desc_part">Idealizadora</label><br>
 					</p>
 					<p>
-					<label class = "nome_part">Lucas Wendell Braboza azevedo</label><br>
-					<label class = "desc_part">Designer</label><br>
+						<label class="nome_part">Lucas Wendell Braboza azevedo</label><br>
+						<label class="desc_part">Designer</label><br>
 					</p>
 				</div>
 

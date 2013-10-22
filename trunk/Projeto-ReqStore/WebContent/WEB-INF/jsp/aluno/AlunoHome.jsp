@@ -24,8 +24,10 @@
 					<li><img src="../imagens/separador.png"></li>
 					<li><a href="#">Projetos</a>
 						<ul class="submenu">
-							<li><a href="<c:url value="/Projeto/lista"/>">Listar projetos</a></li>
-							<li><a href="<c:url value="/Projeto/Busca"/>">Buscar Projetos</a></li>
+							<li><a href="<c:url value="/Projeto/lista"/>">Listar
+									projetos</a></li>
+							<li><a href="<c:url value="/Projeto/Busca"/>">Buscar
+									Projetos</a></li>
 							<li><a href="#">Meus Projetos</a></li>
 						</ul></li>
 					<li><img src="../imagens/separador.png"></li>
@@ -51,13 +53,18 @@
 				</div>
 
 
-				<div id="right" class = "descricao">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Vestibulum dapibus malesuada lacus a varius. Nam tincidunt neque
-						in lacus egestas rutrum sed tincidunt quam. Nullam nec tempus
-						odio. Aliquam cursus tellus sed felis varius, a volutpat magna
-						varius. Aliquam quis varius massa. Vestibulum fringilla mauris
-						quis nunc porta ultrices non ut dui. </p>
+				<div id="right" class="descricao">
+					<p>
+						<strong>Bem vindo ao ReqStore, <c:out
+								value="${usuarioWeb.nome}" />.
+						</strong>
+					</p>
+					<p>Atrav&eacute;s do ReqStore voc&ecirc; poder&aacute; acessar
+						todos os detalhes do projeto em que est&aacute; trabalhando. Nas
+						telas de detalhes, seja de projetos ou de requisitos, voc&ecirc;
+						poder&aacute; ver toda a descri&ccedil;&atilde;o dos requisitos
+						trabalhados em um determinado projeto, bem como os objetivos que
+						foram tra&ccedil;ados para projetos e requisitos.</p>
 				</div>
 
 			</div>

@@ -106,7 +106,7 @@ public class ProjetoDAO implements IProjeto {
 		try {
 			@SuppressWarnings("unchecked")
 			List<Projeto> lista = session.createCriteria(Projeto.class)
-					.add(Restrictions.le("pontuacao", dificuldade))
+					.add(Restrictions.le("dificuldade", dificuldade))
 					.add(Restrictions.eq("tipoProjeto", tipo)).list();
 			
 			for (Projeto projeto : lista) {

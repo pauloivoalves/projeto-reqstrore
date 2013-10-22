@@ -71,8 +71,8 @@
 									</div>
 									
 									<div id= "porntuacaoProjeto" style = "width: 50%; float: right;">
-										<label>Pontuação do Projeto</label><br>
-										<input type = "hidden" id = "pontuacaoProjeto" name = "pontuacaoProjeto" value = "2">
+										<label>Dificuldade do Projeto</label><br>
+										<input type = "hidden" id = "dificuldadeProjeto" name = "dificuldadeProjeto" value = "2">
 										<ul>
 											<li id = "iniciante" value = "2"><img style = "cursor:pointer;" title = "2" src = "../imagens/dificuldadeselecionada.png"></li>
 											<li id = "iniciado" value = "4"><img style = "cursor:pointer;" title = "4" src = "../imagens/dificuldade.png"></li>
@@ -97,7 +97,6 @@
 						<div id="requisitos">
 							<c:choose>
 								<c:when test="${not empty projetoList}">
-								
 									<table align="center" id="lista_projetos">
 										<thead>
 											<tr>
@@ -107,7 +106,7 @@
 											<tr>
 												<td><label>Projeto</label></td>
 												<td><label>Tipo</label></td>
-												<td><label>Porntua&ccedil;&atilde;o</label></td>
+												<td><label>Dificuldade</label></td>
 											</tr>
 										</thead>
 
@@ -116,7 +115,7 @@
 												<tr onclick="location.href = 'Detalhes?id=${projeto.id}';">
 													<td>${projeto.nome }</td>
 													<td>${projeto.tipoProjeto }</td>
-													<td>${projeto.pontuacao }</td>
+													<td>${projeto.dificuldade }</td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -171,7 +170,7 @@
 		$('#medio > img').attr('src', '../imagens/dificuldade.png');
 		$('#dificil > img').attr('src', '../imagens/dificuldade.png');
 		$('#avancado > img').attr('src', '../imagens/dificuldade.png');
-		$('#pontuacaoProjeto').val('4');
+		$('#dificuldadeProjeto').val('4');
 	});
 	$('#medio').click(function(){
 		$('#medio > img').attr('src', '../imagens/dificuldadeselecionada.png');
@@ -179,7 +178,7 @@
 		$('#iniciante > img').attr('src', '../imagens/dificuldadeselecionada.png');
 		$('#dificil > img').attr('src', '../imagens/dificuldade.png');
 		$('#avancado > img').attr('src', '../imagens/dificuldade.png');
-		$('#pontuacaoProjeto').val('6');
+		$('#dificuldadeProjeto').val('6');
 	});
 	$('#dificil').click(function(){
 		$('#dificil > img').attr('src', '../imagens/dificuldadeselecionada.png');
@@ -187,7 +186,7 @@
 		$('#iniciado > img').attr('src', '../imagens/dificuldadeselecionada.png');
 		$('#iniciante > img').attr('src', '../imagens/dificuldadeselecionada.png');
 		$('#avancado > img').attr('src', '../imagens/dificuldade.png');
-		$('#pontuacaoProjeto').val('8');
+		$('#dificuldadeProjeto').val('8');
 	});
 	$('#avancado').click(function(){
 		$('#avancado > img').attr('src', '../imagens/dificuldadeselecionada.png');
@@ -195,7 +194,7 @@
 		$('#medio > img').attr('src', '../imagens/dificuldadeselecionada.png');
 		$('#iniciado > img').attr('src', '../imagens/dificuldadeselecionada.png');
 		$('#iniciante > img').attr('src', '../imagens/dificuldadeselecionada.png');
-		$('#pontuacaoProjeto').val('10');
+		$('#dificuldadeProjeto').val('10');
 	});
 	
 	

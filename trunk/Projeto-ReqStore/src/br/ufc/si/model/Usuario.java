@@ -49,7 +49,7 @@ public abstract class Usuario {
 	public abstract void SolicitarRestauracaoProjeto(int idProjeto);
 
 	public abstract List<Projeto> BuscarProjetos(String nomeProjeto,
-			TipoProjeto tipo, String nomeResponsavel, int pontuacao);
+			TipoProjeto tipo, String nomeResponsavel, int dificuldade);
 
 	public abstract List<Usuario> BuscarUsuario(String Nome);
 

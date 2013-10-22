@@ -70,7 +70,7 @@
 
 						<div id="detalhes2">
 							<strong>Pontuação : </strong>
-							<c:out value="${projeto.pontuacao}"></c:out>
+							<c:out value="${projeto.dificuldade}"></c:out>
 
 							<Strong>Tipo do Projeto: </Strong>
 							<c:out value="${projeto.tipoProjeto}"></c:out>

@@ -102,8 +102,8 @@ public class Projeto {
 		return dificuldade;
 	}
 
-	public void setDificuldade(int pontuacao) {
-		this.dificuldade = pontuacao;
+	public void setDificuldade(int dificuldade) {
+		this.dificuldade = dificuldade;
 	}
 
 	public List<Requisito> getRequisitos() {

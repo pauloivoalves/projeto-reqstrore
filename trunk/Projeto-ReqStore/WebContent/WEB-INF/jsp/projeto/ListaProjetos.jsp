@@ -68,7 +68,7 @@
 									<tr onclick="location.href = 'Detalhes?id=${projeto.id}';">
 										<td>${projeto.nome }</td>
 										<td>${projeto.tipoProjeto }</td>
-										<td>${projeto.pontuacao }</td>
+										<td>${projeto.dificuldade }</td>
 									</tr>
 								</c:forEach>
 							</tbody>

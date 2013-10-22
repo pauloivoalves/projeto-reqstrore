@@ -35,7 +35,7 @@ public class Professor extends Usuario {
 
 	@Override
 	public List<Projeto> BuscarProjetos(String nomeProjeto, TipoProjeto tipo,
-			String nomeResponsavel, int pontuacao) {
+			String nomeResponsavel, int dificuldade) {
 		// TODO Auto-generated method stub
 		return null;
 	}
