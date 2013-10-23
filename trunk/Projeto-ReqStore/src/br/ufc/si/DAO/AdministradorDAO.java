@@ -10,6 +10,7 @@ import org.hibernate.criterion.Restrictions;
 import br.com.caelum.vraptor.ioc.Component;
 import br.ufc.si.Interfaces.IAdministrador;
 import br.ufc.si.model.Administrador;
+import br.ufc.si.model.Aluno;
 import br.ufc.si.util.HibernateUtil;
 
 @Component
@@ -112,6 +113,21 @@ public class AdministradorDAO implements IAdministrador {
 			Hibernate.initialize(admin.getProjetos());
 			return admin;
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	public Aluno carrega(Aluno aluno) {
+		Session session = HibernateUtil.getSession();
+		try {
+			return (Aluno) session.createCriteria(Administrador.class)
+					.add(Restrictions.eq("email", aluno.getEmail()))
+					.add(Restrictions.eq("senha", aluno.getSenha()))
+					.uniqueResult();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

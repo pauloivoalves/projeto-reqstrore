@@ -4,10 +4,12 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -29,6 +31,9 @@ public class Projeto {
 	@ManyToOne
 	@JoinColumn(name = "Criador")
 	private Usuario criador;
+
+	@ManyToMany(mappedBy = "projetos", fetch = FetchType.LAZY)
+	private List<Turma> turmas;
 
 	@Column(name = "Tipo_Projeto", nullable = false)
 	private TipoProjeto tipoProjeto;
@@ -120,6 +125,14 @@ public class Projeto {
 
 	public void setVersoesProjeto(List<VersaoProjeto> versoesProjeto) {
 		this.versoesProjeto = versoesProjeto;
+	}
+
+	public List<Turma> getTurmas() {
+		return turmas;
+	}
+
+	public void setTurmas(List<Turma> turmas) {
+		this.turmas = turmas;
 	}
 
 }

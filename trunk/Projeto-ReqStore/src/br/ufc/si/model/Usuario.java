@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -33,9 +34,12 @@ public abstract class Usuario {
 
 	@Column(name = "Confirmacao", nullable = false)
 	private int numero;
-
+	
 	@OneToMany(mappedBy = "criador")
 	private List<Projeto> projetos;
+
+	@ManyToMany(mappedBy = "usuarios")
+	private List<Turma> turmas;
 
 	/* Getter and Setters */
 	public int getId() {
@@ -92,6 +96,14 @@ public abstract class Usuario {
 
 	public void setNumero(int numero) {
 		this.numero = numero;
+	}
+
+	public List<Turma> getTurmas() {
+		return turmas;
+	}
+
+	public void setTurmas(List<Turma> turmas) {
+		this.turmas = turmas;
 	}
 
 }
