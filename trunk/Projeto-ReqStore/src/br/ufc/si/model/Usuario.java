@@ -11,8 +11,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 
-import br.ufc.si.Tipos.TipoProjeto;
-
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Usuario {
@@ -38,22 +36,6 @@ public abstract class Usuario {
 
 	@OneToMany(mappedBy = "criador")
 	private List<Projeto> projetos;
-
-	public abstract List<Projeto> Buscarprojetos(String nomeProjeto);
-
-	public abstract List<Projeto> ListarProjetos();
-
-	public abstract void SolicitarRestauracaoRequisito(int idRequisito,
-			int idProjeto);
-
-	public abstract void SolicitarRestauracaoProjeto(int idProjeto);
-
-	public abstract List<Projeto> BuscarProjetos(String nomeProjeto,
-			TipoProjeto tipo, String nomeResponsavel, int dificuldade);
-
-	public abstract List<Usuario> BuscarUsuario(String Nome);
-
-	public abstract void SugerirProjetos(String descricaoProjeto);
 
 	/* Getter and Setters */
 	public int getId() {

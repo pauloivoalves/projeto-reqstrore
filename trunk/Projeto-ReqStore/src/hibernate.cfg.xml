@@ -19,6 +19,7 @@
 		<mapping class="br.ufc.si.model.Requisito" />
 		<mapping class="br.ufc.si.model.VersaoProjeto" />
 		<mapping class="br.ufc.si.model.VersaoRequisito" />
+		<mapping class="br.ufc.si.model.Turma" />
 		
 
 	</session-factory>
