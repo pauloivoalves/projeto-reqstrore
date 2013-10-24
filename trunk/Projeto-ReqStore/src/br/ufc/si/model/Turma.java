@@ -26,7 +26,7 @@ public class Turma {
 	@JoinTable(name = "Turma_Projeto", joinColumns = @JoinColumn(name = "Turma_id"), inverseJoinColumns = @JoinColumn(name = "Projeto_id"))
 	List<Projeto> projetos;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "Turma_Usuario", joinColumns = @JoinColumn(name = "Turma_id"), inverseJoinColumns = @JoinColumn(name = "Usuaruio_id"))
 	List<Usuario> usuarios;
 

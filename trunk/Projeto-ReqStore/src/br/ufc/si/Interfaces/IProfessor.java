@@ -17,4 +17,6 @@ public interface IProfessor {
 	public List<Professor> SearchByName(String name);
 
 	public Professor getProfessorById(Integer id);
+
+	public Professor carrega(Professor prof);
 }

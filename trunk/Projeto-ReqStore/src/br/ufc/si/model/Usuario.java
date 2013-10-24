@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,7 +15,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Usuario {
+public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,11 +35,11 @@ public abstract class Usuario {
 
 	@Column(name = "Confirmacao", nullable = false)
 	private int numero;
-	
+
 	@OneToMany(mappedBy = "criador")
 	private List<Projeto> projetos;
 
-	@ManyToMany(mappedBy = "usuarios")
+	@ManyToMany(mappedBy = "usuarios", fetch = FetchType.LAZY)
 	private List<Turma> turmas;
 
 	/* Getter and Setters */

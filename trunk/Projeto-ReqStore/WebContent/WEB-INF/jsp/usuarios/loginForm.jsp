@@ -43,10 +43,10 @@
 					<div id = "login">
 
 						<label for="Email">Email:</label> <br>
-						<input id="email" class  = "input_login" type="text" name="aluno.email" /> <br>
+						<input id="email" class  = "input_login" type="text" name="usuario.email" /> <br>
 						
 						<label for="senha">Senha:</label> <br>
-						<input  class  = "input_login" id="senha" type="password" name="aluno.senha" /><br>
+						<input  class  = "input_login" id="senha" type="password" name="usuario.senha" /><br>
 						
 						<table>
 							<tr>
@@ -54,9 +54,9 @@
 									<label for = "select_usuario">Tipo de Usu&aacute;rio</label><br>
 									<select  style="width: 150px;height: 29px;margin-left: -2px;" class  = "input_login" name  = "select_usuario" id = "select_usuario">
 										<option value = "Selecione..."></option>
-										<option value = "aluno">Aluno</option>
-										<option value = "professor">Professor</option>
-										<option value = "administrador">Administrador</option>
+										<option value = "1">Aluno</option>
+										<option value = "2">Professor</option>
+										<option value = "3">Administrador</option>
 									</select>
 								</td>
 								<td>
@@ -105,6 +105,10 @@
 	</div>
 </body>
 <script type="text/javascript">
+$("#select_usuario").change(function() {
+    $('#tipo_usuario').val($("#select_usuario option").filter(":selected").val());
+});
+	
 	$('#entrar').click(function(){
 		if($('#email').val() == ""){
 			alert('Campo "E-mail" n\u00e3o preenchido.');

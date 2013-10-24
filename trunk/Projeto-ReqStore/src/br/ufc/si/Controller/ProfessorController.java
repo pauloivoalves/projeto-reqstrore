@@ -19,6 +19,11 @@ public class ProfessorController {
 		this.professorDAO = professor;
 		this.result = result;
 	}
+	
+	@Path("/Professor/ProfessorHome")
+	public void ProfessorHome(){
+		
+	}
 
 	@Path("/Professor/novo")
 	public void AdicionaProfessor(Professor professor) {

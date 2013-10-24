@@ -2,15 +2,15 @@ package br.ufc.si.util;
 
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.ioc.SessionScoped;
-import br.ufc.si.model.Aluno;
+import br.ufc.si.model.Usuario;
 
 @Component
 @SessionScoped
 public class UsuarioWeb {
 
-	private Aluno logado;
+	private Usuario logado;
 
-	public void login(Aluno usuario) {
+	public void login(Usuario usuario) {
 		this.logado = usuario;
 	}
 

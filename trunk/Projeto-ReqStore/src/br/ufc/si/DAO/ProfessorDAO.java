@@ -9,7 +9,6 @@ import org.hibernate.criterion.Restrictions;
 
 import br.com.caelum.vraptor.ioc.Component;
 import br.ufc.si.Interfaces.IProfessor;
-import br.ufc.si.model.Aluno;
 import br.ufc.si.model.Professor;
 import br.ufc.si.util.HibernateUtil;
 
@@ -117,13 +116,13 @@ public class ProfessorDAO implements IProfessor {
 		}
 		return null;
 	}
-	
-	public Aluno carrega(Aluno aluno) {
+
+	public Professor carrega(Professor prof) {
 		Session session = HibernateUtil.getSession();
 		try {
-			return (Aluno) session.createCriteria(Professor.class)
-					.add(Restrictions.eq("email", aluno.getEmail()))
-					.add(Restrictions.eq("senha", aluno.getSenha()))
+			return (Professor) session.createCriteria(Professor.class)
+					.add(Restrictions.eq("email", prof.getEmail()))
+					.add(Restrictions.eq("senha", prof.getSenha()))
 					.uniqueResult();
 		} catch (Exception e) {
 			e.printStackTrace();
