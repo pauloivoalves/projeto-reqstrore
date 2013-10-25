@@ -24,26 +24,39 @@
 					<li><img src="../imagens/separador.png"></li>
 					<li><a href="#">Projetos</a>
 						<ul class="submenu">
-							<li><a href="<c:url value="/Projeto/lista"/>">Listar
-									projetos</a></li>
-							<li><a href="<c:url value="/Projeto/Busca"/>">Buscar
-									Projetos</a></li>
+							<li><a href="<c:url value="/Projeto/lista"/>">Listar projetos</a></li>
+							<li><a href="<c:url value="/Projeto/Busca"/>">Buscar Projetos</a></li>
 							<li><a href="#">Meus Projetos</a></li>
-						</ul></li>
+						</ul>
+					</li>
 					<li><img src="../imagens/separador.png"></li>
-					<li><a href="#">Usu&aacute;rios</a>
+					<li><a href="#">Turmas</a>
+						<ul class="submenu">
+							<li><a href="#">Listar Turmas</a></li>
+							<li><a href="#">Buscar Turmas</a></li>
+						</ul>
+					</li>
+					<li><img src="../imagens/separador.png"></li>
+					<li>
+						<a href="#">Usu&aacute;rios</a>
 						<ul class="submenu">
 							<li><a href="#">Listar Usu&aacute;rios</a></li>
 							<li><a href="#">Buscar Usu&aacute;rio</a>
-						</ul></li>
-					<li><img src="../imagens/separador.png"></li>
-					<li><a href="#">Ajuda</a> <c:if test="${!usuarioWeb.logado}">
-							<li><img src="../imagens/separador.png"></li>
-							<li><a href="<c:url value="/login"/>">Login</a></li>
-						</c:if> <c:if test="${usuarioWeb.logado}">
-							<li><img src="../imagens/separador.png"></li>
-							<li><a href="<c:url value="/logout"/>">Logout</a></li>
-						</c:if>
+						</ul>
+					</li>
+					<li>
+						<img src="../imagens/separador.png">
+					</li>
+					<li>
+					<a href="#">Ajuda</a> 
+					<c:if test="${!usuarioWeb.logado}">
+						<li><img src="../imagens/separador.png"></li>
+						<li><a href="<c:url value="/login"/>">Login</a></li>
+					</c:if> 
+					<c:if test="${usuarioWeb.logado}">
+						<li><img src="../imagens/separador.png"></li>
+						<li><a href="<c:url value="/logout"/>">Logout</a></li>
+					</c:if>
 				</ul>
 			</div>
 			<div id="inner_content_div">
@@ -55,8 +68,7 @@
 
 				<div id="right" class="descricao">
 					<p>
-						<strong>Bem vindo ao ReqStore, <c:out
-								value="${usuarioWeb.nome}" />.
+						<strong>Bem vindo ao ReqStore, <c:out value="${usuarioWeb.nome}" />.
 						</strong>
 					</p>
 					<p>Atrav&eacute;s do ReqStore voc&ecirc; poder&aacute; acessar

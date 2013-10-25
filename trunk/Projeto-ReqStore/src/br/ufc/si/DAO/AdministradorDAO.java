@@ -135,4 +135,19 @@ public class AdministradorDAO implements IAdministrador {
 		}
 		return null;
 	}
+	
+	public Administrador carrega(Administrador admin) {
+		Session session = HibernateUtil.getSession();
+		try {
+			return (Administrador) session.createCriteria(Administrador.class)
+					.add(Restrictions.eq("email", admin.getEmail()))
+					.add(Restrictions.eq("senha", admin.getSenha()))
+					.uniqueResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return null;
+	}
 }

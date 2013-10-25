@@ -20,6 +20,11 @@ public class AdministradorController {
 		this.result = result;
 	}
 
+	@Path("/Administrador/AdministradorHome")
+	public void AdminHome(){
+		
+	}
+	
 	@Path("/Administrador/novo")
 	public void AdicionaAdministrador(Administrador admin) {
 		this.adminDAO.save(admin);
