@@ -9,6 +9,23 @@ import br.ufc.si.model.Usuario;
 public class UsuarioWeb {
 
 	private Usuario logado;
+	private int tipo;
+
+	public Usuario getLogado() {
+		return logado;
+	}
+
+	public void setLogado(Usuario logado) {
+		this.logado = logado;
+	}
+
+	public int getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
+	}
 
 	public void login(Usuario usuario) {
 		this.logado = usuario;
@@ -21,8 +38,8 @@ public class UsuarioWeb {
 	public boolean isLogado() {
 		return logado != null;
 	}
-	
+
 	public void logout() {
-	    this.logado = null;
-	  }
+		this.logado = null;
+	}
 }

@@ -36,7 +36,7 @@ public class Usuario {
 	@Column(name = "Confirmacao", nullable = false)
 	private int numero;
 
-	@OneToMany(mappedBy = "criador")
+	@OneToMany(mappedBy = "criador", fetch = FetchType.EAGER)
 	private List<Projeto> projetos;
 
 	@ManyToMany(mappedBy = "usuarios", fetch = FetchType.LAZY)

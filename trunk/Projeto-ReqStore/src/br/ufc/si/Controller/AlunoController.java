@@ -31,6 +31,11 @@ public class AlunoController {
 		
 	}
 	
+	@Path("/Aluno/AlunoProjetos")
+	public void AlunoProjetos(){
+		
+	}
+	
 	@Path("/Aluno/novo")
 	public void AdicionaAluno(Aluno aluno) {
 		this.alunoDAO.save(aluno);

@@ -93,6 +93,7 @@ public class TurmaDAO implements ITurma {
 				Hibernate.initialize(turma.getProjetos());
 				Hibernate.initialize(turma.getUsuarios());
 			}
+			return turmas;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

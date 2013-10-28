@@ -50,6 +50,11 @@ public class TurmaController {
 
 	}
 
+	@Path("/Turma/DetalhesTurma")
+	public Turma DetalhesTurma(int id){
+		return this.turmaDAO.getTurmaById(id);
+	}
+	
 	@Path("/Turma/lista")
 	public List<Turma> ListarTurmas() {
 		return this.turmaDAO.List();

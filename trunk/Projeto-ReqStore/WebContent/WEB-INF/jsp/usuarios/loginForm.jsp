@@ -9,7 +9,7 @@
 	<link href="css/menu.css" rel="stylesheet" type="text/css" />
 	<link href="css/Style.css" rel="stylesheet" type="text/css" />
 	
-	<title>ReqSore - LoginLogin</title>
+	<title>ReqSore - Login</title>
 </head>
 <body>
 	<input type="hidden" name="usuario" value="" id="usuario">

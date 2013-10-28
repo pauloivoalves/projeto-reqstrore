@@ -3,6 +3,8 @@ package br.ufc.si.Teste;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.ejb.criteria.predicate.IsEmptyPredicate;
+
 import br.ufc.si.DAO.AlunoDAO;
 import br.ufc.si.DAO.ProjetoDAO;
 import br.ufc.si.DAO.RequisitoDAO;
@@ -16,6 +18,7 @@ import br.ufc.si.model.Aluno;
 import br.ufc.si.model.Projeto;
 import br.ufc.si.model.Requisito;
 import br.ufc.si.model.Turma;
+import br.ufc.si.model.Usuario;
 
 @SuppressWarnings("unused")
 public class ClsseTeste {
@@ -27,7 +30,7 @@ public class ClsseTeste {
 		IAluno alunoDAO = new AlunoDAO();
 
 		Aluno aluno = new Aluno();
-		// aluno = alunoDAO.getAlunoById(1);
+		aluno = alunoDAO.getAlunoById(1);
 		Projeto proj = new Projeto();
 
 		// aluno.setNome("Paulo");
@@ -63,29 +66,57 @@ public class ClsseTeste {
 
 		ITurma turmaDAO = new TurmaDAO();
 		Turma turma = new Turma();
-
-		List<Aluno> alunos = new ArrayList<Aluno>();
-		alunos = alunoDAO.List();
-
-		List<Projeto> projetos = new ArrayList<Projeto>();
-		List<Turma> turmas = new ArrayList<Turma>();
-
-		proj = projDAO.getProjetoById(58);
-
 		turma = turmaDAO.getTurmaById(74);
-		turma.setProjetos(projetos);
+		List<Usuario> users = new ArrayList<Usuario>();
+		List<Turma> turmas = new ArrayList<Turma>();
+		users.add(aluno);
+		turma.setUsuarios(users);
+		turmaDAO.update(turma);
+		
 		turmas.add(turma);
-
-		proj.setTurmas(turmas);
-
-		projetos.add(proj);
-
-		for (Projeto proje : projetos) {
-			projDAO.update(proje);
-		}
-		for (Turma t : turmas) {
-			turmaDAO.update(t);
-		}
+		aluno.setTurmas(turmas);
+		alunoDAO.update(aluno);
+		
+		
+//
+//		List<Aluno> alunos = new ArrayList<Aluno>();
+//		alunos = alunoDAO.List();
+//
+//		List<Projeto> projetos = new ArrayList<Projeto>();
+//		List<Turma> turmas = new ArrayList<Turma>();
+		
+//		turmas = turmaDAO.List();
+//		System.out.println("tamanho : " + turmas.isEmpty());
+//		for (Turma turma : turmas) {
+//			System.out.println("nome: " + turma.getNome());	
+//		}
+//
+//		proj = projDAO.getProjetoById(58);
+//
+//		turma = turmaDAO.getTurmaById(74);
+//		turma.setProjetos(projetos);
+//		turmas.add(turma);
+//
+//		proj.setTurmas(turmas);
+//
+//		projetos.add(proj);
+//
+//		for (Projeto proje : projetos) {
+//			projDAO.update(proje);
+//		}
+//		for (Turma t : turmas) {
+//			turmaDAO.update(t);
+//		}
+		
+//		Professor prof= new Professor();
+//		prof.setNome("professor");
+//		prof.setEmail("professer@email.com");
+//		prof.setNumero(123);
+//		prof.setConfirmado(true);
+//		prof.setSenha("professor");
+//		
+//		IProfessor profDAO = new ProfessorDAO();
+//		profDAO.save(prof);
 
 		System.out.println("Temrinou!");
 	}

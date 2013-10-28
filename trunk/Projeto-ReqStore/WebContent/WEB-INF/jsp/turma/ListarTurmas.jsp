@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -11,7 +12,7 @@
 <link href="../css/Style.css" rel="stylesheet" type="text/css" />
 <link type="text/css" href="../css/menu.css" rel="stylesheet" />
 
-<title>Home</title>
+<title>Listar Turmas</title>
 </head>
 <body>
 	<div id="tudo">
@@ -103,7 +104,7 @@
 
 				<div id="inner_top">
 					<div class="page_tittle">
-						<p>Listar projetos</p>
+						<p>Listar Turmas</p>
 					</div>
 				</div>
 				<div id="inner_content">
@@ -111,17 +112,17 @@
 						<table align="center" id="lista_projetos">
 							<thead>
 								<tr>
-									<td><label>Projeto</label></td>
-									<td><label>Tipo</label></td>
-									<td><label>Porntua&ccedil;&atilde;o</label></td>
+									<td><label>Turma</label></td>
+									<td><label>Qtd. Projetos</label></td>
+									<td><label>Qtd. Usuarios</label></td>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${projetoList}" var="projeto">
-									<tr onclick="location.href = 'Detalhes?id=${projeto.id}';">
-										<td>${projeto.nome }</td>
-										<td>${projeto.tipoProjeto }</td>
-										<td>${projeto.dificuldade }</td>
+								<c:forEach items="${turmaList}" var="turma">
+									<tr onclick="location.href = 'DetalhesTurma?id=${turma.id}';">
+										<td>${turma.nome }</td>
+										<td>${fn:length(turma.projetos)}</td>
+										<td>${fn:length(turma.usuarios)}</td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -129,7 +130,6 @@
 						</table>
 					</div>
 				</div>
-
 			</div>
 			<div id="footer_menu">
 				<table>

@@ -1,10 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="br.ufc.si.model.Requisito"%>
 <%@page import="br.ufc.si.model.Projeto"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -105,7 +104,7 @@
 				<div id="inner_top">
 					<div class="page_tittle">
 						<p>
-							Descrição do Requisito
+							<c:out value="${turma.nome}"/>
 						</p>
 					</div>
 				</div>
@@ -115,22 +114,55 @@
 
 						<div class="descricao">
 							<strong>Descrição</strong><br /> <br />
-							<c:out value="${requisito.descricao}"></c:out>
-						</div>
-
-
-						<div id="detalhes2">
-							<Strong>Tipo do Requisito: </Strong>
-							<c:out value="${requisito.tipoRequisito}"></c:out>
-							
-							<strong>Prioridade : </strong>
-							<c:out value="${requisito.prioridadeRequisito}"></c:out>
+							Descricoa entra aqui
 						</div>
 					</div>
+					
+					<div id="lista">
+						<table style = "width: 49%; float: left; "id="lista_projetos">
+							<thead>
+								<tr>
+									<td colspan="3" style="font-size: 14px;"><b>Projetos</b></td>
+								</tr>
+								<tr>
+									<td><label>Projeto</label></td>
+									<td><label>Tipo</label></td>
+									<td><label>Dificuldade</label></td>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${turma.projetos}" var="projeto">
+									<tr onclick="location.href = '<c:url value="/Projeto/"/>Detalhes?id=${projeto.id}';">
+										<td>${projeto.nome }</td>
+										<td>${projeto.tipoProjeto }</td>
+										<td>${projeto.dificuldade }</td>
+									</tr>
+								</c:forEach>
+							</tbody>
 
-					<div class="descricao">
-							<strong>Objetivo do requisito</strong><br /> <br />
-							<c:out value="${requisito.foco_requisito }"/>
+						</table>
+						<table style = "width: 49%; float: right; "id="lista_projetos">
+							<thead>
+								<tr>
+									<td colspan="3" style="font-size: 14px;"><b>Alunos</b></td>
+								</tr>
+								<tr>
+									<td><label>Nome</label></td>
+									<td><label>Email</label></td>
+									<td><label>Projetos</label></td>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${turma.usuarios}" var="user">
+									<tr onclick="location.href = 'Detalhes?id=${projeto.id}';">
+										<td>${user.nome }</td>
+										<td>${user.email }</td>
+										<td>${fn:length(user.projetos)}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+
+						</table>
 					</div>
 				</div>
 
