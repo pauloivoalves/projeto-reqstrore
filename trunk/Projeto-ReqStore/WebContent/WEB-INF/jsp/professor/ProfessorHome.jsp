@@ -4,12 +4,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<script type="text/javascript" src="js/Script.js"></script>
+<script type="text/javascript" src="../js/Script.js"></script>
 <link href="../css/Style.css" rel="stylesheet" type="text/css" />
 <link type="text/css" href="../css/menu.css" rel="stylesheet" />
 
 
-<title>Aluno Home</title>
+<title>Professor Home</title>
 </head>
 <body>
 	<div id="tudo">
@@ -18,7 +18,7 @@
 				<img alt="" src="../imagens/Logo.png">
 			</div>
 			<div id="menu">
-				<ul class="dropdown">
+				<ul class="dropdown" style = "width: 65% !important;">
 
 					<li><a href="<c:url value="/Professor/ProfessorHome"/>">Home</a></li>
 					<li><img src="../imagens/separador.png"></li>
@@ -32,31 +32,25 @@
 					<li><img src="../imagens/separador.png"></li>
 					<li><a href="#">Turmas</a>
 						<ul class="submenu">
-							<li><a href="#">Listar Turmas</a></li>
+							<li><a href="<c:url value="/Turma/lista"/>">Listar Turmas</a></li>
 							<li><a href="#">Buscar Turmas</a></li>
+							<li><a href="#">Minhas Turmas</a></li>
 						</ul>
 					</li>
 					<li><img src="../imagens/separador.png"></li>
-					<li>
-						<a href="#">Usu&aacute;rios</a>
+					<li><a href="#">Usu&aacute;rios</a>
 						<ul class="submenu">
 							<li><a href="#">Listar Usu&aacute;rios</a></li>
 							<li><a href="#">Buscar Usu&aacute;rio</a>
-						</ul>
-					</li>
-					<li>
-						<img src="../imagens/separador.png">
-					</li>
-					<li>
-					<a href="#">Ajuda</a> 
-					<c:if test="${!usuarioWeb.logado}">
-						<li><img src="../imagens/separador.png"></li>
-						<li><a href="<c:url value="/login"/>">Login</a></li>
-					</c:if> 
-					<c:if test="${usuarioWeb.logado}">
-						<li><img src="../imagens/separador.png"></li>
-						<li><a href="<c:url value="/logout"/>">Logout</a></li>
-					</c:if>
+						</ul></li>
+					<li><img src="../imagens/separador.png"></li>
+					<li><a href="#">Ajuda</a> <c:if test="${!usuarioWeb.logado}">
+							<li><img src="../imagens/separador.png"></li>
+							<li><a href="<c:url value="/login"/>">Login</a></li>
+						</c:if> <c:if test="${usuarioWeb.logado}">
+							<li><img src="../imagens/separador.png"></li>
+							<li><a href="<c:url value="/logout"/>">Logout</a></li>
+						</c:if>
 				</ul>
 			</div>
 			<div id="inner_content_div">
