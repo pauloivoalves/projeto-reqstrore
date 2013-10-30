@@ -35,6 +35,9 @@ public class Projeto {
 	@ManyToMany(mappedBy = "projetos", fetch = FetchType.LAZY)
 	private List<Turma> turmas;
 
+	@ManyToMany(mappedBy = "projetos_participantes", fetch = FetchType.LAZY)
+	private List<Usuario> usuarios_participantes;
+
 	@Column(name = "Tipo_Projeto", nullable = false)
 	private TipoProjeto tipoProjeto;
 
@@ -133,6 +136,14 @@ public class Projeto {
 
 	public void setTurmas(List<Turma> turmas) {
 		this.turmas = turmas;
+	}
+
+	public List<Usuario> getUsuarios_participantes() {
+		return usuarios_participantes;
+	}
+
+	public void setUsuarios_participantes(List<Usuario> usuarios_participantes) {
+		this.usuarios_participantes = usuarios_participantes;
 	}
 
 }

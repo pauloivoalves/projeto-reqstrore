@@ -22,17 +22,15 @@ public class Turma {
 	@Column(name = "Nome", nullable = false, length = 100)
 	String nome;
 
-	/*
-	 * @Column(name = "Descricao", nullable = false, length = 300)
-	 * String nome;
-	 * */
-	
+	@Column(name = "Descricao", nullable = false, length = 300)
+	String Descricao;
+
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "Turma_Projeto", joinColumns = @JoinColumn(name = "Turma_id"), inverseJoinColumns = @JoinColumn(name = "Projeto_id"))
 	List<Projeto> projetos;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "Turma_Usuario", joinColumns = @JoinColumn(name = "Turma_id"), inverseJoinColumns = @JoinColumn(name = "Usuaruio_id"))
+	@JoinTable(name = "Turma_Usuario", joinColumns = @JoinColumn(name = "Turma_id"), inverseJoinColumns = @JoinColumn(name = "Usuario_id"))
 	List<Usuario> usuarios;
 
 	public int getId() {
@@ -65,6 +63,14 @@ public class Turma {
 
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
+	}
+
+	public String getDescricao() {
+		return Descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		Descricao = descricao;
 	}
 
 }

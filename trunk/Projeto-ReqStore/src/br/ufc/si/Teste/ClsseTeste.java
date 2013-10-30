@@ -1,24 +1,17 @@
 package br.ufc.si.Teste;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.hibernate.ejb.criteria.predicate.IsEmptyPredicate;
-
 import br.ufc.si.DAO.AlunoDAO;
 import br.ufc.si.DAO.ProjetoDAO;
 import br.ufc.si.DAO.RequisitoDAO;
-import br.ufc.si.DAO.TurmaDAO;
 import br.ufc.si.DAO.VersaoProjetoDAO;
 import br.ufc.si.Interfaces.IAluno;
 import br.ufc.si.Interfaces.IProjeto;
-import br.ufc.si.Interfaces.ITurma;
 import br.ufc.si.Interfaces.IVersaoProjeto;
+import br.ufc.si.Tipos.PrioridadeRequisito;
+import br.ufc.si.Tipos.TipoRequisito;
 import br.ufc.si.model.Aluno;
 import br.ufc.si.model.Projeto;
 import br.ufc.si.model.Requisito;
-import br.ufc.si.model.Turma;
-import br.ufc.si.model.Usuario;
 
 @SuppressWarnings("unused")
 public class ClsseTeste {
@@ -30,52 +23,75 @@ public class ClsseTeste {
 		IAluno alunoDAO = new AlunoDAO();
 
 		Aluno aluno = new Aluno();
-		aluno = alunoDAO.getAlunoById(1);
+		aluno = alunoDAO.getAlunoById(5);
 		Projeto proj = new Projeto();
 
-		// aluno.setNome("Paulo");
-		// aluno.setEmail("email@teste.com");
-		// aluno.setSenha("teste");
-		// aluno.setConfirmado(true);
-		// aluno.setNumero(123);
-		// alunoDAO.save(aluno);
+//		 aluno.setNome("Paulo Ivo");
+//		 aluno.setEmail("email@teste.com");
+//		 aluno.setSenha("teste");
+//		 aluno.setConfirmado(true);
+//		 aluno.setNumero(123);
+//		 alunoDAO.save(aluno);
 
 		RequisitoDAO reqDAO = new RequisitoDAO();
 		Requisito req = new Requisito();
-
-		// for (int i = 0; i <= 2; i++) {
-		// proj.setNome("Projeto " + i);
-		// proj.setCriador(aluno);
-		// proj.setDificuldade(2);
-		// proj.setDescricao("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
-		// proj.setFoco_projeto("Introdução a SQL básico");
-		// proj.setTipoProjeto(TipoProjeto.WEB);
-		// projDAO.save(proj);
-		//
-		// proj = projDAO.getProjetoById(58);
-		// for (int j = 0; j < 5; j++) {
-		// req.setDescricao("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
-		// req.setPrioridadeRequisito(PrioridadeRequisito.ESSENCIAL);
-		// req.setTipoRequisito(TipoRequisito.FUNCIONAL);
-		// req.setFoco_requisito("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
-		// req.setProjeto(proj);
-		//
-		// reqDAO.save(req);
-		// }
-		// }
-
-		ITurma turmaDAO = new TurmaDAO();
-		Turma turma = new Turma();
-		turma = turmaDAO.getTurmaById(74);
-		List<Usuario> users = new ArrayList<Usuario>();
-		List<Turma> turmas = new ArrayList<Turma>();
-		users.add(aluno);
-		turma.setUsuarios(users);
-		turmaDAO.update(turma);
+//		List<Projeto> projetos = new ArrayList<Projeto>();
+//		 for (int i = 4; i <= 8; i++) {
+//		 proj.setNome("Projeto " + i);
+//		 proj.setCriador(aluno);
+//		 proj.setDificuldade(2);
+//		 proj.setDescricao("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
+//		 proj.setFoco_projeto("Introdução a SQL básico");
+//		 proj.setTipoProjeto(TipoProjeto.MOBILE);
+//		 projDAO.save(proj);
+		 
 		
-		turmas.add(turma);
-		aluno.setTurmas(turmas);
-		alunoDAO.update(aluno);
+//		 projetos.add(proj);
+			 
+		
+//		 for (int j = 9; j <=10; j++) {
+//		 proj = projDAO.getProjetoById(j);
+//		 req.setDescricao("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
+//		 req.setPrioridadeRequisito(PrioridadeRequisito.DESEJAVEL);
+//		 req.setTipoRequisito(TipoRequisito.NAO_FUNCIONAL);
+//		 req.setFoco_requisito("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
+//		 req.setProjeto(proj);
+//		
+//		 reqDAO.save(req);
+//		 }
+//		 }
+		 
+//		 aluno.setProjetos_participantes(projetos);
+//		 alunoDAO.update(aluno);
+//		 List<Usuario> users = new ArrayList<Usuario>();
+//		 users.add(aluno);
+//		 
+//		 for (Projeto projeto : projetos) {
+//			 projeto.setUsuarios_participantes(users);
+//			 projDAO.update(projeto);
+//		}
+		 
+//		 proj = projDAO.getProjetoById(2);
+//		 projetos.add(proj);
+//		 aluno.setProjetos(projetos);
+//		 alunoDAO.update(aluno);
+//		 List<Usuario> users = new ArrayList<Usuario>();
+//		 users.add(aluno);
+//		 proj.setCriador(aluno);
+//		 projDAO.update(proj);
+		 
+//		ITurma turmaDAO = new TurmaDAO();
+//		Turma turma = new Turma();
+//		turma = turmaDAO.getTurmaById(74);
+//		List<Usuario> users = new ArrayList<Usuario>();
+//		List<Turma> turmas = new ArrayList<Turma>();
+//		users.add(aluno);
+//		turma.setUsuarios(users);
+//		turmaDAO.update(turma);
+//		
+//		turmas.add(turma);
+//		aluno.setTurmas(turmas);
+//		alunoDAO.update(aluno);
 		
 		
 //
@@ -97,7 +113,7 @@ public class ClsseTeste {
 //		turma.setProjetos(projetos);
 //		turmas.add(turma);
 //
-//		proj.setTurmas(turmas);
+//		proj.setTurmas(turmas);O
 //
 //		projetos.add(proj);
 //
