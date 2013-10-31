@@ -64,7 +64,25 @@ public class ClsseTeste {
 			proj.setDescricao("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
 			proj.setDificuldade(5);
 			proj.setFoco_projeto("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
+			proj.setTipoProjeto(TipoProjeto.WEB);
+			projDAO.save(proj);
+		}
+		for (int i = 0; i < quantidade; i++) {
+			proj = new Projeto();
+			proj.setNome("Projeto " + i);
+			proj.setDescricao("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
+			proj.setDificuldade(5);
+			proj.setFoco_projeto("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
 			proj.setTipoProjeto(TipoProjeto.DESKTOP);
+			projDAO.save(proj);
+		}
+		for (int i = 0; i < quantidade; i++) {
+			proj = new Projeto();
+			proj.setNome("Projeto " + i);
+			proj.setDescricao("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
+			proj.setDificuldade(5);
+			proj.setFoco_projeto("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
+			proj.setTipoProjeto(TipoProjeto.MOBILE);
 			projDAO.save(proj);
 		}
 	}
@@ -99,46 +117,57 @@ public class ClsseTeste {
 				reqDAO.save(req);
 			}
 		}
+		
+		for (int i = 0; i < projetos.size(); i++) {
+			proj = projetos.get(i);
+			for (int j = 0; j < quantidade; j++) {
+				Requisito req = new Requisito();
+				req.setDescricao("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
+				req.setFoco_requisito("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
+				req.setPrioridadeRequisito(PrioridadeRequisito.IMPORTANTE);
+				req.setTipoRequisito(TipoRequisito.NAO_FUNCIONAL);
+				req.setProjeto(proj);
+				reqDAO.save(req);
+			}
+		}
+		
+		for (int i = 0; i < projetos.size(); i++) {
+			proj = projetos.get(i);
+			for (int j = 0; j < quantidade; j++) {
+				Requisito req = new Requisito();
+				req.setDescricao("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
+				req.setFoco_requisito("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
+				req.setPrioridadeRequisito(PrioridadeRequisito.DESEJAVEL);
+				req.setTipoRequisito(TipoRequisito.FUNCIONAL);
+				req.setProjeto(proj);
+				reqDAO.save(req);
+			}
+		}
 	}
 	
-	public static void AdicionarTurmas(int quantidade, Professor prof, List<Projeto> projetos, List<Usuario> usuarios) {
+	public static void AdicionarTurmas(int quantidade) {
 		
 		for (int i = 0; i < quantidade; i++) {
 			//adiciona a turma
 			Turma turma = new Turma();
 			turma.setNome("Turma " + 1);
 			turma.setDescricao("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in aliquet dui, vel fringilla justo. Sed sed orci eu metus faucibus rhoncus eget sed ante. Sed malesuada lobortis ultricies. Donec ullamcorper fringilla sapien dignissim egestas. Nulla ultrices mauris nec tellus pulvinar, sed adipiscing eros faucibus. Duis aliquet tellus nulla, vel pharetra quam iaculis eu. Fusce sagittis ligula amet");
-//			turma.setProjetos(projetos);
-			turma.setResponsavel(prof);
-			turma.setUsuarios(usuarios);
 			turmaDAO.save(turma);
+		}
+	}
+	
+	public static void AdicionatProjetosTurma(List<Projeto> projetos, Turma turma){
+		for (Projeto projeto : projetos) {
+			List<Turma> turmas = new ArrayList<Turma>();
+			turmas = projeto.getTurmas();
+			turmas.add(turma);
+			projeto.setTurmas(turmas);
+			projDAO.update(projeto);
 			
-//			List<Turma> turmas = prof.getTurmas();
-//			turmas.add(turma);
-//			prof.setTurmas(turmas);
-//			profDAO.update(prof);
-//			
-//			
-//			for (Projeto projeto : projetos) {
-//				 turmas = new ArrayList<Turma>();
-//				 turmas = projeto.getTurmas();
-//				 turmas.add(turma);
-//				 projDAO.update(projeto);
-//			}
-//			
-//			
-//			for (Usuario user : usuarios) {
-//				turmas = new ArrayList<Turma>();
-//				turmas = user.getTurmas();
-//				turmas.add(turma);
-//				user.setTurmas(turmas);
-//				
-//				if(user instanceof Aluno){
-//					alunoDAO.update((Aluno)user);
-//				}else if(user instanceof Professor){
-//					profDAO.update((Professor)user);
-//				}
-//			}
+			List<Projeto> projetos2 = turma.getProjetos();
+			projetos2.add(projeto);
+			turma.setProjetos(projetos2);
+			turmaDAO.update(turma);
 		}
 	}
 	
@@ -178,9 +207,9 @@ public class ClsseTeste {
 		Turma turma = new Turma();
 		Professor prof = new Professor();
 
-//		AdicionarAlunos(4);
-//		AdicionarProfessores(4);
-		AdicionarPeojetos(3);
+		AdicionarAlunos(10);
+		AdicionarProfessores(10);
+		AdicionarPeojetos(4);
 		adicionarRequisitoProjeto(8);
 
 //		Adicionar criar a um projeto		
