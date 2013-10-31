@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +21,7 @@ import br.ufc.si.Tipos.TipoProjeto;
 public class Projeto {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int Id;
 
 	@Column(name = "Nome_Projeto", nullable = false, length = 30)
@@ -32,10 +31,12 @@ public class Projeto {
 	@JoinColumn(name = "Criador")
 	private Usuario criador;
 
-	@ManyToMany(mappedBy = "projetos", fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "projetos")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Turma> turmas;
 
-	@ManyToMany(mappedBy = "projetos_participantes", fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "projetos_participantes")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Usuario> usuarios_participantes;
 
 	@Column(name = "Tipo_Projeto", nullable = false)

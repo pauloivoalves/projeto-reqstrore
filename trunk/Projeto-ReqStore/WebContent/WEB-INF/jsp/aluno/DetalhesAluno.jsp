@@ -13,7 +13,7 @@
 <link href="../css/Style.css" rel="stylesheet" type="text/css" />
 <link type="text/css" href="../css/menu.css" rel="stylesheet" />
 
-<title>Home</title>
+<title>Detalhes do Aluno</title>
 </head>
 <body>
 	<div id="tudo">
@@ -104,7 +104,7 @@
 				<div id="inner_top">
 					<div class="page_tittle">
 						<p>
-							<c:out value="${turma.nome}"/>
+							<c:out value="${aluno.nome}"/>
 						</p>
 					</div>
 				</div>
@@ -113,17 +113,19 @@
 					<div id="detalhes">
 
 						<div class="descricao">
-							<strong>Descrição</strong><br /> <br />
-							<c:out value="${turma.descricao}"/>
+							<strong>Email</strong><br /> <br />
+							<c:out value="${aluno.email}"/>
 						</div>
 					</div>
 
 					<div id="lista">
-						<div style = "float: left; width: 49%; overflow: auto; height: 170px;">
+						<div
+							style="float: left; width: 49%; overflow: auto; height: 170px;">
 							<table style="width: 100%; float: left;" id="lista_projetos">
 								<thead>
 									<tr>
-										<td colspan="3" style="font-size: 14px;"><b>Projetos</b></td>
+										<td colspan="3" style="font-size: 14px;"><b>Projetos
+												Próprios</b></td>
 									</tr>
 									<tr>
 										<td><label>Projeto</label></td>
@@ -132,7 +134,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${turma.projetos}" var="projeto">
+									<c:forEach items="${aluno.projetos}" var="projeto">
 										<tr
 											onclick="location.href = '<c:url value="/Projeto/"/>Detalhes?id=${projeto.id}';">
 											<td>${projeto.nome }</td>
@@ -144,11 +146,13 @@
 
 							</table>
 						</div>
-						<div style = "float: right; width: 49%; overflow: auto; height: 170px;">
+						<div
+							style="float: right; width: 49%; overflow: auto; height: 170px;">
 							<table style="width: 100%; float: right;" id="lista_projetos">
 								<thead>
 									<tr>
-										<td colspan="3" style="font-size: 14px;"><b>Alunos</b></td>
+										<td colspan="3" style="font-size: 14px;"><b>Projetos
+												dos quais Paticipa</b></td>
 									</tr>
 									<tr>
 										<td><label>Nome</label></td>
@@ -157,12 +161,13 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${turma.usuarios}" var="user">
+									<c:forEach items="${aluno.projetos_participantes}"
+										var="projeto">
 										<tr
-											onclick="location.href = '<c:url value="/Aluno/"/>DetalhesAluno?id=${user.id}';">
-											<td>${user.nome }</td>
-											<td>${user.email }</td>
-											<td>${fn:length(user.projetos_participantes)}</td>
+											onclick="location.href = '<c:url value="/Projeto/"/>Detalhes?id=${projeto.id}';">
+											<td>${projeto.nome }</td>
+											<td>${projeto.tipoProjeto }</td>
+											<td>${projeto.dificuldade }</td>
 										</tr>
 									</c:forEach>
 								</tbody>

@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -39,14 +41,17 @@ public class Usuario {
 	@Column(name = "Confirmacao", nullable = false)
 	private int numero;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinTable(name = "Usuario_Projeto", joinColumns = @JoinColumn(name = "Usuario_id"), inverseJoinColumns = @JoinColumn(name = "Projeto_id"))
 	private List<Projeto> projetos_participantes;
 
-	@OneToMany(mappedBy = "criador", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "criador")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Projeto> projetos;
 
-	@ManyToMany(mappedBy = "usuarios", fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "usuarios")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Turma> turmas;
 
 	/* Getter and Setters */

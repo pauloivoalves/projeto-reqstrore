@@ -58,7 +58,6 @@ public class AlunoDAO implements IAluno {
 		Session session = HibernateUtil.getSession();
 		try {
 			Aluno aluno = (Aluno) session.get(Aluno.class, id);
-			Hibernate.initialize(aluno.getProjetos());
 
 			return aluno;
 		} catch (Exception e) {

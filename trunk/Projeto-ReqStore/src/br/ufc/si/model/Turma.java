@@ -12,24 +12,34 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 public class Turma {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	int Id;
 
 	@Column(name = "Nome", nullable = false, length = 100)
-	String nome;
+	private String nome;
 
-	@Column(name = "Descricao", nullable = false, length = 300)
-	String Descricao;
+	@ManyToOne
+	@JoinColumn(name = "Professor_Responsavel")
+	private Professor responsavel;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@Column(name = "Descricao", nullable = false, length = 1000)
+	private String Descricao;
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinTable(name = "Turma_Projeto", joinColumns = @JoinColumn(name = "Turma_id"), inverseJoinColumns = @JoinColumn(name = "Projeto_id"))
 	List<Projeto> projetos;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinTable(name = "Turma_Usuario", joinColumns = @JoinColumn(name = "Turma_id"), inverseJoinColumns = @JoinColumn(name = "Usuario_id"))
 	List<Usuario> usuarios;
 
@@ -71,6 +81,14 @@ public class Turma {
 
 	public void setDescricao(String descricao) {
 		Descricao = descricao;
+	}
+
+	public Professor getResponsavel() {
+		return responsavel;
+	}
+
+	public void setResponsavel(Professor responsavel) {
+		this.responsavel = responsavel;
 	}
 
 }

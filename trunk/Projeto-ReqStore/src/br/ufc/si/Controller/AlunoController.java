@@ -31,6 +31,12 @@ public class AlunoController {
 		
 	}
 	
+	@Path("/Aluno/DetalhesAluno")
+	public Aluno DetalhesAluno(int id) {
+		System.out.println("ID: " + id);
+		return this.alunoDAO.getAlunoById(id);
+	}
+	
 	@Path("/Aluno/AlunoProjetos")
 	public void AlunoProjetos(){
 		
