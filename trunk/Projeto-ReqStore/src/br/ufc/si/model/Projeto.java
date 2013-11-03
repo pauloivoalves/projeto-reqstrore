@@ -21,7 +21,7 @@ import br.ufc.si.Tipos.TipoProjeto;
 public class Projeto {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int Id;
 
 	@Column(name = "Nome_Projeto", nullable = false, length = 30)
