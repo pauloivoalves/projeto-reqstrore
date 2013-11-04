@@ -51,11 +51,9 @@ public class Projeto {
 	@Column(name = "Dificuldade", nullable = false)
 	private int dificuldade;
 
-	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "projeto")
 	private List<Requisito> requisitos;
 
-	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "idProjeto")
 	private List<VersaoProjeto> versoesProjeto;
 

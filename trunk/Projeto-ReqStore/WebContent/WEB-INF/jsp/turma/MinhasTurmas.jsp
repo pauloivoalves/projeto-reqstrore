@@ -12,7 +12,7 @@
 <link href="../css/Style.css" rel="stylesheet" type="text/css" />
 <link type="text/css" href="../css/menu.css" rel="stylesheet" />
 
-<title>Listar Turmas</title>
+<title>Minhas Turmas</title>
 </head>
 <body>
 	<div id="tudo">
@@ -105,7 +105,7 @@
 
 				<div id="inner_top">
 					<div class="page_tittle">
-						<p>Listar Turmas</p>
+						<p>Minhas Turmas</p>
 					</div>
 				</div>
 				<div id="inner_content">
@@ -113,7 +113,7 @@
 						<table align="center" id="lista_projetos">
 							<thead>
 								<tr>
-									<td colspan="3" style="font-size: 14px;"><b>Turmas</b></td>
+									<td colspan="3" style="font-size: 14px;"><b>Minhas Turmas</b></td>
 								</tr>
 								<tr>
 									<td><label>Turma</label></td>

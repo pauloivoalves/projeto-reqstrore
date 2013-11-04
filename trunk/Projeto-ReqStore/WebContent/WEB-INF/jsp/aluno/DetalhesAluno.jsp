@@ -28,14 +28,15 @@
 							<li><a href="<c:url value="/Aluno/home"/>">Home</a></li>
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Projetos</a>
-								<ul class="submenu">
+								<ul class="submenu" style = "z-index: 100">
 									<li><a href="<c:url value="/Projeto/lista"/>">Listar projetos</a></li>
 									<li><a href="<c:url value="/Projeto/Busca"/>">Buscar Projetos</a></li>
 									<li><a href="#">Meus Projetos</a></li>
-								</ul></li>
+								</ul>
+							</li>
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Usu&aacute;rios</a>
-								<ul class="submenu">
+								<ul class="submenu" style = "z-index: 100">
 									<li><a href="#">Listar Usu&aacute;rios</a></li>
 									<li><a href="#">Buscar Usu&aacute;rio</a>
 								</ul>
@@ -60,23 +61,24 @@
 							<li><a href="<c:url value="/Professor/ProfessorHome"/>">Home</a></li>
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Projetos</a>
-								<ul class="submenu">
-									<li><a href="<c:url value="/Projeto/lista"/>">Listar projetos</a></li>
+								<ul class="submenu" style = "z-index: 100">
+									<li><a href="<c:url value="/Projeto/NovoProjeto"/>">Adicionar Projetos</a></li>
+									<li><a href="<c:url value="/Projeto/lista"/>">Listar Projetos</a></li>
 									<li><a href="<c:url value="/Projeto/Busca"/>">Buscar Projetos</a></li>
-									<li><a href="#">Meus Projetos</a></li>
+									<li><a href="<c:url value="/Projeto/MeusProjetos?id=${usuarioWeb.id}"/>">Meus Projetos</a></li>
 								</ul>
 							</li>
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Turmas</a>
-								<ul class="submenu">
-									<li><a href="#">Listar Turmas</a></li>
+								<ul class="submenu" style = "z-index: 100">
+									<li><a href="<c:url value="/Turma/lista"/>">Listar Turmas</a></li>
 									<li><a href="#">Buscar Turmas</a></li>
 									<li><a href="#">Minhas Turmas</a></li>
 								</ul>
 							</li>
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Usu&aacute;rios</a>
-								<ul class="submenu">
+								<ul class="submenu" style = "z-index: 100">
 									<li><a href="#">Listar Usu&aacute;rios</a></li>
 									<li><a href="#">Buscar Usu&aacute;rio</a>
 								</ul>
@@ -104,7 +106,7 @@
 				<div id="inner_top">
 					<div class="page_tittle">
 						<p>
-							<c:out value="${aluno.nome}"/>
+							Nome: <c:out value="${aluno.nome}"/>
 						</p>
 					</div>
 				</div>
@@ -113,8 +115,10 @@
 					<div id="detalhes">
 
 						<div class="descricao">
-							<strong>Email</strong><br /> <br />
-							<c:out value="${aluno.email}"/>
+					
+							<strong>Email: </strong><c:out value="${aluno.email}"/>
+							
+							
 						</div>
 					</div>
 

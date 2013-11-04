@@ -10,12 +10,15 @@ import org.hibernate.criterion.Restrictions;
 import br.com.caelum.vraptor.ioc.Component;
 import br.ufc.si.Interfaces.ITurma;
 import br.ufc.si.model.Turma;
+import br.ufc.si.model.Usuario;
 import br.ufc.si.util.HibernateUtil;
 
 @Component
 public class TurmaDAO implements ITurma {
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see br.ufc.si.DAO.ITurma#save(br.ufc.si.model.Turma)
 	 */
 	public void save(Turma turma) {
@@ -31,7 +34,9 @@ public class TurmaDAO implements ITurma {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see br.ufc.si.DAO.ITurma#delete(br.ufc.si.model.Turma)
 	 */
 	public void delete(Turma turma) {
@@ -47,7 +52,9 @@ public class TurmaDAO implements ITurma {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see br.ufc.si.DAO.ITurma#update(br.ufc.si.model.Turma)
 	 */
 	public void update(Turma turma) {
@@ -63,7 +70,9 @@ public class TurmaDAO implements ITurma {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see br.ufc.si.DAO.ITurma#getTurmaById(java.lang.Integer)
 	 */
 	public Turma getTurmaById(Integer id) {
@@ -81,7 +90,9 @@ public class TurmaDAO implements ITurma {
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see br.ufc.si.DAO.ITurma#List()
 	 */
 	@SuppressWarnings("unchecked")
@@ -102,7 +113,9 @@ public class TurmaDAO implements ITurma {
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see br.ufc.si.DAO.ITurma#SearchByName(java.lang.String)
 	 */
 	@SuppressWarnings("unchecked")
@@ -123,5 +136,24 @@ public class TurmaDAO implements ITurma {
 		}
 		return null;
 	}
-	
+
+	public List<Turma> MinhasTurmas(Usuario user) {
+		Session session = HibernateUtil.getSession();
+		try {
+
+			@SuppressWarnings("unchecked")
+			List<Turma> lista = session.createCriteria(Turma.class)
+					.add(Restrictions.eq("responsavel", user)).list();
+			for (Turma turma : lista) {
+				Hibernate.initialize(turma);
+			}
+			return lista;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
 }

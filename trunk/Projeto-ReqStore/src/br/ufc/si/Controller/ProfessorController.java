@@ -30,6 +30,12 @@ public class ProfessorController {
 		this.professorDAO.save(professor);
 		result.redirectTo(this.ListaProfessores());
 	}
+	
+	@Path("/Professor/DetalhesProfessor")
+	public Professor DetalhesProfessor(int id) {
+		System.out.println("ID: " + id);
+		return this.professorDAO.getProfessorById(id);
+	}
 
 	@Path("/Professor/remove")
 	public void RemoveProfessor(Professor professor) {

@@ -13,7 +13,7 @@
 <link href="../css/Style.css" rel="stylesheet" type="text/css" />
 <link type="text/css" href="../css/menu.css" rel="stylesheet" />
 
-<title>Home</title>
+<title>Detalhes do Professor</title>
 </head>
 <body>
 	<div id="tudo">
@@ -28,14 +28,15 @@
 							<li><a href="<c:url value="/Aluno/home"/>">Home</a></li>
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Projetos</a>
-								<ul class="submenu">
-									<li><a href="<c:url value="/Projeto/lista"/>">Listar projetos</a></li>
+								<ul class="submenu" style = "z-index: 100">
+									<li><a href="<c:url value="/Projeto/NovoProjeto"/>">Adicionar Projetos</a></li>
+									<li><a href="<c:url value="/Projeto/lista"/>">Listar Projetos</a></li>
 									<li><a href="<c:url value="/Projeto/Busca"/>">Buscar Projetos</a></li>
 									<li><a href="<c:url value="/Projeto/MeusProjetos?id=${usuarioWeb.id}"/>">Meus Projetos</a></li>
 								</ul></li>
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Usu&aacute;rios</a>
-								<ul class="submenu">
+								<ul class="submenu" style = "z-index: 100">
 									<li><a href="#">Listar Usu&aacute;rios</a></li>
 									<li><a href="#">Buscar Usu&aacute;rio</a>
 								</ul>
@@ -55,16 +56,15 @@
 				</c:when>
 				<c:when test="${usuarioWeb.tipo == 2}">
 					<div id="menu">
-						<ul class="dropdown" style = "width: 65% !important;">
-		
+						<ul class="dropdown" style="width: 65% !important;">
+
 							<li><a href="<c:url value="/Professor/ProfessorHome"/>">Home</a></li>
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Projetos</a>
-								<ul class="submenu">
-									<li><a href="<c:url value="/Projeto/NovoProjeto"/>">Adicionar Projetos</a></li>
-									<li><a href="<c:url value="/Projeto/lista"/>">Listar Projetos</a></li>
+								<ul class="submenu" style = "z-index: 100">
+									<li><a href="<c:url value="/Projeto/lista"/>">Listar projetos</a></li>
 									<li><a href="<c:url value="/Projeto/Busca"/>">Buscar Projetos</a></li>
-									<li><a href="<c:url value="/Projeto/MeusProjetos?id=${usuarioWeb.id}"/>">Meus Projetos</a></li>
+									<li><a href="#">Meus Projetos</a></li>
 								</ul>
 							</li>
 							<li><img src="../imagens/separador.png"></li>
@@ -77,18 +77,22 @@
 							</li>
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Usu&aacute;rios</a>
-								<ul class="submenu">
+								<ul class="submenu" style = "z-index: 100">
 									<li><a href="#">Listar Usu&aacute;rios</a></li>
 									<li><a href="#">Buscar Usu&aacute;rio</a>
-								</ul></li>
+								</ul>
+							</li>
 							<li><img src="../imagens/separador.png"></li>
-							<li><a href="#">Ajuda</a> <c:if test="${!usuarioWeb.logado}">
-									<li><img src="../imagens/separador.png"></li>
-									<li><a href="<c:url value="/login"/>">Login</a></li>
-								</c:if> <c:if test="${usuarioWeb.logado}">
-									<li><img src="../imagens/separador.png"></li>
-									<li><a href="<c:url value="/logout"/>">Logout</a></li>
-								</c:if>
+							<li><a href="#">Ajuda</a></li> 
+							
+							<c:if test="${!usuarioWeb.logado}">
+								<li><img src="../imagens/separador.png"></li>
+								<li><a href="<c:url value="/login"/>">Login</a></li>
+							</c:if> 
+							<c:if test="${usuarioWeb.logado}">
+								<li><img src="../imagens/separador.png"></li>
+								<li><a href="<c:url value="/logout"/>">Logout</a></li>
+							</c:if>
 						</ul>
 					</div>
 				</c:when>
@@ -101,7 +105,7 @@
 				<div id="inner_top">
 					<div class="page_tittle">
 						<p>
-							<c:out value="${turma.nome}"/>
+							<c:out value="${aluno.nome}"/>
 						</p>
 					</div>
 				</div>
@@ -110,17 +114,18 @@
 					<div id="detalhes">
 
 						<div class="descricao">
-							<strong>Descrição</strong><br /> <br />
-							<c:out value="${turma.descricao}"/>
+							<strong>Email</strong><br /> <br />
+							<c:out value="${professor.email}"/>
 						</div>
 					</div>
 
 					<div id="lista">
-						<div style = "float: left; width: 49%; overflow: auto; height: 170px;">
+						<div
+							style="float: left; width: 49%; overflow: auto; height: 170px;">
 							<table style="width: 100%; float: left;" id="lista_projetos">
 								<thead>
 									<tr>
-										<td colspan="3" style="font-size: 14px;"><b>Projetos</b></td>
+										<td colspan="3" style="font-size: 14px;"><b>Projetos Próprios</b></td>
 									</tr>
 									<tr>
 										<td><label>Projeto</label></td>
@@ -129,9 +134,8 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${turma.projetos}" var="projeto">
-										<tr
-											onclick="location.href = '<c:url value="/Projeto/"/>Detalhes?id=${projeto.id}';">
+									<c:forEach items="${professor.projetos}" var="projeto">
+										<tr onclick="location.href = '<c:url value="/Projeto/"/>Detalhes?id=${projeto.id}';">
 											<td>${projeto.nome }</td>
 											<td>${projeto.tipoProjeto }</td>
 											<td>${projeto.dificuldade }</td>
@@ -141,11 +145,11 @@
 
 							</table>
 						</div>
-						<div style = "float: right; width: 49%; overflow: auto; height: 170px;">
+						<div style="float: right; width: 49%; overflow: auto; height: 170px;">
 							<table style="width: 100%; float: right;" id="lista_projetos">
 								<thead>
 									<tr>
-										<td colspan="3" style="font-size: 14px;"><b>Participantes</b></td>
+										<td colspan="3" style="font-size: 14px;"><b>Projetos dos quais Paticipa</b></td>
 									</tr>
 									<tr>
 										<td><label>Nome</label></td>
@@ -154,11 +158,13 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${turma.usuarios}" var="user">
-										<tr onclick="location.href = '<c:url value="/Aluno/"/>DetalhesAluno?id=${user.id}';">
-											<td>${user.nome }</td>
-											<td>${user.email }</td>
-											<td>${fn:length(user.projetos_participantes) + fn:length(user.projetos)}</td>
+									<c:forEach items="${professor.projetos_participantes}"
+										var="projeto">
+										<tr
+											onclick="location.href = '<c:url value="/Projeto/"/>Detalhes?id=${projeto.id}';">
+											<td>${projeto.nome }</td>
+											<td>${projeto.tipoProjeto }</td>
+											<td>${projeto.dificuldade }</td>
 										</tr>
 									</c:forEach>
 								</tbody>

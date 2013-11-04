@@ -27,14 +27,14 @@
 							<li><a href="<c:url value="/Aluno/home"/>">Home</a></li>
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Projetos</a>
-								<ul class="submenu">
-									<li><a href="<c:url value="/Projeto/lista"/>">Listar projetos</a></li>
+								<ul class="submenu" style = "z-index: 100">
+									<li><a href="<c:url value="/Projeto/lista"/>">Listar Projetos</a></li>
 									<li><a href="<c:url value="/Projeto/Busca"/>">Buscar Projetos</a></li>
-									<li><a href="#">Meus Projetos</a></li>
+									<li><a href="<c:url value="/Projeto/MeusProjetos?id=${usuarioWeb.id}"/>">Meus Projetos</a></li>
 								</ul></li>
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Usu&aacute;rios</a>
-								<ul class="submenu">
+								<ul class="submenu" style = "z-index: 100">
 									<li><a href="#">Listar Usu&aacute;rios</a></li>
 									<li><a href="#">Buscar Usu&aacute;rio</a>
 								</ul>
@@ -59,23 +59,24 @@
 							<li><a href="<c:url value="/Professor/ProfessorHome"/>">Home</a></li>
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Projetos</a>
-								<ul class="submenu">
-									<li><a href="<c:url value="/Projeto/lista"/>">Listar projetos</a></li>
+								<ul class="submenu" style = "z-index: 100">
+									<li><a href="<c:url value="/Projeto/NovoProjeto"/>">Adicionar Projetos</a></li>
+									<li><a href="<c:url value="/Projeto/lista"/>">Listar Projetos</a></li>
 									<li><a href="<c:url value="/Projeto/Busca"/>">Buscar Projetos</a></li>
-									<li><a href="#">Meus Projetos</a></li>
+									<li><a href="<c:url value="/Projeto/MeusProjetos?id=${usuarioWeb.id}"/>">Meus Projetos</a></li>
 								</ul>
 							</li>
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Turmas</a>
-								<ul class="submenu">
-									<li><a href="#">Listar Turmas</a></li>
+								<ul class="submenu" style = "z-index: 100">
+									<li><a href="<c:url value="/Turma/lista"/>">Listar Turmas</a></li>
 									<li><a href="#">Buscar Turmas</a></li>
 									<li><a href="#">Minhas Turmas</a></li>
 								</ul>
 							</li>
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Usu&aacute;rios</a>
-								<ul class="submenu">
+								<ul class="submenu" style = "z-index: 100">
 									<li><a href="#">Listar Usu&aacute;rios</a></li>
 									<li><a href="#">Buscar Usu&aacute;rio</a>
 								</ul>
@@ -108,25 +109,39 @@
 				</div>
 				<div id="inner_content">
 					<div id="lista">
-						<table align="center" id="lista_projetos">
-							<thead>
-								<tr>
-									<td><label>Projeto</label></td>
-									<td><label>Tipo</label></td>
-									<td><label>Porntua&ccedil;&atilde;o</label></td>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${projetoList}" var="projeto">
-									<tr onclick="location.href = 'Detalhes?id=${projeto.id}';">
-										<td>${projeto.nome }</td>
-										<td>${projeto.tipoProjeto }</td>
-										<td>${projeto.dificuldade }</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-
-						</table>
+						<c:choose>
+							<c:when test="${not empty projetoList }">
+								<table align="center" id="lista_projetos">
+									<thead>
+										<tr>
+											<td colspan="3" style="font-size: 14px;"><b>Projetos</b></td>
+										</tr>
+										<tr>
+											<td><label>Projeto</label></td>
+											<td><label>Tipo</label></td>
+											<td><label>Porntua&ccedil;&atilde;o</label></td>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach items="${projetoList}" var="projeto">
+											<tr>
+												<td onclick="location.href = 'Detalhes?id=${projeto.id}';">${projeto.nome }</td>
+												<td onclick="location.href = 'Detalhes?id=${projeto.id}';">${projeto.tipoProjeto }</td>
+												<td onclick="location.href = 'Detalhes?id=${projeto.id}';">${projeto.dificuldade }</td>
+												<td onclick="location.href = 'Remover?id_projeto=${projeto.id}&id_usuario=${usuarioWeb.id}';" class = "exc"><img height="15px" src = "../imagens/trash0.png"></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+		
+								</table>
+							</c:when>
+							<c:otherwise>
+							<br>
+							<br>
+							<br>
+									<label style = "font-size: 18px; font-family: arial; font-weight: bold; color: #838388"> :(  Você não possui projetos cadastrados. <br>Consulte um administrador e solicite permissão para adicionar um projeto.</label>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 
@@ -157,4 +172,12 @@
 		</div>
 	</div>
 </body>
+<script type="text/javascript">
+	$('.exc').mouseenter( function(){
+		$('img',$(this)).attr('src','../imagens/trash.png');
+	} ).mouseleave( function(){
+		$('img',$(this)).attr('src','../imagens/trash0.png');
+	} );
+</script>
+
 </html>

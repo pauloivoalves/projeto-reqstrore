@@ -18,8 +18,12 @@ body {
 	float: left;
 }
 
-#entrar {
-	background-image: url("../imagens/entrar.png");
+a.btn-success{
+	background:#527100;
+	padding:4px 20px;
+	border:none;
+	text-decoration:none;
+	color:white;
 }
 
 #login {
@@ -61,6 +65,21 @@ body {
 #topo {
 	text-align: center;
 	padding-bottom: 10px;
+}
+
+#novo_projeto {
+	width: 630px;
+	border-radius: 10px;
+	color: #616161;
+	font-size: 14px;
+	font-weight: bold;
+	margin: 0 auto;
+	position: absolute;
+	top: 45%;
+	margin-top: -60px;
+	margin-left: -190px;
+	text-align: left;
+	left: 30%;
 }
 
 #tipoProjeto {
@@ -218,7 +237,7 @@ body {
 #inner_content table thead tr td {
 	border-left: 0px;
 	border-right: 0px;
-	font-size: 18px;
+	font-size: 14px;
 	border-radius: 5px;
 }
 

@@ -32,7 +32,7 @@
 								<ul class="submenu">
 									<li><a href="<c:url value="/Projeto/lista"/>">Listar projetos</a></li>
 									<li><a href="<c:url value="/Projeto/Busca"/>">Buscar Projetos</a></li>
-									<li><a href="#">Meus Projetos</a></li>
+									<li><a href="<c:url value="/Projeto/MeusProjetos?id=${usuarioWeb.id}"/>">Meus Projetos</a></li>
 								</ul></li>
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Usu&aacute;rios</a>
@@ -62,15 +62,16 @@
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Projetos</a>
 								<ul class="submenu">
-									<li><a href="<c:url value="/Projeto/lista"/>">Listar projetos</a></li>
+									<li><a href="<c:url value="/Projeto/NovoProjeto"/>">Adicionar Projetos</a></li>
+									<li><a href="<c:url value="/Projeto/lista"/>">Listar Projetos</a></li>
 									<li><a href="<c:url value="/Projeto/Busca"/>">Buscar Projetos</a></li>
-									<li><a href="#">Meus Projetos</a></li>
+									<li><a href="<c:url value="/Projeto/MeusProjetos?id=${usuarioWeb.id}"/>">Meus Projetos</a></li>
 								</ul>
 							</li>
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Turmas</a>
 								<ul class="submenu">
-									<li><a href="#">Listar Turmas</a></li>
+									<li><a href="<c:url value="/Turma/lista"/>">Listar Turmas</a></li>
 									<li><a href="#">Buscar Turmas</a></li>
 									<li><a href="#">Minhas Turmas</a></li>
 								</ul>

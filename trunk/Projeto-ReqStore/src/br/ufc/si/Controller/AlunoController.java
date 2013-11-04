@@ -27,21 +27,26 @@ public class AlunoController {
 	}
 
 	@Path("/Aluno/home")
-	public void AlunoHome(){
-		
+	public void AlunoHome() {
+
 	}
-	
+
 	@Path("/Aluno/DetalhesAluno")
 	public Aluno DetalhesAluno(int id) {
 		System.out.println("ID: " + id);
-		return this.alunoDAO.getAlunoById(id);
+		if (this.alunoDAO.getAlunoById(id) == null) {
+			result.redirectTo(ProfessorController.class).DetalhesProfessor(id);	
+		}else{
+			return this.alunoDAO.getAlunoById(id);
+		}
+		return null;
 	}
-	
+
 	@Path("/Aluno/AlunoProjetos")
-	public void AlunoProjetos(){
-		
+	public void AlunoProjetos() {
+
 	}
-	
+
 	@Path("/Aluno/novo")
 	public void AdicionaAluno(Aluno aluno) {
 		this.alunoDAO.save(aluno);
@@ -62,26 +67,30 @@ public class AlunoController {
 	public Aluno BuscaAlunoPorId(Aluno aluno) {
 		return this.alunoDAO.getAlunoById(aluno.getId());
 	}
-	
+
 	@Post("/Aluno/cadastrarAluno")
 	@Liberado
 	public void cadastrarAluno(Aluno aluno) {
 		Random random = new Random();
 		aluno.setNumero(random.nextInt(801));
 		aluno.setConfirmado(false);
-		
-		String msg = "Bem vindo ao ReqStore!" 
-				+ "\nSeu email : " + aluno.getEmail() +
-				"\nSua senha: " + aluno.getSenha() + 
-				"\nSeu número de confirmaçaõ é: "+ aluno.getNumero() + 
-				"\n Volte à tela de Login do ReqStore e utilize o seu número de confirmação para validar o seu email." +
-				"\nSó é necessário utilizar esse número 1 vez. Após a confirmação, seu permanecerá validado. Bons estudos!";
-		
+
+		String msg = "Bem vindo ao ReqStore!"
+				+ "\nSeu email : "
+				+ aluno.getEmail()
+				+ "\nSua senha: "
+				+ aluno.getSenha()
+				+ "\nSeu número de confirmaçaõ é: "
+				+ aluno.getNumero()
+				+ "\n Volte à tela de Login do ReqStore e utilize o seu número de confirmação para validar o seu email."
+				+ "\nSó é necessário utilizar esse número 1 vez. Após a confirmação, seu permanecerá validado. Bons estudos!";
+
 		try {
-			if(alunoDAO.buscaPorEmail(aluno)  != null){
+			if (alunoDAO.buscaPorEmail(aluno) != null) {
 				result.redirectTo(IndexController.class).ops();
-			}else{
-				SendMail.enviarEmail(aluno.getEmail(), "Criação de Conta no ReqStore", msg);
+			} else {
+				SendMail.enviarEmail(aluno.getEmail(),
+						"Criação de Conta no ReqStore", msg);
 				alunoDAO.save(aluno);
 				result.redirectTo(IndexController.class).ok();
 			}
@@ -89,10 +98,11 @@ public class AlunoController {
 			result.redirectTo(IndexController.class).ops();
 		}
 	}
+
 	@Path("/Aluno/cadastro")
 	@Liberado
 	public void cadastro(Aluno aluno) {
-	
+
 	}
 
 	@Path("/Alunos/lista")

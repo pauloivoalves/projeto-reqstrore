@@ -29,14 +29,15 @@
 								<li><a href="<c:url value="/Aluno/home"/>">Home</a></li>
 								<li><img src="../imagens/separador.png"></li>
 								<li><a href="#">Projetos</a>
-									<ul class="submenu">
+									<ul class="submenu" style = "z-index: 100">
 										<li><a href="<c:url value="/Projeto/lista"/>">Listar projetos</a></li>
 										<li><a href="<c:url value="/Projeto/Busca"/>">Buscar Projetos</a></li>
 										<li><a href="<c:url value="/Projeto/MeusProjetos?id=${usuarioWeb.id}"/>">Meus Projetos</a></li>
-									</ul></li>
+									</ul>
+								</li>
 								<li><img src="../imagens/separador.png"></li>
 								<li><a href="#">Usu&aacute;rios</a>
-									<ul class="submenu">
+									<ul class="submenu" style = "z-index: 100">
 										<li><a href="#">Listar Usu&aacute;rios</a></li>
 										<li><a href="#">Buscar Usu&aacute;rio</a>
 									</ul>
@@ -61,15 +62,16 @@
 								<li><a href="<c:url value="/Professor/ProfessorHome"/>">Home</a></li>
 								<li><img src="../imagens/separador.png"></li>
 								<li><a href="#">Projetos</a>
-									<ul class="submenu">
-										<li><a href="<c:url value="/Projeto/lista"/>">Listar projetos</a></li>
-										<li><a href="<c:url value="/Projeto/Busca"/>">Buscar Projetos</a></li>
-										<li><a href="<c:url value="/Projeto/MeusProjetos?id=${usuarioWeb.id}"/>">Meus Projetos</a></li>
+									<ul class="submenu" style = "z-index: 100">
+										<li><a href="<c:url value="/Projeto/NovoProjeto"/>">Adicionar Projetos</a></li>
+									<li><a href="<c:url value="/Projeto/lista"/>">Listar Projetos</a></li>
+									<li><a href="<c:url value="/Projeto/Busca"/>">Buscar Projetos</a></li>
+									<li><a href="<c:url value="/Projeto/MeusProjetos?id=${usuarioWeb.id}"/>">Meus Projetos</a></li>
 									</ul>
 								</li>
 								<li><img src="../imagens/separador.png"></li>
 								<li><a href="#">Turmas</a>
-									<ul class="submenu">
+									<ul class="submenu" style = "z-index: 100">
 										<li><a href="<c:url value="/Turma/lista"/>">Listar Turmas</a></li>
 										<li><a href="#">Buscar Turmas</a></li>
 										<li><a href="#">Minhas Turmas</a></li>
@@ -77,10 +79,11 @@
 								</li>
 								<li><img src="../imagens/separador.png"></li>
 								<li><a href="#">Usu&aacute;rios</a>
-									<ul class="submenu">
+									<ul class="submenu" style = "z-index: 100">
 										<li><a href="#">Listar Usu&aacute;rios</a></li>
 										<li><a href="#">Buscar Usu&aacute;rio</a>
-									</ul></li>
+									</ul>
+								</li>
 								<li><img src="../imagens/separador.png"></li>
 								<li><a href="#">Ajuda</a> <c:if test="${!usuarioWeb.logado}">
 										<li><img src="../imagens/separador.png"></li>
@@ -210,6 +213,7 @@
 		$('#medio > img').attr('src', '../imagens/dificuldade.png');
 		$('#dificil > img').attr('src', '../imagens/dificuldade.png');
 		$('#avancado > img').attr('src', '../imagens/dificuldade.png');
+		$('#dificuldadeProjeto').val('2');
 	});
 	$('#iniciado').click(function(){
 		$('#iniciado > img').attr('src', '../imagens/dificuldadeselecionada.png');

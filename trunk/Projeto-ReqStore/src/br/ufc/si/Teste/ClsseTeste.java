@@ -34,7 +34,7 @@ public class ClsseTeste {
 		Aluno aluno;
 		for (int i = 0; i < quantidade; i++) {
 			aluno = new Aluno();
-			aluno.setNome("Aluno " + 1);
+			aluno.setNome("Aluno " + i);
 			aluno.setEmail("email" + i + "@email.com");
 			aluno.setSenha("senha");
 			aluno.setConfirmado(true);
@@ -47,7 +47,7 @@ public class ClsseTeste {
 		Professor prof;
 		for (int i = 0; i < quantidade; i++) {
 			prof = new Professor();
-			prof.setNome("Professor " + 1);
+			prof.setNome("Professor " + i);
 			prof.setEmail("email" + i + "@email.com");
 			prof.setSenha("senha");
 			prof.setConfirmado(true);
@@ -55,8 +55,8 @@ public class ClsseTeste {
 			profDAO.save(prof);
 		}
 	}
-	
-	public static List<Projeto> listarMeusprojetos(Usuario usuario){
+
+	public static List<Projeto> listarMeusprojetos(Usuario usuario) {
 		return projDAO.MeusProjetos(usuario);
 	}
 
@@ -215,13 +215,12 @@ public class ClsseTeste {
 		} else if (user instanceof Professor) {
 			profDAO.update((Professor) user);
 		}
-		
+
 		List<Usuario> usuarios = turma.getUsuarios();
 		usuarios.add(user);
 		turma.setUsuarios(usuarios);
 		turmaDAO.update(turma);
 
-		
 	}
 
 	public static void main(String[] args) {
@@ -236,16 +235,16 @@ public class ClsseTeste {
 		// adicionarRequisitoProjeto(8);
 
 		// Adicionar criar a um projeto
-		// aluno = alunoDAO.getAlunoById(2);
-		// prof = profDAO.getProfessorById(18);
-		// proj = projDAO.getProjetoById(221);
+		// aluno = alunoDAO.getAlunoById(6);
+		// prof = profDAO.getProfessorById(14);
+		// proj = projDAO.getProjetoById(32);
 		// AdicionarCriadoProjeto(prof, proj);
 
 		// AdicionarUsuarioProjeto
 		// for (int i = 14; i <= 20; i++) {
-		// // aluno = alunoDAO.getAlunoById(i);
+		// aluno = alunoDAO.getAlunoById(i);
 		// prof = profDAO.getProfessorById(i);
-		// proj = projDAO.getProjetoById(210);
+		// proj = projDAO.getProjetoById(25);
 		// AdicionarUsuarioProjeto(prof, proj);
 		// }
 
@@ -253,33 +252,33 @@ public class ClsseTeste {
 		// AdicionarTurmas(5);
 
 		// Adicionar professor em turma
-		// prof = profDAO.getProfessorById(15);
-		// turma = turmaDAO.getTurmaById(3113);
+		// prof = profDAO.getProfessorById(11);
+		// turma = turmaDAO.getTurmaById(325);
 		// AdicionarProfessorTurma(prof, turma);
 
 		//
 		// Adicionar projeto numa turma
-		// for (int i = 215; i < 220; i++) {
+		// for (int i = 21; i < 25; i++) {
 		// proj = projDAO.getProjetoById(i);
-		// turma = turmaDAO.getTurmaById(3113);
+		// turma = turmaDAO.getTurmaById(326);
 		// AdicionarProjetoTurma(proj, turma);
 		// }
 
-		//
-//		for (int i = 5; i <= 10; i++) {
-//			aluno = alunoDAO.getAlunoById(3);
-//			prof = profDAO.getProfessorById(15);
-//			turma = turmaDAO.getTurmaById(3110);
-//			AdicionarUsuarioTurma(aluno, turma);
-//		}
+		// adicionar akluno a uma turma
+		// for (int i = 1; i <= 7; i++) {
+		// aluno = alunoDAO.getAlunoById(i);
+		// prof = profDAO.getProfessorById(i);
+		// turma = turmaDAO.getTurmaById(323);
+		// AdicionarUsuarioTurma(aluno, turma);
+		// }
 
-//		aluno = alunoDAO.getAlunoById(2);
-		prof = profDAO.getProfessorById(16);
-//		List<Projeto> list = listarMeusprojetos(prof);
-//		for (Projeto projeto : list) {
-//			System.out.println("nome -" + projeto.getNome());
-//		}
-		
+		// aluno = alunoDAO.getAlunoById(2);
+		// prof = profDAO.getProfessorById(16);
+		// List<Projeto> list = listarMeusprojetos(prof);
+		// for (Projeto projeto : list) {
+		// System.out.println("nome -" + projeto.getNome());
+		// }
+
 		System.out.println("Temrinou!");
 	}
 

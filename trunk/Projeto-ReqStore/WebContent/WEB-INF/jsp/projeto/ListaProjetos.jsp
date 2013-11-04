@@ -28,7 +28,7 @@
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Projetos</a>
 								<ul class="submenu">
-									<li><a href="<c:url value="/Projeto/lista"/>">Listar projetos</a></li>
+									<li><a href="<c:url value="/Projeto/lista"/>">Listar Projetos</a></li>
 									<li><a href="<c:url value="/Projeto/Busca"/>">Buscar Projetos</a></li>
 									<li><a href="<c:url value="/Projeto/MeusProjetos?id=${usuarioWeb.id}"/>">Meus Projetos</a></li>
 								</ul></li>
@@ -60,7 +60,8 @@
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Projetos</a>
 								<ul class="submenu">
-									<li><a href="<c:url value="/Projeto/lista"/>">Listar projetos</a></li>
+									<li><a href="<c:url value="/Projeto/NovoProjeto"/>">Adicionar Projetos</a></li>
+									<li><a href="<c:url value="/Projeto/lista"/>">Listar Projetos</a></li>
 									<li><a href="<c:url value="/Projeto/Busca"/>">Buscar Projetos</a></li>
 									<li><a href="<c:url value="/Projeto/MeusProjetos?id=${usuarioWeb.id}"/>">Meus Projetos</a></li>
 								</ul>
@@ -107,9 +108,12 @@
 						<table align="center" id="lista_projetos">
 							<thead>
 								<tr>
+									<td colspan="3" style="font-size: 14px;"><b>Projetos</b></td>
+								</tr>
+								<tr>
 									<td><label>Projeto</label></td>
 									<td><label>Tipo</label></td>
-									<td><label>Porntua&ccedil;&atilde;o</label></td>
+									<td><label>Dificuldade</label></td>
 								</tr>
 							</thead>
 							<tbody>

@@ -2,6 +2,7 @@ package br.ufc.si.Controller;
 
 import java.util.List;
 
+import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
@@ -9,7 +10,7 @@ import br.com.caelum.vraptor.Result;
 import br.ufc.si.DAO.TurmaDAO;
 import br.ufc.si.Interfaces.ITurma;
 import br.ufc.si.model.Turma;
-import br.ufc.si.util.AutorizacaoInterceptor.Liberado;
+import br.ufc.si.model.Usuario;
 
 @Resource
 public class TurmaController {
@@ -23,20 +24,21 @@ public class TurmaController {
 		this.result = result;
 	}
 
-	@Post("/Turma/novo")
+	@Post("/Turma/novaTurma")
 	public void AdicionaTurma(Turma turma) {
 		this.turmaDAO.save(turma);
 		result.redirectTo(this.ListarTurmas());
 	}
 
-	@Path("/Turma/remove")
+	@Path("/Turma/removeTurma")
 	public void RemoverTurma(Turma turma) {
 		this.turmaDAO.delete(turma);
 	}
 
-	@Path("/Turma/update")
+	@Path("/Turma/updateTurma")
 	public void AtualizaTurma(Turma turma) {
 		this.turmaDAO.update(turma);
+		result.redirectTo(this.ListarTurmas());
 	}
 
 	@Path("/Turma/busca/{turma.Id}")
@@ -45,7 +47,6 @@ public class TurmaController {
 	}
 
 	@Path("/Turma/AdicionaTurma")
-	@Liberado
 	public void AdicionaTurma() {
 
 	}
@@ -63,5 +64,13 @@ public class TurmaController {
 	@Path("/Turma/busca/{nome}")
 	public List<Turma> BuscarTurmaPorNome(String nome) {
 		return this.turmaDAO.SearchByName(nome);
+	}
+	
+	@Get("/Turma/MinhasTurmas")
+	public List<Turma> MinhasTurmas(int id) {
+		System.out.println("Id - " + id);
+		Usuario usuario = new Usuario();
+		usuario.setId(id);
+		return turmaDAO.MinhasTurmas(usuario);
 	}
 }

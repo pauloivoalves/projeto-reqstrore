@@ -3,6 +3,7 @@ package br.ufc.si.Interfaces;
 import java.util.List;
 
 import br.ufc.si.model.Turma;
+import br.ufc.si.model.Usuario;
 
 public interface ITurma {
 
@@ -17,5 +18,7 @@ public interface ITurma {
 	public abstract List<Turma> List();
 
 	public abstract List<Turma> SearchByName(String name);
+
+	List<Turma> MinhasTurmas(Usuario user);
 
 }
