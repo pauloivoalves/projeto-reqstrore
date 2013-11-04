@@ -26,7 +26,7 @@
 						<ul class="submenu">
 							<li><a href="<c:url value="/Projeto/lista"/>">Listar projetos</a></li>
 							<li><a href="<c:url value="/Projeto/Busca"/>">Buscar Projetos</a></li>
-							<li><a href="#">Meus Projetos</a></li>
+							<li><a href="<c:url value="/Projeto/MeusProjetos?id=${usuarioWeb.id}"/>">Meus Projetos</a></li>
 						</ul>
 					</li>
 					<li><img src="../imagens/separador.png"></li>

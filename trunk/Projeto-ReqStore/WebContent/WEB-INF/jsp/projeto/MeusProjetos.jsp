@@ -11,7 +11,7 @@
 <link href="../css/Style.css" rel="stylesheet" type="text/css" />
 <link type="text/css" href="../css/menu.css" rel="stylesheet" />
 
-<title>Home</title>
+<title>Meus Projetos</title>
 </head>
 <body>
 	<div id="tudo">
@@ -30,7 +30,7 @@
 								<ul class="submenu">
 									<li><a href="<c:url value="/Projeto/lista"/>">Listar projetos</a></li>
 									<li><a href="<c:url value="/Projeto/Busca"/>">Buscar Projetos</a></li>
-									<li><a href="<c:url value="/Projeto/MeusProjetos?id=${usuarioWeb.id}"/>">Meus Projetos</a></li>
+									<li><a href="#">Meus Projetos</a></li>
 								</ul></li>
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Usu&aacute;rios</a>
@@ -54,21 +54,21 @@
 				</c:when>
 				<c:when test="${usuarioWeb.tipo == 2}">
 					<div id="menu">
-						<ul class="dropdown" style = "width: 65% !important;">
-		
+						<ul class="dropdown" style="width: 65% !important;">
+
 							<li><a href="<c:url value="/Professor/ProfessorHome"/>">Home</a></li>
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Projetos</a>
 								<ul class="submenu">
 									<li><a href="<c:url value="/Projeto/lista"/>">Listar projetos</a></li>
 									<li><a href="<c:url value="/Projeto/Busca"/>">Buscar Projetos</a></li>
-									<li><a href="<c:url value="/Projeto/MeusProjetos?id=${usuarioWeb.id}"/>">Meus Projetos</a></li>
+									<li><a href="#">Meus Projetos</a></li>
 								</ul>
 							</li>
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Turmas</a>
 								<ul class="submenu">
-									<li><a href="<c:url value="/Turma/lista"/>">Listar Turmas</a></li>
+									<li><a href="#">Listar Turmas</a></li>
 									<li><a href="#">Buscar Turmas</a></li>
 									<li><a href="#">Minhas Turmas</a></li>
 								</ul>
@@ -78,15 +78,19 @@
 								<ul class="submenu">
 									<li><a href="#">Listar Usu&aacute;rios</a></li>
 									<li><a href="#">Buscar Usu&aacute;rio</a>
-								</ul></li>
+								</ul>
+							</li>
 							<li><img src="../imagens/separador.png"></li>
-							<li><a href="#">Ajuda</a> <c:if test="${!usuarioWeb.logado}">
-									<li><img src="../imagens/separador.png"></li>
-									<li><a href="<c:url value="/login"/>">Login</a></li>
-								</c:if> <c:if test="${usuarioWeb.logado}">
-									<li><img src="../imagens/separador.png"></li>
-									<li><a href="<c:url value="/logout"/>">Logout</a></li>
-								</c:if>
+							<li><a href="#">Ajuda</a></li> 
+							
+							<c:if test="${!usuarioWeb.logado}">
+								<li><img src="../imagens/separador.png"></li>
+								<li><a href="<c:url value="/login"/>">Login</a></li>
+							</c:if> 
+							<c:if test="${usuarioWeb.logado}">
+								<li><img src="../imagens/separador.png"></li>
+								<li><a href="<c:url value="/logout"/>">Logout</a></li>
+							</c:if>
 						</ul>
 					</div>
 				</c:when>
@@ -99,7 +103,7 @@
 
 				<div id="inner_top">
 					<div class="page_tittle">
-						<p>Listar projetos</p>
+						<p>Meus Projetos</p>
 					</div>
 				</div>
 				<div id="inner_content">

@@ -11,7 +11,7 @@ public class UsuarioWeb {
 	private Usuario logado;
 	private int tipo;
 
-	public Usuario getLogado() {
+	public Usuario getUsuario() {
 		return logado;
 	}
 
@@ -33,6 +33,10 @@ public class UsuarioWeb {
 
 	public String getNome() {
 		return logado.getNome();
+	}
+	
+	public int getId() {
+		return logado.getId();
 	}
 
 	public boolean isLogado() {

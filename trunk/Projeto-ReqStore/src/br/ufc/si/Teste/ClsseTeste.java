@@ -55,6 +55,10 @@ public class ClsseTeste {
 			profDAO.save(prof);
 		}
 	}
+	
+	public static List<Projeto> listarMeusprojetos(Usuario usuario){
+		return projDAO.MeusProjetos(usuario);
+	}
 
 	public static void AdicionarPeojetos(int quantidade) {
 		Projeto proj;
@@ -262,14 +266,20 @@ public class ClsseTeste {
 		// }
 
 		//
-		for (int i = 5; i <= 10; i++) {
-			aluno = alunoDAO.getAlunoById(3);
+//		for (int i = 5; i <= 10; i++) {
+//			aluno = alunoDAO.getAlunoById(3);
 //			prof = profDAO.getProfessorById(15);
-			turma = turmaDAO.getTurmaById(3110);
-			AdicionarUsuarioTurma(aluno, turma);
-		}
-		//
+//			turma = turmaDAO.getTurmaById(3110);
+//			AdicionarUsuarioTurma(aluno, turma);
+//		}
 
+//		aluno = alunoDAO.getAlunoById(2);
+		prof = profDAO.getProfessorById(16);
+//		List<Projeto> list = listarMeusprojetos(prof);
+//		for (Projeto projeto : list) {
+//			System.out.println("nome -" + projeto.getNome());
+//		}
+		
 		System.out.println("Temrinou!");
 	}
 

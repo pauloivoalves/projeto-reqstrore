@@ -88,4 +88,12 @@ public class ProjetoController {
 		return null;
 	}
 	
+	@Get("/Projeto/MeusProjetos")
+	public List<Projeto> MeusProjetos(int id){
+		System.out.println("Id - " + id);
+		Usuario usuario = new Usuario();
+		usuario.setId(id);
+		return projetoDAO.MeusProjetos(usuario);
+	}
+	
 }

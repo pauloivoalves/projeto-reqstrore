@@ -53,10 +53,11 @@ public class UsuariosController {
 	@Liberado
 	@Post("/login")
 	public void login(Usuario usuario, String tipo_usuario) {
-		System.out.println("aqui");
+		System.out.println("login");
 		System.out.println("email - " + usuario.getEmail());
 		System.out.println("senha - " + usuario.getSenha());
 		System.out.println("tipo: " + tipo_usuario);
+		System.out.println("numero: " + usuario.getNumero());
 		
 		if(tipo_usuario.equals("1")){
 			Aluno aluno = new Aluno();

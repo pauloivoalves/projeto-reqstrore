@@ -11,6 +11,7 @@ import br.com.caelum.vraptor.ioc.Component;
 import br.ufc.si.Interfaces.IProjeto;
 import br.ufc.si.Tipos.TipoProjeto;
 import br.ufc.si.model.Projeto;
+import br.ufc.si.model.Usuario;
 import br.ufc.si.util.HibernateUtil;
 
 @Component
@@ -109,6 +110,24 @@ public class ProjetoDAO implements IProjeto {
 					.add(Restrictions.le("dificuldade", dificuldade))
 					.add(Restrictions.eq("tipoProjeto", tipo)).list();
 			
+			for (Projeto projeto : lista) {
+				Hibernate.initialize(projeto);
+			}
+			return lista;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+	
+	public List<Projeto> MeusProjetos(Usuario user) {
+		Session session = HibernateUtil.getSession();
+		try {
+			
+			@SuppressWarnings("unchecked")
+			List<Projeto> lista = session.createCriteria(Projeto.class).add(Restrictions.eq("criador", user)).list();
 			for (Projeto projeto : lista) {
 				Hibernate.initialize(projeto);
 			}

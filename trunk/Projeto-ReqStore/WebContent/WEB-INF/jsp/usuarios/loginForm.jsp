@@ -61,7 +61,7 @@
 								</td>
 								<td>
 									<label for="codigo">*N&uacute;mero de Confirma&ccedil;&atilde;o:</label>
-									<input  style="width: 147px;" class  = "input_login" id="codigo" type="text" name="aluno.numero" /><br>
+									<input  style="width: 147px;" class  = "input_login" id="codigo" type="text" name="usuario.numero" /><br>
 								</td>
 							</tr>
 						</table>
