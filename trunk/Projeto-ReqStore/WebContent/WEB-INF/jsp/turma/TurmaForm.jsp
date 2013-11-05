@@ -2,14 +2,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<script type="text/javascript" src="../js/Script.js"></script>
-<link href="../css/Style.css" rel="stylesheet" type="text/css" />
-<link type="text/css" href="../css/menu.css" rel="stylesheet" />
-
-
-<title>Professor Home</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="text/javascript" src="../js/JQuerry.js"></script>
+		<script type="text/javascript" src="../js/menu.js"></script>
+		
+		<link href="../css/menu.css" rel="stylesheet" type="text/css" />
+		<link href="../css/Style.css" rel="stylesheet" type="text/css" />
+	
+	<title>Nova Turma</title>
 </head>
 <body>
 	<div id="tudo">
@@ -57,40 +57,29 @@
 				</ul>
 			</div>
 			<div id="inner_content_div">
-				<div id="left"></div>
-				<div id="center">
-					<img src="../imagens/separador2.png">
-				</div>
-
-
-				<div id="right" class="descricao">
-					<p>
-						<strong>Bem vindo ao ReqStore, <c:out value="${usuarioWeb.nome}" />.
-						</strong>
-					</p>
-					<p>Atrav&eacute;s do ReqStore voc&ecirc; poder&aacute; acessar
-						todos os detalhes do projeto em que est&aacute; trabalhando. Nas
-						telas de detalhes, seja de projetos ou de requisitos, voc&ecirc;
-						poder&aacute; ver toda a descri&ccedil;&atilde;o dos requisitos
-						trabalhados em um determinado projeto, bem como os objetivos que
-						foram tra&ccedil;ados para projetos e requisitos.</p>
-				</div>
-
+				<form name  = "AdicionaTurma" id = "AdicionaTurma" action="<c:url value="/Turma/AdicionaTurma"/>" method="POST">
+				<input type="hidden" name = "id_usuario" id = "id_usuario" value = "${usuarioWeb.id}">
+					<div id = "novo_projeto">
+						<label for="nome">Nome da Turma:</label> <br>
+						<input id="nome" class = "input_login" type="text" name="turma.nome"/><br>
+						
+						<label for="descricao">Descri&ccedil;&atilde;o:</label> <br>
+						<textarea id = "descricao" name = "turma.descricao" class = "input_login" style = "height: 60px; width: 600px;"></textarea><br>
+						
+						<a class  = "input_login btn-success" id = "cadastrar" href = "#">Cadastrar</a>
+					</div>
+				</form>
 			</div>
 			<div id="footer_menu">
 				<table>
 					<tr>
-						<td><a target="_blank"
-							href="https://sistemas.quixada.ufc.br/apps2/sippa/index.jsp">SIPPA</a></td>
+						<td><a target="_blank" href="https://sistemas.quixada.ufc.br/apps2/sippa/index.jsp">SIPPA</a></td>
 						<td>&bull;</td>
-						<td><a target="_blank"
-							href="https://sistemas.quixada.ufc.br/apps2/savi/index.jsp">SAVI</a></td>
+						<td><a target="_blank" href="https://sistemas.quixada.ufc.br/apps2/savi/index.jsp">SAVI</a></td>
 						<td>&bull;</td>
-						<td><a target="_blank"
-							href="https://sistemas.quixada.ufc.br/apps2/sisac/index.jsp">SISAC</a></td>
+						<td><a target="_blank" href="https://sistemas.quixada.ufc.br/apps2/sisac/index.jsp">SISAC</a></td>
 						<td>&bull;</td>
-						<td><a target="_blank"
-							href="https://sistemas.quixada.ufc.br/SEVEN/">SEVEN</a></td>
+						<td><a target="_blank" href="https://sistemas.quixada.ufc.br/SEVEN/">SEVEN</a></td>
 						<td>&bull;</td>
 						<td><a target="_blank" href="http://www.si3.ufc.br/">SIGAA</a></td>
 					</tr>
@@ -103,4 +92,20 @@
 		</div>
 	</div>
 </body>
+<script type="text/javascript">
+		
+	$('#cadastrar').click(function() {
+		if ($('#nome').val() == "") {
+			alert('Campo "Nome do Projeto" n\u00e3o preenchido.');
+			$('#nome').focus();
+			return false;
+		} else if ($('#descricao').val() == "") {
+			alert('Campo "Descri\u00e7\u00e3o" n\u00e3o preenchido.');
+			$('#descricao').focus();
+			return false;
+		} 
+		document.AdicionaTurma.submit();
+	});
+</script>
+
 </html>

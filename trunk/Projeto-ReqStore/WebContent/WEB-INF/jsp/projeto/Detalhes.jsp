@@ -71,6 +71,7 @@
 								<li><img src="../imagens/separador.png"></li>
 								<li><a href="#">Turmas</a>
 									<ul class="submenu">
+										<li><a href="<c:url value="/Turma/TurmaForm"/>">Adicionar Turma</a></li>
 										<li><a href="<c:url value="/Turma/lista"/>">Listar Turmas</a></li>
 										<li><a href="#">Buscar Turmas</a></li>
 										<li><a href="#">Minhas Turmas</a></li>

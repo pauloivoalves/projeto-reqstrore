@@ -31,7 +31,7 @@
 								<ul class="submenu">
 									<li><a href="<c:url value="/Projeto/lista"/>">Listar projetos</a></li>
 									<li><a href="<c:url value="/Projeto/Busca"/>">Buscar Projetos</a></li>
-									<li><a href="#">Meus Projetos</a></li>
+									<li><a href="<c:url value="/Projeto/MeusProjetos?id=${usuarioWeb.id}"/>">Meus Projetos</a></li>
 								</ul></li>
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Usu&aacute;rios</a>
@@ -70,9 +70,10 @@
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Turmas</a>
 								<ul class="submenu">
+									<li><a href="<c:url value="/Turma/TurmaForm"/>">Adicionar Turma</a></li>
 									<li><a href="<c:url value="/Turma/lista"/>">Listar Turmas</a></li>
 									<li><a href="#">Buscar Turmas</a></li>
-									<li><a href="#">Minhas Turmas</a></li>
+									<li><a href="<c:url value="/Turma/MinhasTurmas?id=${usuarioWeb.id}"/>">Minhas Turmas</a></li>
 								</ul>
 							</li>
 							<li><img src="../imagens/separador.png"></li>
@@ -123,10 +124,11 @@
 							</thead>
 							<tbody>
 								<c:forEach items="${turmaList}" var="turma">
-									<tr onclick="location.href = 'DetalhesTurma?id=${turma.id}';">
-										<td>${turma.nome }</td>
-										<td>${fn:length(turma.projetos)}</td>
-										<td>${fn:length(turma.usuarios)}</td>
+									<tr>
+										<td onclick="location.href = 'DetalhesTurma?id=${turma.id}';">${turma.nome }</td>
+										<td onclick="location.href = 'DetalhesTurma?id=${turma.id}';">${fn:length(turma.projetos)}</td>
+										<td onclick="location.href = 'DetalhesTurma?id=${turma.id}';">${fn:length(turma.usuarios)}</td>
+										<td onclick="location.href = 'RemoverTurma?id_turma=${turma.id}&id_usuario=${usuarioWeb.id}';" class = "exc"><img height="15px" src = "../imagens/trash0.png"></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -161,4 +163,11 @@
 		</div>
 	</div>
 </body>
+<script type="text/javascript">
+	$('.exc').mouseenter( function(){
+		$('img',$(this)).attr('src','../imagens/trash.png');
+	} ).mouseleave( function(){
+		$('img',$(this)).attr('src','../imagens/trash0.png');
+	} );
+</script>
 </html>
