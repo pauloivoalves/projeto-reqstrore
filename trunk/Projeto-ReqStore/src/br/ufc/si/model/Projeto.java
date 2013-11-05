@@ -2,6 +2,7 @@ package br.ufc.si.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -51,10 +52,12 @@ public class Projeto {
 	@Column(name = "Dificuldade", nullable = false)
 	private int dificuldade;
 
-	@OneToMany(mappedBy = "projeto")
+	@OneToMany(mappedBy = "projeto", cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Requisito> requisitos;
 
-	@OneToMany(mappedBy = "idProjeto")
+	@OneToMany(mappedBy = "idProjeto", cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<VersaoProjeto> versoesProjeto;
 
 	public int getId() {

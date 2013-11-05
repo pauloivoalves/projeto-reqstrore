@@ -40,7 +40,8 @@ public class ProjetoController {
 
 	@Post("/Projeto/AdicionaProjeto")
 	public void AdicionaProjeto(Projeto projeto, int id_criador) {
-		if(alunoDAO.getAlunoById(id_criador) != null){
+		
+		try {
 			Aluno aluno = alunoDAO.getAlunoById(id_criador);
 			projeto.setCriador(aluno);
 			projetoDAO.update(projeto);
@@ -49,7 +50,7 @@ public class ProjetoController {
 			projetos.add(projeto);
 			aluno.setProjetos(projetos);
 			alunoDAO.update(aluno);
-		}else{
+		} catch (Exception e) {
 			Professor professor = profDAO.getProfessorById(id_criador);
 			projeto.setCriador(professor);
 			projetoDAO.update(projeto);
@@ -89,7 +90,35 @@ public class ProjetoController {
 	@Path("/Projeto/Remover")
 	public void RemoveProjeto(int id_projeto, int id_usuario) {
 		System.out.println("Usuario : " + id_usuario);
-		this.projetoDAO.delete(projetoDAO.getProjetoById(id_projeto));
+		
+		Projeto projeto = projetoDAO.getProjetoById(id_projeto);
+		
+		for (Usuario usuario : projeto.getUsuarios_participantes()) {
+			usuario.getProjetos_participantes().remove(projeto);
+			if (usuario instanceof Aluno) {
+				alunoDAO.update((Aluno) usuario);
+			} else if (usuario instanceof Professor) {
+				profDAO.update((Professor) usuario);
+			}
+		}
+		projeto.getUsuarios_participantes().clear();
+
+		projeto.setCriador(null);
+		
+		projeto.getTurmas().clear();
+		projetoDAO.update(projeto);
+		
+		try {
+			Aluno user = alunoDAO.getAlunoById(id_usuario);
+			user.getProjetos().remove(projeto);
+			alunoDAO.update(user);
+		} catch (Exception e) {
+			Professor user = profDAO.getProfessorById(id_usuario);
+			user.getProjetos().remove(projeto);
+			profDAO.update(user);
+		}
+		
+		this.projetoDAO.delete(projeto);
 		result.redirectTo(this).MeusProjetos(id_usuario);
 	}
 
