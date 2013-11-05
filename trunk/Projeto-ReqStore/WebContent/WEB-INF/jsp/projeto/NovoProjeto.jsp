@@ -80,10 +80,10 @@
 									</div><br>
 
 						<label for="projeto.descricoa">Descri&ccedil;&atilde;o:</label> <br>
-						<textarea maxlength="1000" id = "descricao" name = "projeto.descricao" class = "input_login" style = "height: 60px; width: 600px;"></textarea><br>
+						<textarea maxlength="700" id = "descricao" name = "projeto.descricao" class = "input_login" style = "height: 60px; width: 600px;"></textarea><br>
 						
 						<label for="senha">Objetivo:</label> <br>
-						<textarea maxlength="1000" id = "objetivo" name = "projeto.foco_projeto" style = "height: 60px; width: 600px;"class = "input_login"></textarea><br>
+						<textarea maxlength="700" id = "objetivo" name = "projeto.foco_projeto" style = "height: 60px; width: 600px;"class = "input_login"></textarea><br>
 						
 						<label for = "select_projeto">Tipo do Projeto</label><br>
 						<select class  = "input_login" name  = "select_projeto" id = "select_projeto">

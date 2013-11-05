@@ -64,7 +64,7 @@
 						<input id="nome" class = "input_login" type="text" name="turma.nome"/><br>
 						
 						<label for="descricao">Descri&ccedil;&atilde;o:</label> <br>
-						<textarea id = "descricao" name = "turma.descricao" class = "input_login" style = "height: 60px; width: 600px;"></textarea><br>
+						<textarea maxlength="700" id = "descricao" name = "turma.descricao" class = "input_login" style = "height: 60px; width: 600px;"></textarea><br>
 						
 						<a class  = "input_login btn-success" id = "cadastrar" href = "#">Cadastrar</a>
 					</div>

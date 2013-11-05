@@ -121,7 +121,15 @@
 							<table style="width: 100%; float: left;" id="lista_projetos">
 								<thead>
 									<tr>
-										<td colspan="3" style="font-size: 14px;"><b>Projetos</b></td>
+									<c:choose>
+										<c:when test="${usuarioWeb.id == turma.responsavel.id}">
+											<td id = "top_projeto" colspan="3" style="font-size: 14px;"><b>Projetos</b></td>
+										</c:when>
+										<c:otherwise>
+											<td colspan="3" style="font-size: 14px;"><b>Projetos</b></td>
+										</c:otherwise>
+									</c:choose>
+										
 									</tr>
 									<tr>
 										<td><label>Projeto</label></td>
@@ -146,7 +154,14 @@
 							<table style="width: 100%; float: right;" id="lista_projetos">
 								<thead>
 									<tr>
-										<td colspan="3" style="font-size: 14px;"><b>Participantes</b></td>
+										<c:choose>
+										<c:when test="${usuarioWeb.id == turma.responsavel.id}">
+											<td id = "top_usuario" colspan="3" style="font-size: 14px;"><b>Participantes</b></td>
+										</c:when>
+										<c:otherwise>
+											<td colspan="3" style="font-size: 14px;"><b>Participantes</b></td>
+										</c:otherwise>
+									</c:choose>
 									</tr>
 									<tr>
 										<td><label>Nome</label></td>
@@ -196,4 +211,12 @@
 		</div>
 	</div>
 </body>
+
+<script type="text/javascript">
+$('<span id="addProjeto">').text("+").css({cursor: 'pointer', padding:'1px 10px', backgroundColor:'#527100', color:'white', float: 'right'}).appendTo('#top_projeto')
+$('#addProjeto').css({borderRadius:'5px'});
+
+$('<span id="addUsuario">').text("+").css({cursor: 'pointer', padding:'1px 10px', backgroundColor:'#527100', color:'white', float:'right'}).appendTo('#top_usuario')
+$('#addUsuario').css({borderRadius:'5px'});
+</script>
 </html>
