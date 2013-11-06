@@ -69,7 +69,7 @@ public class ProjetoController {
 		System.out.println("Nome - " + projeto.getNome());
 		System.out.println("Dificuldade - " + projeto.getDificuldade());
 		this.projetoDAO.save(projeto);
-		result.redirectTo(this).ListaProjetos();
+		result.redirectTo(this).MeusProjetos(id_criador);
 	}
 	
 	@Path("/Projeto/NovoProjeto")
@@ -139,8 +139,22 @@ public class ProjetoController {
 	}
 
 	@Path("/Projeto/lista")
-	public List<Projeto> ListaProjetos() {
-		return this.projetoDAO.List();
+	public List<Projeto> ListaProjetos(int id_usuario) {
+		try {
+			Aluno aluno = this.alunoDAO.getAlunoById(id_usuario);
+			List<Projeto> projetos = new ArrayList<Projeto>(); 
+			
+			projetos.addAll(aluno.getProjetos_participantes());
+			projetos.addAll(aluno.getProjetos());
+			return projetos;
+		} catch (Exception e) {
+			Professor professor = this.profDAO.getProfessorById(id_usuario);
+			
+			List<Projeto> projetos = new ArrayList<Projeto>();
+			projetos.addAll(professor.getProjetos());
+			projetos.addAll(professor.getProjetos_participantes());
+			return projetos;
+		}
 	}
 
 	@Get("/Projeto/Busca")

@@ -298,13 +298,13 @@ public class ClsseTeste {
 //		 adicionarRequisitoProjeto(8);
 
 		// Adicionar criadorr a um projeto
-//		 aluno = alunoDAO.getAlunoById(1);
+		 aluno = alunoDAO.getAlunoById(1);
 //		 prof = profDAO.getProfessorById(11);
-//		 proj = projDAO.getProjetoById(30);
-//		 AdicionarCriadoProjeto(prof, proj);
+		 proj = projDAO.getProjetoById(31);
+		 AdicionarCriadoProjeto(aluno, proj);
 
 		// AdicionarUsuarioProjeto
-//		for (int i = 2; i <= 6; i++) {
+//		for (int i = 1; i <= 10; i++) {
 //			aluno = alunoDAO.getAlunoById(i);
 ////			prof = profDAO.getProfessorById(i);
 //			proj = projDAO.getProjetoById(30);
@@ -312,7 +312,7 @@ public class ClsseTeste {
 //		}
 
 //		 RemoveProjeto(22, 11);
-		RemoveProjetoTurma(0,0);
+//		RemoveProjetoTurma(0,0);
 		
 		// Adicionar Turmas
 //		 AdicionarTurmas(5);
