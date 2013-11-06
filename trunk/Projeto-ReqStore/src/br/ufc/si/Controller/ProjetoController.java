@@ -13,13 +13,16 @@ import br.com.caelum.vraptor.Result;
 import br.ufc.si.DAO.AlunoDAO;
 import br.ufc.si.DAO.ProfessorDAO;
 import br.ufc.si.DAO.ProjetoDAO;
+import br.ufc.si.DAO.TurmaDAO;
 import br.ufc.si.Interfaces.IAluno;
 import br.ufc.si.Interfaces.IProfessor;
 import br.ufc.si.Interfaces.IProjeto;
+import br.ufc.si.Interfaces.ITurma;
 import br.ufc.si.Tipos.TipoProjeto;
 import br.ufc.si.model.Aluno;
 import br.ufc.si.model.Professor;
 import br.ufc.si.model.Projeto;
+import br.ufc.si.model.Turma;
 import br.ufc.si.model.Usuario;
 
 @Resource
@@ -27,14 +30,16 @@ public class ProjetoController {
 	private final IProjeto projetoDAO;
 	private final IAluno alunoDAO;
 	private final IProfessor profDAO;
+	private final ITurma turmaDAO;
 	private final Result result;
 
 	public ProjetoController(ProjetoDAO projetoDAO, AlunoDAO alunoDAO,
-			ProfessorDAO profDAO, Result result) {
+			ProfessorDAO profDAO,TurmaDAO turmaDAO, Result result) {
 		super();
 		this.projetoDAO = projetoDAO;
 		this.alunoDAO = alunoDAO;
 		this.profDAO = profDAO;
+		this.turmaDAO = turmaDAO;
 		this.result = result;
 	}
 
@@ -87,39 +92,40 @@ public class ProjetoController {
 		}
 	}
 
-	@Path("/Projeto/Remover")
-	public void RemoveProjeto(int id_projeto, int id_usuario) {
-		System.out.println("Usuario : " + id_usuario);
-		
-		Projeto projeto = projetoDAO.getProjetoById(id_projeto);
-		
-		for (Usuario usuario : projeto.getUsuarios_participantes()) {
-			usuario.getProjetos_participantes().remove(projeto);
-			if (usuario instanceof Aluno) {
-				alunoDAO.update((Aluno) usuario);
-			} else if (usuario instanceof Professor) {
-				profDAO.update((Professor) usuario);
+	@Path("/Projeto/RemoveProjetoTurma")
+	public void RemoveProjetoTurma(int id_projeto, int id_turma, int id_usuario) {
+		Projeto projeto = this.projetoDAO.getProjetoById(id_projeto);
+		Turma turma = this.turmaDAO.getTurmaById(id_turma);
+
+		System.out.println("\n\nA turma tem o projeto: " + turma.getProjetos().contains(projeto));
+		for (Usuario usuario : turma.getUsuarios()) {
+			System.out.println("\n\n O usuario: " + usuario.getId() + "possui o projeto - >" + usuario.getProjetos_participantes().contains(projeto));
+
+			if (usuario.getProjetos_participantes().contains(projeto)) {
+				usuario.getProjetos_participantes().remove(projeto);
+
+				if (usuario instanceof Aluno) {
+					this.alunoDAO.update((Aluno) usuario);
+				} else if (usuario instanceof Professor) {
+					this.profDAO.update((Professor) usuario);
+				}
+
+				projeto.getUsuarios_participantes().remove(usuario);
+				this.projetoDAO.update(projeto);
 			}
 		}
-		projeto.getUsuarios_participantes().clear();
 
-		projeto.setCriador(null);
+		System.out.println("Cheguei aqui!\n\n\n");
+		turma.getProjetos().remove(projeto);
+		System.out.println("Cheguei aqui 2!\n\n\n");
+		this.turmaDAO.update(turma);
+		System.out.println("Cheguei aqui 3!\n\n\n");
 		
-		projeto.getTurmas().clear();
-		projetoDAO.update(projeto);
-		
-		try {
-			Aluno user = alunoDAO.getAlunoById(id_usuario);
-			user.getProjetos().remove(projeto);
-			alunoDAO.update(user);
-		} catch (Exception e) {
-			Professor user = profDAO.getProfessorById(id_usuario);
-			user.getProjetos().remove(projeto);
-			profDAO.update(user);
-		}
-		
-		this.projetoDAO.delete(projeto);
-		result.redirectTo(this).MeusProjetos(id_usuario);
+		projeto.getTurmas().remove(turma);
+		System.out.println("Cheguei aqui 4!\n\n\n");
+		this.projetoDAO.update(projeto);
+		System.out.println("Cheguei aqui 5!\n\n\n");
+		result.redirectTo(TurmaController.class).DetalhesTurma(id_turma);
 	}
 
 	@Path("/Projeto/update")

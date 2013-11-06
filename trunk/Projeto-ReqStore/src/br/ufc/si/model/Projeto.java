@@ -148,4 +148,42 @@ public class Projeto {
 		this.usuarios_participantes = usuarios_participantes;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((Foco_projeto == null) ? 0 : Foco_projeto.hashCode());
+		result = prime * result + Id;
+		result = prime * result + ((criador == null) ? 0 : criador.hashCode());
+		result = prime * result
+				+ ((descricao == null) ? 0 : descricao.hashCode());
+		result = prime * result + dificuldade;
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result
+				+ ((requisitos == null) ? 0 : requisitos.hashCode());
+		result = prime * result
+				+ ((tipoProjeto == null) ? 0 : tipoProjeto.hashCode());
+		result = prime * result + ((turmas == null) ? 0 : turmas.hashCode());
+		result = prime
+				* result
+				+ ((usuarios_participantes == null) ? 0
+						: usuarios_participantes.hashCode());
+		result = prime * result
+				+ ((versoesProjeto == null) ? 0 : versoesProjeto.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		
+		if (getClass() != obj.getClass())
+			return false;
+		Projeto other = (Projeto) obj;
+		if (Id == other.Id)
+			return true;
+		
+		return false;
+	}
+
 }

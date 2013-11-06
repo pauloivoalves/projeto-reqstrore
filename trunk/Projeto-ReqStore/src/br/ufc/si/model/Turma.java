@@ -89,4 +89,60 @@ public class Turma {
 		this.responsavel = responsavel;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((Descricao == null) ? 0 : Descricao.hashCode());
+		result = prime * result + Id;
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result
+				+ ((projetos == null) ? 0 : projetos.hashCode());
+		result = prime * result
+				+ ((responsavel == null) ? 0 : responsavel.hashCode());
+		result = prime * result
+				+ ((usuarios == null) ? 0 : usuarios.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Turma other = (Turma) obj;
+		if (Descricao == null) {
+			if (other.Descricao != null)
+				return false;
+		} else if (!Descricao.equals(other.Descricao))
+			return false;
+		if (Id != other.Id)
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (projetos == null) {
+			if (other.projetos != null)
+				return false;
+		} else if (!projetos.equals(other.projetos))
+			return false;
+		if (responsavel == null) {
+			if (other.responsavel != null)
+				return false;
+		} else if (!responsavel.equals(other.responsavel))
+			return false;
+		if (usuarios == null) {
+			if (other.usuarios != null)
+				return false;
+		} else if (!usuarios.equals(other.usuarios))
+			return false;
+		return true;
+	}
+
 }

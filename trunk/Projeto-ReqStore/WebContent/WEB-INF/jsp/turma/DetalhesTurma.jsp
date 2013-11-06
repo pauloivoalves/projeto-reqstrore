@@ -13,7 +13,7 @@
 <link href="../css/Style.css" rel="stylesheet" type="text/css" />
 <link type="text/css" href="../css/menu.css" rel="stylesheet" />
 
-<title>Home</title>
+<title>Detalhes da Turma</title>
 </head>
 <body>
 	<div id="tudo">
@@ -73,7 +73,7 @@
 									<li><a href="<c:url value="/Turma/TurmaForm"/>">Adicionar Turma</a></li>
 									<li><a href="<c:url value="/Turma/lista"/>">Listar Turmas</a></li>
 									<li><a href="#">Buscar Turmas</a></li>
-									<li><a href="#">Minhas Turmas</a></li>
+									<li><a href="<c:url value="/Turma/MinhasTurmas?id=${usuarioWeb.id}"/>">Minhas Turmas</a></li>
 								</ul>
 							</li>
 							<li><img src="../imagens/separador.png"></li>
@@ -117,7 +117,7 @@
 					</div>
 
 					<div id="lista">
-						<div style = "float: left; width: 49%; overflow: auto; height: 170px;">
+						<div style = "float: left; width: 49%; overflow: auto; height: 110px;">
 							<table style="width: 100%; float: left;" id="lista_projetos">
 								<thead>
 									<tr>
@@ -139,18 +139,24 @@
 								</thead>
 								<tbody>
 									<c:forEach items="${turma.projetos}" var="projeto">
-										<tr
-											onclick="location.href = '<c:url value="/Projeto/"/>Detalhes?id=${projeto.id}';">
-											<td>${projeto.nome }</td>
-											<td>${projeto.tipoProjeto }</td>
-											<td>${projeto.dificuldade }</td>
+										<tr>
+											<td onclick="location.href = '<c:url value="/Projeto/"/>Detalhes?id=${projeto.id}';">${projeto.nome }</td>
+											<td onclick="location.href = '<c:url value="/Projeto/"/>Detalhes?id=${projeto.id}';">${projeto.tipoProjeto }</td>
+											<td onclick="location.href = '<c:url value="/Projeto/"/>Detalhes?id=${projeto.id}';">${projeto.dificuldade }</td>
+											<c:choose>
+												<c:when test="${usuarioWeb.id == turma.responsavel.id}">
+													<td onclick="location.href = '<c:url value="/Projeto/RemoveProjetoTurma?id_projeto=${projeto.id}&id_turma=${turma.id}&id_usuario=${usuarioWeb.id}"/>';"style = "width: 15px; padding: 0px;" class = "botton_projeto"></td>
+												</c:when>
+												<c:otherwise>
+													<td ></td>
+												</c:otherwise>
+											</c:choose>
 										</tr>
 									</c:forEach>
 								</tbody>
-
 							</table>
 						</div>
-						<div style = "float: right; width: 49%; overflow: auto; height: 170px;">
+						<div style = "float: right; width: 49%; overflow: auto; height: 110px;">
 							<table style="width: 100%; float: right;" id="lista_projetos">
 								<thead>
 									<tr>
@@ -171,10 +177,18 @@
 								</thead>
 								<tbody>
 									<c:forEach items="${turma.usuarios}" var="user">
-										<tr onclick="location.href = '<c:url value="/Aluno/"/>DetalhesAluno?id=${user.id}';">
-											<td>${user.nome }</td>
-											<td>${user.email }</td>
-											<td>${fn:length(user.projetos_participantes) + fn:length(user.projetos)}</td>
+										<tr>
+											<td onclick="location.href = '<c:url value="/Aluno/"/>DetalhesAluno?id=${user.id}';">${user.nome }</td>
+											<td onclick="location.href = '<c:url value="/Aluno/"/>DetalhesAluno?id=${user.id}';">${user.email }</td>
+											<td onclick="location.href = '<c:url value="/Aluno/"/>DetalhesAluno?id=${user.id}';">${fn:length(user.projetos_participantes) + fn:length(user.projetos)}</td>
+											<c:choose>
+												<c:when test="${usuarioWeb.id == turma.responsavel.id}">
+													<td style = "width: 15px; padding: 0px;" class = "botton_user"></td>
+												</c:when>
+												<c:otherwise>
+													<td ></td>
+												</c:otherwise>
+											</c:choose>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -213,10 +227,17 @@
 </body>
 
 <script type="text/javascript">
-$('<span id="addProjeto">').text("+").css({cursor: 'pointer', padding:'1px 10px', backgroundColor:'#527100', color:'white', float: 'right'}).appendTo('#top_projeto')
+$('<span id="addProjeto">').text("+").css({cursor: 'pointer', padding:'1px 10px', backgroundColor:'#527100', color:'white', float: 'right'}).appendTo('#top_projeto');
 $('#addProjeto').css({borderRadius:'5px'});
 
-$('<span id="addUsuario">').text("+").css({cursor: 'pointer', padding:'1px 10px', backgroundColor:'#527100', color:'white', float:'right'}).appendTo('#top_usuario')
+$('<span id="addUsuario">').text("+").css({cursor: 'pointer', padding:'1px 10px', backgroundColor:'#527100', color:'white', float:'right'}).appendTo('#top_usuario');
 $('#addUsuario').css({borderRadius:'5px'});
+
+$('<span class="remProjeto">').text("-").css({cursor: 'pointer', padding:'5px 10px', backgroundColor:'#527100', color:'white', float: 'right'}).appendTo('.botton_projeto');
+$('.remProjeto').css({borderRadius:'5px'});
+
+$('<span class ="remUser">').text("-").css({cursor: 'pointer', padding:'5px 10px', backgroundColor:'#527100', color:'white', float: 'right'}).appendTo('.botton_user');
+$('.remUser').css({borderRadius:'5px'});
+
 </script>
 </html>

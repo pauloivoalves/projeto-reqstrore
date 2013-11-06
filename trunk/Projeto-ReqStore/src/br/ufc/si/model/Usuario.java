@@ -127,4 +127,72 @@ public class Usuario {
 		this.projetos_participantes = projetos_participantes;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Id;
+		result = prime * result + (confirmado ? 1231 : 1237);
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + numero;
+		result = prime * result
+				+ ((projetos == null) ? 0 : projetos.hashCode());
+		result = prime
+				* result
+				+ ((projetos_participantes == null) ? 0
+						: projetos_participantes.hashCode());
+		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
+		result = prime * result + ((turmas == null) ? 0 : turmas.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		if (Id != other.Id)
+			return false;
+		if (confirmado != other.confirmado)
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (numero != other.numero)
+			return false;
+		if (projetos == null) {
+			if (other.projetos != null)
+				return false;
+		} else if (!projetos.equals(other.projetos))
+			return false;
+		if (projetos_participantes == null) {
+			if (other.projetos_participantes != null)
+				return false;
+		} else if (!projetos_participantes.equals(other.projetos_participantes))
+			return false;
+		if (senha == null) {
+			if (other.senha != null)
+				return false;
+		} else if (!senha.equals(other.senha))
+			return false;
+		if (turmas == null) {
+			if (other.turmas != null)
+				return false;
+		} else if (!turmas.equals(other.turmas))
+			return false;
+		return true;
+	}
+
 }

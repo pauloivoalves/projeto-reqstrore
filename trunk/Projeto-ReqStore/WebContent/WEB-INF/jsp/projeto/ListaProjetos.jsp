@@ -11,7 +11,7 @@
 <link href="../css/Style.css" rel="stylesheet" type="text/css" />
 <link type="text/css" href="../css/menu.css" rel="stylesheet" />
 
-<title>Home</title>
+<title>Listar Projetos</title>
 </head>
 <body>
 	<div id="tudo">
