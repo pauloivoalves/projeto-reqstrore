@@ -149,50 +149,13 @@ public class Usuario {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		if (Id != other.Id)
-			return false;
-		if (confirmado != other.confirmado)
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (numero != other.numero)
-			return false;
-		if (projetos == null) {
-			if (other.projetos != null)
-				return false;
-		} else if (!projetos.equals(other.projetos))
-			return false;
-		if (projetos_participantes == null) {
-			if (other.projetos_participantes != null)
-				return false;
-		} else if (!projetos_participantes.equals(other.projetos_participantes))
-			return false;
-		if (senha == null) {
-			if (other.senha != null)
-				return false;
-		} else if (!senha.equals(other.senha))
-			return false;
-		if (turmas == null) {
-			if (other.turmas != null)
-				return false;
-		} else if (!turmas.equals(other.turmas))
-			return false;
-		return true;
+		if (Id == other.Id)
+			return true;
+		
+		return false;
 	}
 
 }

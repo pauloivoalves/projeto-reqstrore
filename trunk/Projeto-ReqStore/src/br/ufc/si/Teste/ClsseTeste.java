@@ -3,6 +3,7 @@ package br.ufc.si.Teste;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.ufc.si.Controller.TurmaController;
 import br.ufc.si.DAO.AlunoDAO;
 import br.ufc.si.DAO.ProfessorDAO;
 import br.ufc.si.DAO.ProjetoDAO;
@@ -285,6 +286,61 @@ public class ClsseTeste {
 		projeto.getTurmas().remove(turma);
 		projDAO.update(projeto);
 	}
+	
+	public static void RemoveUsuarioTurma(int id_participante, int id_turma, int id_usuario) {
+		Usuario user;
+		
+		System.out.println("\n\n AQUi 1!");
+		try {
+			user = alunoDAO.getAlunoById(2);
+			System.out.println("\n\n AQUi 2!");
+		} catch (Exception e) {
+			user = profDAO.getProfessorById(2);
+			System.out.println("\n\n AQUi 3!");
+		}
+		
+		System.out.println("\n\n AQUi 4!");
+		Turma turma = turmaDAO.getTurmaById(323);
+		
+		System.out.println("\n\n AQUi 5!");
+		System.out.println("\n\n\nA turma tem o usuario: " + turma.getUsuarios().contains(user));
+		
+		for (Projeto projeto : turma.getProjetos()) {
+			System.out.println("\n\n O projeto: " + projeto.getId() + "possui o usuario - >" + projeto.getUsuarios_participantes().contains(user));
+
+			if (projeto.getUsuarios_participantes().contains(user)) {
+				System.out.println("\n\n AQUi 6!");
+				projeto.getUsuarios_participantes().remove(user);
+				projDAO.update(projeto);
+				
+				user.getProjetos_participantes().remove(projeto);
+				
+				if (user instanceof Aluno) {
+					alunoDAO.update((Aluno) user);
+					System.out.println("\n\n AQUi 7!");
+				} else if (user instanceof Professor) {
+					profDAO.update((Professor) user);
+					System.out.println("\n\n AQUi 8!");
+				}
+			}
+		}
+
+		System.out.println("Cheguei aqui!\n\n\n");
+		turma.getUsuarios().remove(user);
+		System.out.println("Cheguei aqui 2!\n\n\n");
+		turmaDAO.update(turma);
+		System.out.println("Cheguei aqui 3!\n\n\n");
+		
+		user.getTurmas().remove(turma);
+		System.out.println("Cheguei aqui 4!\n\n\n");
+		
+		if (user instanceof Aluno) {
+			alunoDAO.update((Aluno) user);
+		} else if (user instanceof Professor) {
+			profDAO.update((Professor) user);
+		}
+		System.out.println("Cheguei aqui 5!\n\n\n");
+	}
 
 	public static void main(String[] args) {
 		Projeto proj = new Projeto();
@@ -313,6 +369,7 @@ public class ClsseTeste {
 
 //		 RemoveProjeto(22, 11);
 //		RemoveProjetoTurma(0,0);
+		 RemoveUsuarioTurma(0,0,0);
 		
 		// Adicionar Turmas
 //		 AdicionarTurmas(5);

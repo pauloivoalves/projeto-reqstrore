@@ -135,4 +135,59 @@ public class TurmaController {
 		this.turmaDAO.delete(turma);
 		result.redirectTo(this).MinhasTurmas(id_usuario);
 	}
+	
+	@Path("/Turma/RemoveUsuarioTurma")
+	public void RemoveUsuarioTurma(int id_participante, int id_turma, int id_usuario) {
+		Usuario user;
+		
+		System.out.println("\n\n AQUi 1!");
+		try {
+			user = this.alunoDAO.getAlunoById(id_participante);
+			System.out.println("\n\n AQUi 2!");
+		} catch (Exception e) {
+			user = this.profDAO.getProfessorById(id_participante);
+			System.out.println("\n\n AQUi 3!");
+		}
+		
+		System.out.println("\n\n AQUi 4!");
+		Turma turma = this.turmaDAO.getTurmaById(id_turma);
+		System.out.println("\n\n AQUi 5!");
+		System.out.println("\n\n\nA turma tem o usuario: " + turma.getUsuarios().contains(user));
+		for (Projeto projeto : turma.getProjetos()) {
+			System.out.println("\n\n O projeto: " + projeto.getId() + "possui o usuario - >" + projeto.getUsuarios_participantes().contains(user));
+
+			if (projeto.getUsuarios_participantes().contains(user)) {
+				System.out.println("\n\n AQUi 6!");
+				projeto.getUsuarios_participantes().remove(user);
+				this.projDAO.update(projeto);
+				
+				user.getProjetos_participantes().remove(projeto);
+				
+				if (user instanceof Aluno) {
+					this.alunoDAO.update((Aluno) user);
+					System.out.println("\n\n AQUi 7!");
+				} else if (user instanceof Professor) {
+					this.profDAO.update((Professor) user);
+					System.out.println("\n\n AQUi 8!");
+				}
+			}
+		}
+
+		System.out.println("Cheguei aqui!\n\n\n");
+		turma.getUsuarios().remove(user);
+		System.out.println("Cheguei aqui 2!\n\n\n");
+		this.turmaDAO.update(turma);
+		System.out.println("Cheguei aqui 3!\n\n\n");
+		
+		user.getTurmas().remove(turma);
+		System.out.println("Cheguei aqui 4!\n\n\n");
+		
+		if (user instanceof Aluno) {
+			this.alunoDAO.update((Aluno) user);
+		} else if (user instanceof Professor) {
+			this.profDAO.update((Professor) user);
+		}
+		System.out.println("Cheguei aqui 5!\n\n\n");
+		result.redirectTo(TurmaController.class).DetalhesTurma(id_turma);
+	}
 }

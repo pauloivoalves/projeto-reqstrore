@@ -183,7 +183,7 @@
 											<td onclick="location.href = '<c:url value="/Aluno/"/>DetalhesAluno?id=${user.id}';">${fn:length(user.projetos_participantes) + fn:length(user.projetos)}</td>
 											<c:choose>
 												<c:when test="${usuarioWeb.id == turma.responsavel.id}">
-													<td style = "width: 15px; padding: 0px;" class = "botton_user"></td>
+													<td onclick="location.href = '<c:url value="/Turma/RemoveUsuarioTurma?id_participante=${user.id}&id_turma=${turma.id}&id_usuario=${usuarioWeb.id}"/>';" style = "width: 15px; padding: 0px;" class = "botton_user"></td>
 												</c:when>
 												<c:otherwise>
 													<td ></td>
@@ -233,10 +233,10 @@ $('#addProjeto').css({borderRadius:'5px'});
 $('<span id="addUsuario">').text("+").css({cursor: 'pointer', padding:'1px 10px', backgroundColor:'#527100', color:'white', float:'right'}).appendTo('#top_usuario');
 $('#addUsuario').css({borderRadius:'5px'});
 
-$('<span class="remProjeto">').text("-").css({cursor: 'pointer', padding:'5px 10px', backgroundColor:'#527100', color:'white', float: 'right'}).appendTo('.botton_projeto');
+$('<span class="remProjeto">').text("-").css({cursor: 'pointer', padding:'5px 10px', backgroundColor:'red', color:'white', float: 'right'}).appendTo('.botton_projeto');
 $('.remProjeto').css({borderRadius:'5px'});
 
-$('<span class ="remUser">').text("-").css({cursor: 'pointer', padding:'5px 10px', backgroundColor:'#527100', color:'white', float: 'right'}).appendTo('.botton_user');
+$('<span class ="remUser">').text("-").css({cursor: 'pointer', padding:'5px 10px', backgroundColor:'red', color:'white', float: 'right'}).appendTo('.botton_user');
 $('.remUser').css({borderRadius:'5px'});
 
 </script>
