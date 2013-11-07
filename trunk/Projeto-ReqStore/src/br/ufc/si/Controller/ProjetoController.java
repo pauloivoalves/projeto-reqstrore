@@ -13,15 +13,18 @@ import br.com.caelum.vraptor.Result;
 import br.ufc.si.DAO.AlunoDAO;
 import br.ufc.si.DAO.ProfessorDAO;
 import br.ufc.si.DAO.ProjetoDAO;
+import br.ufc.si.DAO.RequisitoDAO;
 import br.ufc.si.DAO.TurmaDAO;
 import br.ufc.si.Interfaces.IAluno;
 import br.ufc.si.Interfaces.IProfessor;
 import br.ufc.si.Interfaces.IProjeto;
+import br.ufc.si.Interfaces.IRequisito;
 import br.ufc.si.Interfaces.ITurma;
 import br.ufc.si.Tipos.TipoProjeto;
 import br.ufc.si.model.Aluno;
 import br.ufc.si.model.Professor;
 import br.ufc.si.model.Projeto;
+import br.ufc.si.model.Requisito;
 import br.ufc.si.model.Turma;
 import br.ufc.si.model.Usuario;
 
@@ -30,51 +33,83 @@ public class ProjetoController {
 	private final IProjeto projetoDAO;
 	private final IAluno alunoDAO;
 	private final IProfessor profDAO;
+	private final IRequisito reqDAO;
 	private final ITurma turmaDAO;
 	private final Result result;
 
 	public ProjetoController(ProjetoDAO projetoDAO, AlunoDAO alunoDAO,
-			ProfessorDAO profDAO,TurmaDAO turmaDAO, Result result) {
+			ProfessorDAO profDAO, RequisitoDAO reqDAO, TurmaDAO turmaDAO,
+			Result result) {
 		super();
 		this.projetoDAO = projetoDAO;
 		this.alunoDAO = alunoDAO;
 		this.profDAO = profDAO;
+		this.reqDAO = reqDAO;
 		this.turmaDAO = turmaDAO;
 		this.result = result;
 	}
 
 	@Post("/Projeto/AdicionaProjeto")
 	public void AdicionaProjeto(Projeto projeto, int id_criador) {
-		
+
 		try {
 			Aluno aluno = alunoDAO.getAlunoById(id_criador);
 			projeto.setCriador(aluno);
-			projetoDAO.update(projeto);
+			this.projetoDAO.update(projeto);
 
 			List<Projeto> projetos = aluno.getProjetos();
 			projetos.add(projeto);
 			aluno.setProjetos(projetos);
-			alunoDAO.update(aluno);
+			this.alunoDAO.update(aluno);
 		} catch (Exception e) {
-			Professor professor = profDAO.getProfessorById(id_criador);
+			Professor professor = this.profDAO.getProfessorById(id_criador);
 			projeto.setCriador(professor);
-			projetoDAO.update(projeto);
+			this.projetoDAO.update(projeto);
 
 			List<Projeto> projetos = professor.getProjetos();
 			projetos.add(projeto);
 			professor.setProjetos(projetos);
-			profDAO.update(professor);
+			this.profDAO.update(professor);
 		}
-		
+
 		System.out.println("Nome - " + projeto.getNome());
 		System.out.println("Dificuldade - " + projeto.getDificuldade());
 		this.projetoDAO.save(projeto);
 		result.redirectTo(this).MeusProjetos(id_criador);
 	}
+
+	@Path("/Projeto/NovoRequisito")
+	public void AdicionarRequisitoProjeto(Requisito requisito, int id_projeto) {
+
+		Projeto proj = this.projetoDAO.getProjetoById(id_projeto);
+
+		proj.getRequisitos().add(requisito);
+		this.projetoDAO.update(proj);
+
+		requisito.setProjeto(proj);
+		this.reqDAO.update(requisito);
+		result.redirectTo(this).Detalhes(id_projeto);
+	}
 	
+	@Path("/Projeto/RemoverRequisito")
+	public void RemoverRequisitoProjeto(int id_requisito, int id_projeto){
+		Projeto proj = this.projetoDAO.getProjetoById(id_projeto);
+		Requisito requisito = this.reqDAO.getRequisitoById(id_requisito);
+		
+		proj.getRequisitos().remove(requisito);
+		this.projetoDAO.update(proj);
+
+		requisito.setProjeto(null);
+		this.reqDAO.update(requisito);
+		this.reqDAO.delete(requisito);
+		
+		result.redirectTo(this).Detalhes(id_projeto);
+	}
+	
+
 	@Path("/Projeto/NovoProjeto")
 	public void NovoProjeto() {
-		
+
 	}
 
 	@Path("/Projeto/responsavel")
@@ -97,9 +132,12 @@ public class ProjetoController {
 		Projeto projeto = this.projetoDAO.getProjetoById(id_projeto);
 		Turma turma = this.turmaDAO.getTurmaById(id_turma);
 
-		System.out.println("\n\nA turma tem o projeto: " + turma.getProjetos().contains(projeto));
+		System.out.println("\n\nA turma tem o projeto: "
+				+ turma.getProjetos().contains(projeto));
 		for (Usuario usuario : turma.getUsuarios()) {
-			System.out.println("\n\n O usuario: " + usuario.getId() + "possui o projeto - >" + usuario.getProjetos_participantes().contains(projeto));
+			System.out.println("\n\n O usuario: " + usuario.getId()
+					+ "possui o projeto - >"
+					+ usuario.getProjetos_participantes().contains(projeto));
 
 			if (usuario.getProjetos_participantes().contains(projeto)) {
 				usuario.getProjetos_participantes().remove(projeto);
@@ -120,7 +158,7 @@ public class ProjetoController {
 		System.out.println("Cheguei aqui 2!\n\n\n");
 		this.turmaDAO.update(turma);
 		System.out.println("Cheguei aqui 3!\n\n\n");
-		
+
 		projeto.getTurmas().remove(turma);
 		System.out.println("Cheguei aqui 4!\n\n\n");
 		this.projetoDAO.update(projeto);
@@ -142,14 +180,14 @@ public class ProjetoController {
 	public List<Projeto> ListaProjetos(int id_usuario) {
 		try {
 			Aluno aluno = this.alunoDAO.getAlunoById(id_usuario);
-			List<Projeto> projetos = new ArrayList<Projeto>(); 
-			
+			List<Projeto> projetos = new ArrayList<Projeto>();
+
 			projetos.addAll(aluno.getProjetos_participantes());
 			projetos.addAll(aluno.getProjetos());
 			return projetos;
 		} catch (Exception e) {
 			Professor professor = this.profDAO.getProfessorById(id_usuario);
-			
+
 			List<Projeto> projetos = new ArrayList<Projeto>();
 			projetos.addAll(professor.getProjetos());
 			projetos.addAll(professor.getProjetos_participantes());

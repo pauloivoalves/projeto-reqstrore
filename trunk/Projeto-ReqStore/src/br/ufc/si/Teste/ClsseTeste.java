@@ -110,7 +110,7 @@ public class ClsseTeste {
 	public static void adicionarRequisitoProjeto(int quantidade) {
 		List<Projeto> projetos = projDAO.List();
 		Projeto proj = new Projeto();
-		;
+
 		for (int i = 0; i < projetos.size(); i++) {
 			proj = projetos.get(i);
 			for (int j = 0; j < quantidade; j++) {

@@ -123,40 +123,13 @@ public class Requisito {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		Requisito other = (Requisito) obj;
-		if (Id != other.Id)
-			return false;
-		if (descricao == null) {
-			if (other.descricao != null)
-				return false;
-		} else if (!descricao.equals(other.descricao))
-			return false;
-		if (foco_requisito == null) {
-			if (other.foco_requisito != null)
-				return false;
-		} else if (!foco_requisito.equals(other.foco_requisito))
-			return false;
-		if (prioridadeRequisito != other.prioridadeRequisito)
-			return false;
-		if (projeto == null) {
-			if (other.projeto != null)
-				return false;
-		} else if (!projeto.equals(other.projeto))
-			return false;
-		if (tipoRequisito != other.tipoRequisito)
-			return false;
-		if (versoesRequisito == null) {
-			if (other.versoesRequisito != null)
-				return false;
-		} else if (!versoesRequisito.equals(other.versoesRequisito))
-			return false;
-		return true;
+		if (Id == other.Id)
+			return true;
+		
+		return false;
 	}
 
 }
