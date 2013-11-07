@@ -106,6 +106,47 @@ public class ProjetoController {
 		result.redirectTo(this).Detalhes(id_projeto);
 	}
 	
+	@Path("/Projeto/RemoverUsuario")
+	public Projeto RemoverUsuario(int id_projeto){
+		return this.projetoDAO.getProjetoById(id_projeto);
+	}
+	
+	@Path("/Projeto/RemoverUsuarioProjeto")
+	public void RemoverUsuarioProjeto(int id_usuario, int id_projeto){
+		
+		System.out.println("\n\n\n Id projeto" + id_projeto);
+		System.out.println("\n\n\n Id usuario" + id_usuario);
+		Usuario usuario;
+		
+		try {
+			usuario = alunoDAO.getAlunoById(id_usuario);
+			System.out.println("AQUI! 1");
+		} catch (Exception e) {
+			usuario = this.profDAO.getProfessorById(id_usuario);
+			System.out.println("AQUI! 2");
+		}
+		
+		System.out.println("AQUI! 3");
+		Projeto proj = this.projetoDAO.getProjetoById(id_projeto);
+		System.out.println("AQUI! 4");
+		
+		proj.getUsuarios_participantes().remove(usuario);
+		System.out.println("AQUI! 5");
+		this.projetoDAO.update(proj);
+		System.out.println("AQUI! 6");
+		
+		usuario.getProjetos_participantes().remove(proj);
+				
+		if (usuario instanceof Aluno) {
+			this.alunoDAO.update((Aluno) usuario);
+		} else if (usuario instanceof Professor) {
+			this.profDAO.update((Professor) usuario);
+		}
+		
+		System.out.println("AQUI! 7");
+		result.redirectTo(this).RemoverUsuario(id_projeto);
+	}
+	
 
 	@Path("/Projeto/NovoProjeto")
 	public void NovoProjeto() {

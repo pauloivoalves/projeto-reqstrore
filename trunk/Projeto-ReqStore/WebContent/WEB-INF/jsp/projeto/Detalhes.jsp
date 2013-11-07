@@ -105,15 +105,18 @@
 						<p>
 							<c:out value="${projeto.nome}"></c:out>
 						</p>
+						<img  src = "../imagens/usuarios_participantes.png" onclick="location.href = '<c:url value="/Projeto/RemoverUsuario"/>?id_projeto=${projeto.id}';">
+						
 					</div>
 				</div>
 
 				<div id="inner_content">
 					<div id="detalhes">
-
 						<div class="descricao">
 							<strong>Descrição</strong><br /> <br />
 							<c:out value="${projeto.descricao}"></c:out>
+							
+							
 						</div>
 
 

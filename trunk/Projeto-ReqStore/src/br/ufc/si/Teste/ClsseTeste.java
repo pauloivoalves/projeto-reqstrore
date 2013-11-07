@@ -354,22 +354,27 @@ public class ClsseTeste {
 //		 adicionarRequisitoProjeto(8);
 
 		// Adicionar criadorr a um projeto
-		 aluno = alunoDAO.getAlunoById(1);
-//		 prof = profDAO.getProfessorById(11);
-		 proj = projDAO.getProjetoById(31);
-		 AdicionarCriadoProjeto(aluno, proj);
+//		 aluno = alunoDAO.getAlunoById(1);
+////		 prof = profDAO.getProfessorById(11);
+//		 proj = projDAO.getProjetoById(31);
+//		 AdicionarCriadoProjeto(aluno, proj);
 
-		// AdicionarUsuarioProjeto
+//		 AdicionarUsuarioProjeto
 //		for (int i = 1; i <= 10; i++) {
-//			aluno = alunoDAO.getAlunoById(i);
-////			prof = profDAO.getProfessorById(i);
-//			proj = projDAO.getProjetoById(30);
-//			AdicionarUsuarioProjeto(aluno, proj);
+////			aluno = alunoDAO.getAlunoById(i);
+//			prof = profDAO.getProfessorById(11);
+//			proj = projDAO.getProjetoById(32);
+//			AdicionarUsuarioProjeto(prof, proj);
 //		}
 
+//		prof = profDAO.getProfessorById();
+		aluno = alunoDAO.getAlunoById(1);
+		proj = projDAO.getProjetoById(32);
+		AdicionarUsuarioProjeto(aluno, proj);
+		
 //		 RemoveProjeto(22, 11);
 //		RemoveProjetoTurma(0,0);
-		 RemoveUsuarioTurma(0,0,0);
+//		 RemoveUsuarioTurma(0,0,0);
 		
 		// Adicionar Turmas
 //		 AdicionarTurmas(5);
