@@ -2,6 +2,8 @@ package br.ufc.si.Controller;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
+
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
@@ -45,7 +47,6 @@ public class TurmaController {
 		Professor prof = profDAO.getProfessorById(id_usuario);
 		
 		turma.setResponsavel(prof);
-		turma.getUsuarios().add(prof);
 		this.turmaDAO.save(turma);
 
 		List<Turma> turmas = prof.getTurmas();
@@ -138,9 +139,9 @@ public class TurmaController {
 	}
 	
 	@Path("/Turma/RemoveUsuarioTurma")
-	public void RemoveUsuarioTurma(int id_participante, int id_turma, int id_usuario) {
+	public void RemoveUsuarioTurma(int id_participante, int id_turma) {
 		Usuario user;
-		
+
 		System.out.println("\n\n AQUi 1!");
 		try {
 			user = this.alunoDAO.getAlunoById(id_participante);
@@ -149,28 +150,27 @@ public class TurmaController {
 			user = this.profDAO.getProfessorById(id_participante);
 			System.out.println("\n\n AQUi 3!");
 		}
-		
+
 		System.out.println("\n\n AQUi 4!");
 		Turma turma = this.turmaDAO.getTurmaById(id_turma);
+
 		System.out.println("\n\n AQUi 5!");
 		System.out.println("\n\n\nA turma tem o usuario: " + turma.getUsuarios().contains(user));
+
 		for (Projeto projeto : turma.getProjetos()) {
 			System.out.println("\n\n O projeto: " + projeto.getId() + "possui o usuario - >" + projeto.getUsuarios_participantes().contains(user));
 
-			if (projeto.getUsuarios_participantes().contains(user)) {
-				System.out.println("\n\n AQUi 6!");
-				projeto.getUsuarios_participantes().remove(user);
-				this.projDAO.update(projeto);
-				
-				user.getProjetos_participantes().remove(projeto);
-				
-				if (user instanceof Aluno) {
-					this.alunoDAO.update((Aluno) user);
-					System.out.println("\n\n AQUi 7!");
-				} else if (user instanceof Professor) {
-					this.profDAO.update((Professor) user);
-					System.out.println("\n\n AQUi 8!");
-				}
+			projeto.getUsuarios_participantes().remove(user);
+			this.projDAO.update(projeto);
+
+			user.getProjetos_participantes().remove(projeto);
+
+			if (user instanceof Aluno) {
+				this.alunoDAO.update((Aluno) user);
+				System.out.println("\n\n AQUi 7!");
+			} else if (user instanceof Professor) {
+				this.profDAO.update((Professor) user);
+				System.out.println("\n\n AQUi 8!");
 			}
 		}
 
@@ -190,5 +190,62 @@ public class TurmaController {
 		}
 		System.out.println("Cheguei aqui 5!\n\n\n");
 		result.redirectTo(TurmaController.class).DetalhesTurma(id_turma);
+	}
+	
+	@Get("/Turma/AdicionarUsuario")
+	public Turma AdicionarUsuario(int id_turma){
+		Turma turma = this.turmaDAO.getTurmaById(id_turma);
+		Hibernate.initialize(turma);
+		return turma;
+	}
+	
+	@Get("/Turma/AdicionarProjeto")
+	public Turma AdicionarProjeto(int id_turma){
+		return this.turmaDAO.getTurmaById(id_turma);
+	}
+	
+	@Post("/Turma/AdicionarUsuarioTurma")
+	public void AdicionarUsuarioTurma(int id_turma, int id_usuario) {
+		try {
+			try {
+				Aluno aluno = this.alunoDAO.getAlunoById(id_usuario);
+				Turma t = this.turmaDAO.getTurmaById(id_turma);
+				
+				aluno.getTurmas().add(t);
+				this.alunoDAO.update(aluno);
+				
+				t.getUsuarios().add(aluno);
+				this.turmaDAO.update(t);
+				
+			} catch (Exception e) {
+				Professor prof = this.profDAO.getProfessorById(id_usuario);
+				Turma t = this.turmaDAO.getTurmaById(id_turma);
+				
+				prof.getTurmas().add(t);
+				this.profDAO.update(prof);
+				
+				t.getUsuarios().add(prof);
+				this.turmaDAO.update(t);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
+	@Path("/Turma/AdicionarProjetoTurma")
+	public void AdicionarProjetoTurma(int id_projeto, int id_turma) {
+		try {
+			Projeto projeto = this.projDAO.getProjetoById(id_projeto);
+			Turma t = this.turmaDAO.getTurmaById(id_turma);
+			
+			projeto.getTurmas().add(t);
+			this.projDAO.update(projeto);
+			
+			t.getProjetos().add(projeto);
+			this.turmaDAO.update(t);
+			result.redirectTo(this).DetalhesTurma(id_turma);
+		} catch (Exception e) {
+			result.redirectTo(this).DetalhesTurma(id_turma);
+		}
 	}
 }

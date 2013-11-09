@@ -26,7 +26,7 @@ public class UsuariosController {
 	private IProfessor professorDAO;
 	private Validator validator;
 	private Result result;
-	
+
 	public UsuariosController(UsuarioWeb usuarioWeb, AlunoDAO alunoDAO,
 			ProfessorDAO professorDAO, Validator validator, Result result) {
 		super();
@@ -42,14 +42,13 @@ public class UsuariosController {
 	public void loginForm() {
 
 	}
-	
-	@Path("/logout")
-	  public void logout() {
-	    usuarioWeb.logout();
-	    result.redirectTo(IndexController.class).index();
-	  }
 
-	
+	@Path("/logout")
+	public void logout() {
+		usuarioWeb.logout();
+		result.redirectTo(IndexController.class).index();
+	}
+
 	@Liberado
 	@Post("/login")
 	public void login(Usuario usuario, String tipo_usuario) {
@@ -58,55 +57,70 @@ public class UsuariosController {
 		System.out.println("senha - " + usuario.getSenha());
 		System.out.println("tipo: " + tipo_usuario);
 		System.out.println("numero: " + usuario.getNumero());
-		
-		if(tipo_usuario.equals("1")){
+
+		if (tipo_usuario.equals("1")) {
 			Aluno aluno = new Aluno();
 			aluno.setEmail(usuario.getEmail());
 			aluno.setSenha(usuario.getSenha());
 			aluno.setNumero(usuario.getNumero());
 			Aluno carregado = alunoDAO.carrega(aluno);
-			
+
 			if (carregado == null) {
-				validator.add(new ValidationMessage("Login e/ou senha inv&aacute;lidos", ""));
-				validator.onErrorUsePageOf(UsuariosController.class).loginForm();
-			}else if(!carregado.isConfirmado()){
+				validator.add(new ValidationMessage(
+						"Login e/ou senha inv&aacute;lidos", ""));
+				validator.onErrorUsePageOf(UsuariosController.class)
+						.loginForm();
+			} else if (!carregado.isConfirmado()) {
 				System.out.println("numero : " + usuario.getNumero());
-				if(usuario.getNumero() == carregado.getNumero()){
+				if (usuario.getNumero() == carregado.getNumero()) {
 					carregado.setConfirmado(true);
 					alunoDAO.update(carregado);
-				}else{
-					validator.add(new ValidationMessage("O email informado ainda n&atilde;o foi confirmado", ""));
-					validator.onErrorUsePageOf(UsuariosController.class).loginForm();
+				} else {
+					validator
+							.add(new ValidationMessage(
+									"O email informado ainda n&atilde;o foi confirmado",
+									""));
+					validator.onErrorUsePageOf(UsuariosController.class)
+							.loginForm();
 				}
 			}
+
 			usuarioWeb.setTipo(1);
 			usuarioWeb.login(carregado);
 			result.redirectTo(AlunoController.class).AlunoHome();
-		}else if(tipo_usuario.equals("2")){
-			
+		} else if (tipo_usuario.equals("2")) {
+
 			Professor professor = new Professor();
 			professor.setEmail(usuario.getEmail());
 			professor.setSenha(usuario.getSenha());
 			professor.setNumero(usuario.getNumero());
 			Professor carregado = professorDAO.carrega(professor);
-			
+
 			if (carregado == null) {
-				validator.add(new ValidationMessage("Login e/ou senha inv&aacute;lidos", ""));
-				validator.onErrorUsePageOf(UsuariosController.class).loginForm();
-			}else if(!carregado.isConfirmado()){
+				validator.add(new ValidationMessage(
+						"Login e/ou senha inv&aacute;lidos", ""));
+				validator.onErrorUsePageOf(UsuariosController.class)
+						.loginForm();
+			} else if (!carregado.isConfirmado()) {
 				System.out.println("numero : " + usuario.getNumero());
-				if(usuario.getNumero() == carregado.getNumero()){
+				if (usuario.getNumero() == carregado.getNumero()) {
 					carregado.setConfirmado(true);
 					professorDAO.update(carregado);
-				}else{
-					validator.add(new ValidationMessage("O email informado ainda n&atilde;o foi confirmado", ""));
-					validator.onErrorUsePageOf(UsuariosController.class).loginForm();
+				} else {
+					validator
+							.add(new ValidationMessage(
+									"O email informado ainda n&atilde;o foi confirmado",
+									""));
+					validator.onErrorUsePageOf(UsuariosController.class)
+							.loginForm();
 				}
 			}
+
 			usuarioWeb.setTipo(2);
 			usuarioWeb.login(carregado);
+
 			result.redirectTo(ProfessorController.class).ProfessorHome();
 		}
-		
+
 	}
 }

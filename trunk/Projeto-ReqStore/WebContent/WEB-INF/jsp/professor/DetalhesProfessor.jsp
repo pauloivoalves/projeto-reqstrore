@@ -106,7 +106,7 @@
 				<div id="inner_top">
 					<div class="page_tittle">
 						<p>
-							<c:out value="${aluno.nome}"/>
+							<c:out value="${professor.nome}"/>
 						</p>
 					</div>
 				</div>
@@ -115,7 +115,7 @@
 					<div id="detalhes">
 
 						<div class="descricao">
-							<strong>Email</strong><br /> <br />
+							<strong>Email: </strong><br /> 
 							<c:out value="${professor.email}"/>
 						</div>
 					</div>
@@ -155,7 +155,7 @@
 									<tr>
 										<td><label>Nome</label></td>
 										<td><label>Email</label></td>
-										<td><label>Projetos</label></td>
+										<td><label>Dificuldade</label></td>
 									</tr>
 								</thead>
 								<tbody>

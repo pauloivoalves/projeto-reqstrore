@@ -123,7 +123,11 @@
 									<tr>
 									<c:choose>
 										<c:when test="${usuarioWeb.id == turma.responsavel.id}">
-											<td id = "top_projeto" colspan="3" style="font-size: 14px;"><b>Projetos</b></td>
+											<td onclick="location.href = '<c:url value="/Turma/AdicionarProjeto?id_turma=${turma.id }"/>';"id = "top_projeto" colspan="3" style="font-size: 14px;"><b>Projetos</b>
+												<span id="addProjeto" style="cursor: pointer; padding: 1px 10px; background-color: rgb(82, 113, 0); color: white; 
+												float: right; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; 
+												border-bottom-left-radius: 5px;">+</span>
+											</td>
 										</c:when>
 										<c:otherwise>
 											<td colspan="3" style="font-size: 14px;"><b>Projetos</b></td>
@@ -147,9 +151,6 @@
 												<c:when test="${usuarioWeb.id == turma.responsavel.id}">
 													<td onclick="location.href = '<c:url value="/Projeto/RemoveProjetoTurma?id_projeto=${projeto.id}&id_turma=${turma.id}&id_usuario=${usuarioWeb.id}"/>';"style = "width: 15px; padding: 0px;" class = "botton_projeto"></td>
 												</c:when>
-												<c:otherwise>
-													<td ></td>
-												</c:otherwise>
 											</c:choose>
 										</tr>
 									</c:forEach>
@@ -162,7 +163,11 @@
 									<tr>
 										<c:choose>
 										<c:when test="${usuarioWeb.id == turma.responsavel.id}">
-											<td id = "top_usuario" colspan="3" style="font-size: 14px;"><b>Participantes</b></td>
+											<td id = "top_usuario" colspan="3" style="font-size: 14px;"><b>Participantes</b>
+												<span id="addProjeto" style="cursor: pointer; padding: 1px 10px; background-color: rgb(82, 113, 0); color: white; 
+												float: right; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; 
+												border-bottom-left-radius: 5px;">+</span>
+											</td>
 										</c:when>
 										<c:otherwise>
 											<td colspan="3" style="font-size: 14px;"><b>Participantes</b></td>
@@ -199,17 +204,13 @@
 			<div id="footer_menu">
 				<table>
 					<tr>
-						<td><a target="_blank"
-							href="https://sistemas.quixada.ufc.br/apps2/sippa/index.jsp">SIPPA</a></td>
+						<td><a target="_blank" href="https://sistemas.quixada.ufc.br/apps2/sippa/index.jsp">SIPPA</a></td>
 						<td>&bull;</td>
-						<td><a target="_blank"
-							href="https://sistemas.quixada.ufc.br/apps2/savi/index.jsp">SAVI</a></td>
+						<td><a target="_blank" href="https://sistemas.quixada.ufc.br/apps2/savi/index.jsp">SAVI</a></td>
 						<td>&bull;</td>
-						<td><a target="_blank"
-							href="https://sistemas.quixada.ufc.br/apps2/sisac/index.jsp">SISAC</a></td>
+						<td><a target="_blank" href="https://sistemas.quixada.ufc.br/apps2/sisac/index.jsp">SISAC</a></td>
 						<td>&bull;</td>
-						<td><a target="_blank"
-							href="https://sistemas.quixada.ufc.br/SEVEN/">SEVEN</a></td>
+						<td><a target="_blank" href="https://sistemas.quixada.ufc.br/SEVEN/">SEVEN</a></td>
 						<td>&bull;</td>
 						<td><a target="_blank" href="http://www.si3.ufc.br/">SIGAA</a></td>
 					</tr>
@@ -224,11 +225,6 @@
 </body>
 
 <script type="text/javascript">
-$('<span id="addProjeto">').text("+").css({cursor: 'pointer', padding:'1px 10px', backgroundColor:'#527100', color:'white', float: 'right'}).appendTo('#top_projeto');
-$('#addProjeto').css({borderRadius:'5px'});
-
-$('<span id="addUsuario">').text("+").css({cursor: 'pointer', padding:'1px 10px', backgroundColor:'#527100', color:'white', float:'right'}).appendTo('#top_usuario');
-$('#addUsuario').css({borderRadius:'5px'});
 
 $('<span class="remProjeto">').text("-").css({cursor: 'pointer', padding:'5px 10px', backgroundColor:'red', color:'white', float: 'right'}).appendTo('.botton_projeto');
 $('.remProjeto').css({borderRadius:'5px'});

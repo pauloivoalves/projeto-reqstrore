@@ -1,9 +1,7 @@
 package br.ufc.si.Teste;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import br.ufc.si.Controller.TurmaController;
 import br.ufc.si.DAO.AlunoDAO;
 import br.ufc.si.DAO.ProfessorDAO;
 import br.ufc.si.DAO.ProjetoDAO;
@@ -287,59 +285,98 @@ public class ClsseTeste {
 		projDAO.update(projeto);
 	}
 	
-	public static void RemoveUsuarioTurma(int id_participante, int id_turma, int id_usuario) {
-		Usuario user;
+	public static void RemoveUsuarioTurma(int id_participante, int id_turma ) {
+		
 		
 		System.out.println("\n\n AQUi 1!");
 		try {
-			user = alunoDAO.getAlunoById(2);
+			Usuario user = alunoDAO.getAlunoById(id_participante);
 			System.out.println("\n\n AQUi 2!");
-		} catch (Exception e) {
-			user = profDAO.getProfessorById(2);
+			
 			System.out.println("\n\n AQUi 3!");
-		}
-		
-		System.out.println("\n\n AQUi 4!");
-		Turma turma = turmaDAO.getTurmaById(323);
-		
-		System.out.println("\n\n AQUi 5!");
-		System.out.println("\n\n\nA turma tem o usuario: " + turma.getUsuarios().contains(user));
-		
-		for (Projeto projeto : turma.getProjetos()) {
-			System.out.println("\n\n O projeto: " + projeto.getId() + "possui o usuario - >" + projeto.getUsuarios_participantes().contains(user));
+			Turma turma = turmaDAO.getTurmaById(id_turma);
+			
+			System.out.println("\n\n AQUi 4!");
+			System.out.println("\n\n\nA turma tem o usuario: " + turma.getUsuarios().contains(user));
+			System.out.println("\n\n\n Turma usuarios ->" +turma.getUsuarios().size());
+			
+			for (Projeto projeto : turma.getProjetos()) {
+				System.out.println("\n\n O projeto: " + projeto.getId() + "possui o usuario - >" + projeto.getUsuarios_participantes().contains(user));
 
-			if (projeto.getUsuarios_participantes().contains(user)) {
-				System.out.println("\n\n AQUi 6!");
-				projeto.getUsuarios_participantes().remove(user);
-				projDAO.update(projeto);
-				
-				user.getProjetos_participantes().remove(projeto);
-				
-				if (user instanceof Aluno) {
-					alunoDAO.update((Aluno) user);
-					System.out.println("\n\n AQUi 7!");
-				} else if (user instanceof Professor) {
-					profDAO.update((Professor) user);
-					System.out.println("\n\n AQUi 8!");
+				if (projeto.getUsuarios_participantes().contains(user)) {
+					System.out.println("\n\n AQUi 5!");
+					projeto.getUsuarios_participantes().remove(user);
+					projDAO.update(projeto);
+					
+					user.getProjetos_participantes().remove(projeto);
+					
+					if (user instanceof Aluno) {
+						alunoDAO.update((Aluno) user);
+						System.out.println("\n\n AQUi 6!");
+					} else if (user instanceof Professor) {
+						profDAO.update((Professor) user);
+						System.out.println("\n\n AQUi 7!");
+					}
 				}
 			}
-		}
 
-		System.out.println("Cheguei aqui!\n\n\n");
-		turma.getUsuarios().remove(user);
-		System.out.println("Cheguei aqui 2!\n\n\n");
-		turmaDAO.update(turma);
-		System.out.println("Cheguei aqui 3!\n\n\n");
-		
-		user.getTurmas().remove(turma);
-		System.out.println("Cheguei aqui 4!\n\n\n");
-		
-		if (user instanceof Aluno) {
-			alunoDAO.update((Aluno) user);
-		} else if (user instanceof Professor) {
-			profDAO.update((Professor) user);
+			System.out.println("Cheguei aqui! 8\n\n\n");
+			turma.getUsuarios().remove(user);
+			System.out.println("Cheguei aqui 9!\n\n\n");
+			turmaDAO.update(turma);
+			System.out.println("Cheguei aqui 10!\n\n\n");
+			
+			user.getTurmas().remove(turma);
+			System.out.println("Cheguei aqui 11!\n\n\n");
+			
+				alunoDAO.update((Aluno) user);
+			System.out.println("Cheguei aqui 12!\n\n\n");
+		} catch (Exception e) {
+			Usuario user = profDAO.getProfessorById(id_participante);
+			System.out.println("\n\n AQUi 2!");
+			
+			System.out.println("\n\n AQUi 3!");
+			Turma turma = turmaDAO.getTurmaById(id_turma);
+			
+			System.out.println("\n\n\n Turma usuarios ->" +turma.getUsuarios().size());
+			
+			for (Usuario usuario : turma.getUsuarios()) {
+				System.out.println();
+			}
+			
+			for (Projeto projeto : turma.getProjetos()) {
+				System.out.println("\n\n O projeto: " + projeto.getId() + "possui o usuario - >" + projeto.getUsuarios_participantes().contains(user));
+
+				if (projeto.getUsuarios_participantes().contains(user)) {
+					System.out.println("\n\n AQUi 5!");
+					projeto.getUsuarios_participantes().remove(user);
+					projDAO.update(projeto);
+					
+					user.getProjetos_participantes().remove(projeto);
+					
+						profDAO.update((Professor) user);
+						System.out.println("\n\n AQUi 7!");
+				}
+			}
+
+			System.out.println("Cheguei aqui! 8\n\n\n");
+			turma.getUsuarios().remove(user);
+			System.out.println("Cheguei aqui 9!\n\n\n");
+			turmaDAO.update(turma);
+			System.out.println("Cheguei aqui 10!\n\n\n");
+			
+			user.getTurmas().remove(turma);
+			System.out.println("Cheguei aqui 11!\n\n\n");
+			
+			if (user instanceof Aluno) {
+				alunoDAO.update((Aluno) user);
+			} else if (user instanceof Professor) {
+				profDAO.update((Professor) user);
+			}
+			System.out.println("Cheguei aqui 12!\n\n\n");
 		}
-		System.out.println("Cheguei aqui 5!\n\n\n");
+		
+		
 	}
 
 	public static void main(String[] args) {
@@ -360,13 +397,14 @@ public class ClsseTeste {
 //		 AdicionarCriadoProjeto(aluno, proj);
 
 //		 AdicionarUsuarioProjeto
-//		for (int i = 1; i <= 10; i++) {
-////			aluno = alunoDAO.getAlunoById(i);
+//		for (int i = 376; i <= 381; i++) {
+//			aluno = alunoDAO.getAlunoById(i);
 //			prof = profDAO.getProfessorById(11);
-//			proj = projDAO.getProjetoById(32);
+//			proj = projDAO.getProjetoById(i);
 //			AdicionarUsuarioProjeto(prof, proj);
 //		}
 
+		
 //		prof = profDAO.getProfessorById();
 //		aluno = alunoDAO.getAlunoById(1);
 //		proj = projDAO.getProjetoById(32);
@@ -374,7 +412,7 @@ public class ClsseTeste {
 		
 //		 RemoveProjeto(22, 11);
 //		RemoveProjetoTurma(0,0);
-//		 RemoveUsuarioTurma(0,0,0);
+//		 RemoveUsuarioTurma(13,709);
 		
 		// Adicionar Turmas
 //		 AdicionarTurmas(5);
@@ -393,21 +431,18 @@ public class ClsseTeste {
 //		}
 
 		// adicionar akluno a uma turma
-		for (int i = 11; i <= 14; i++) {
+//		for (int i = 11; i <= 14; i++) {
 //			aluno = alunoDAO.getAlunoById(i);
-			prof = profDAO.getProfessorById(i);
-			turma = turmaDAO.getTurmaById(326);
-			AdicionarUsuarioTurma(prof, turma);
-		}
+//			prof = profDAO.getProfessorById(i);
+//			turma = turmaDAO.getTurmaById(326);
+//			AdicionarUsuarioTurma(prof, turma);
+//		}
 
-		// aluno = alunoDAO.getAlunoById(2);
-		// prof = profDAO.getProfessorById(16);
-		// List<Projeto> list = listarMeusprojetos(prof);
-		// for (Projeto projeto : list) {
-		// System.out.println("nome -" + projeto.getNome());
-		// }
-
-		System.out.println("Temrinou!");
+		aluno = alunoDAO.getAlunoById(5);
+//		prof = profDAO.getProfessorById(13);
+		turma = turmaDAO.getTurmaById(712);
+		AdicionarUsuarioTurma(aluno, turma);
+//		System.out.println("Temrinou!");
 	}
 
 }

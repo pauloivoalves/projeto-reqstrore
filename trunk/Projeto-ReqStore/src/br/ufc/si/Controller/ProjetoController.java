@@ -130,7 +130,7 @@ public class ProjetoController {
 				aluno.getProjetos_participantes().add(projeto);
 				this.alunoDAO.update(aluno);
 				
-				result.redirectTo(this).AdicionarUsuario(id_projeto);
+				result.redirectTo(this).RemoverUsuario(id_projeto);
 				
 			} catch (Exception e) {
 				Projeto projeto = this.projetoDAO.getProjetoById(id_projeto);
@@ -142,10 +142,10 @@ public class ProjetoController {
 				prof.getProjetos_participantes().add(projeto);
 				this.profDAO.update(prof);
 				
-				result.redirectTo(this).AdicionarUsuario(id_projeto);
+				result.redirectTo(this).RemoverUsuario(id_projeto);
 			}
 		} catch (Exception e) {
-			result.redirectTo(ProjetoController.class).Detalhes(id_projeto);
+			result.redirectTo(this).Detalhes(id_projeto);
 		}
 	}
 	
