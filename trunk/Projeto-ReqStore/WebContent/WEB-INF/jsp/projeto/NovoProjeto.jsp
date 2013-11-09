@@ -87,11 +87,11 @@
 						
 						<label for = "select_projeto">Tipo do Projeto</label><br>
 						<select class  = "input_login" name  = "select_projeto" id = "select_projeto">
-							<option value = "0">Selecione...</option>
-							<option value = "1">WEB</option>
-							<option value = "2">DESKTOP</option>
-							<option value = "3">MOBILE</option>
-							<option value = "4">COMERCIAL</option>
+							<option value = "-1">Selecione...</option>
+							<option value = "0">WEB</option>
+							<option value = "1">DESKTOP</option>
+							<option value = "2">MOBILE</option>
+							<option value = "3">COMERCIAL</option>
 							<option value = "4">EDUCACIONAL</option>
 						</select>
 						<a class  = "input_login btn-success" id = "cadastrar" href = "#">Cadastrar</a>
@@ -179,7 +179,7 @@
 			alert('Campo "Objetivo" n\u00e3o preenchido.');
 			$('#objetivo').focus();
 			return false;
-		}else if($("#select_projeto option").filter(":selected").val() == "0"){
+		}else if($("#select_projeto option").filter(":selected").val() == "-1"){
 			alert('Campo "Tipo do Projeto" n\u00e3o selecionado.');
 			$('#select_projeto').focus();
 			return false;

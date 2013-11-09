@@ -105,7 +105,7 @@
 						<p>
 							<c:out value="${projeto.nome}"></c:out>
 						</p>
-						<img  src = "../imagens/usuarios_participantes.png" onclick="location.href = '<c:url value="/Projeto/RemoverUsuario"/>?id_projeto=${projeto.id}';">
+						<img  title = "Participantes" style = "cursor: pointer; "src = "../imagens/usuarios_participantes.png" onclick="location.href = '<c:url value="/Projeto/RemoverUsuario"/>?id_projeto=${projeto.id}';">
 						
 					</div>
 				</div>
@@ -135,7 +135,9 @@
 								<tr>
 									<c:choose>
 										<c:when test="${usuarioWeb.id == projeto.criador.id}">
-											<td id = "top_requisito" colspan="3" style="font-size: 14px;"><b>Requisitos</b></td>
+											<td id = "top_requisito" colspan="3" style="font-size: 14px;"><b>Requisitos</b>
+												<span onclick="location.href = '<c:url value="/Requisito/NovoRequisito?id_projeto=${projeto.id }"/>';" id="addRequisito" style = "cursor: pointer; padding:1px 10px; background-color:#527100; color:white; float: right">+</span>
+											</td>
 										</c:when>
 										<c:otherwise>
 											<td colspan="3" style="font-size: 14px;"><b>Requisitos</b></td>
@@ -161,13 +163,12 @@
 										<td onclick="location.href = '<c:url value="/Requisito/DetalhesRequisito"/>?id=${requisito.id}';">${requisito.prioridadeRequisito }</td>
 										<td onclick="location.href = '<c:url value="/Requisito/DetalhesRequisito"/>?id=${requisito.id}';">${desc2}</td>
 										<c:choose>
-												<c:when test="${usuarioWeb.id == projeto.criador.id}">
-													<td onclick="location.href = '<c:url value="/Projeto/RemoverRequisito?id_requisito=${requisito.id}&id_projeto=${projeto.id}"/>';" style = "width: 15px; padding: 0px;" class = "botton_requisito"></td>
-												</c:when>
-												<c:otherwise>
-													<td></td>
-												</c:otherwise>
-											</c:choose>
+											<c:when test="${usuarioWeb.id == projeto.criador.id}">
+												<td onclick="location.href = '<c:url value="/Projeto/RemoverRequisito?id_requisito=${requisito.id}&id_projeto=${projeto.id}"/>';" style = "width: 15px; padding: 0px;" class = "botton_requisito">
+													<span class ="remUser" style = "cursor: pointer; padding:5px 10px; background-color:#527100; color:white; float: right; -webkit-border-radius: 5px;-moz-border-radius: 5px; border-radius: 5px;" >-</span>
+												</td>
+											</c:when>
+										</c:choose>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -203,13 +204,4 @@
 		</div>
 	</div>
 </body>
-
-<script type="text/javascript">
-$('<span id="addRequisito">').text("+").css({cursor: 'pointer', padding:'1px 10px', backgroundColor:'#527100', color:'white', float: 'right'}).appendTo('#top_requisito');
-$('#addRequisito').css({borderRadius:'5px'});
-
-$('<span class ="remReq">').text("-").css({cursor: 'pointer', padding:'5px 10px', backgroundColor:'red', color:'white', float: 'right'}).appendTo('.botton_requisito');
-$('.remReq').css({borderRadius:'5px'});
-
-</script>
 </html>

@@ -30,10 +30,10 @@ public class Requisito {
 	@Column(name = "Tipo_Requisito", nullable = false)
 	private TipoRequisito tipoRequisito;
 
-	@Column(name = "Descricao_Requisio", nullable = false, length = 600)
+	@Column(name = "Descricao_Requisio", nullable = false, length = 700)
 	private String descricao;
 
-	@Column(name = "Foco_Requisio", nullable = false, length = 600)
+	@Column(name = "Foco_Requisio", nullable = false, length = 700)
 	private String foco_requisito;
 
 	@Column(name = "Prioridade_Requisito", nullable = false)

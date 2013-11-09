@@ -284,5 +284,56 @@ public class ProjetoController {
 		usuario.setId(id);
 		return projetoDAO.MeusProjetos(usuario);
 	}
+	
+	@Path("/Projeto/Remover")
+	public void RemoveProjeto(int id_projeto, int id_usuario) {
+		System.out.println("Usuario : " + id_usuario);
+		
+		Projeto projeto = projetoDAO.getProjetoById(id_projeto);
+		
+		for (Usuario usuario : projeto.getUsuarios_participantes()) {
+			usuario.getProjetos_participantes().remove(projeto);
+			if (usuario instanceof Aluno) {
+				alunoDAO.update((Aluno) usuario);
+			} else if (usuario instanceof Professor) {
+				profDAO.update((Professor) usuario);
+			}
+		}
+		
+		System.out.println("\n\nTamanho: 5 - " + projeto.getUsuarios_participantes().size());
+		projeto.getUsuarios_participantes().clear();
+		System.out.println("\n\nTamanho: 4 - " + projeto.getUsuarios_participantes().size());
+
+		projeto.setCriador(null);
+		
+		System.out.println("\n\nTamanho: " + projeto.getTurmas().size());
+		
+		for (Turma turma : projeto.getTurmas()) {
+			turma.getProjetos().remove(projeto);
+			turmaDAO.update(turma);
+		}
+		
+		projeto.getTurmas().clear();
+		System.out.println("\n\nTamanho: 2 -> " + projeto.getTurmas().size());
+		
+		projetoDAO.update(projeto);
+		
+		try {
+			try {
+				Aluno user = alunoDAO.getAlunoById(id_usuario);
+				user.getProjetos().remove(projeto);
+				alunoDAO.update(user);				
+			} catch (Exception e) {
+				Professor user = profDAO.getProfessorById(id_usuario);
+				user.getProjetos().remove(projeto);
+				profDAO.update(user);
+			}
+			
+			this.projetoDAO.delete(projeto);
+			result.redirectTo(this).MeusProjetos(id_usuario);
+		} catch (Exception e) {
+			result.redirectTo(this).MeusProjetos(id_usuario);
+		}
+	}
 
 }
