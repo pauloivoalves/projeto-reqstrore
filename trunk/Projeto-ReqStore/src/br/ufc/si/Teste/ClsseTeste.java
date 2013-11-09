@@ -368,9 +368,9 @@ public class ClsseTeste {
 //		}
 
 //		prof = profDAO.getProfessorById();
-		aluno = alunoDAO.getAlunoById(1);
-		proj = projDAO.getProjetoById(32);
-		AdicionarUsuarioProjeto(aluno, proj);
+//		aluno = alunoDAO.getAlunoById(1);
+//		proj = projDAO.getProjetoById(32);
+//		AdicionarUsuarioProjeto(aluno, proj);
 		
 //		 RemoveProjeto(22, 11);
 //		RemoveProjetoTurma(0,0);
@@ -393,12 +393,12 @@ public class ClsseTeste {
 //		}
 
 		// adicionar akluno a uma turma
-//		for (int i = 1; i <= 7; i++) {
+		for (int i = 11; i <= 14; i++) {
 //			aluno = alunoDAO.getAlunoById(i);
-////			prof = profDAO.getProfessorById(i);
-//			turma = turmaDAO.getTurmaById(326);
-//			AdicionarUsuarioTurma(aluno, turma);
-//		}
+			prof = profDAO.getProfessorById(i);
+			turma = turmaDAO.getTurmaById(326);
+			AdicionarUsuarioTurma(prof, turma);
+		}
 
 		// aluno = alunoDAO.getAlunoById(2);
 		// prof = profDAO.getProfessorById(16);

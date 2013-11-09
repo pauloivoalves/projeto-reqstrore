@@ -185,9 +185,6 @@
 												<c:when test="${usuarioWeb.id == turma.responsavel.id}">
 													<td onclick="location.href = '<c:url value="/Turma/RemoveUsuarioTurma?id_participante=${user.id}&id_turma=${turma.id}&id_usuario=${usuarioWeb.id}"/>';" style = "width: 15px; padding: 0px;" class = "botton_user"></td>
 												</c:when>
-												<c:otherwise>
-													<td ></td>
-												</c:otherwise>
 											</c:choose>
 										</tr>
 									</c:forEach>

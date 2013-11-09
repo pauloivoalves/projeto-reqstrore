@@ -111,6 +111,45 @@ public class ProjetoController {
 		return this.projetoDAO.getProjetoById(id_projeto);
 	}
 	
+	@Path("/Projeto/AdicionarUsuario")
+	public Projeto AdicionarUsuario(int id_projeto){
+		return this.projetoDAO.getProjetoById(id_projeto);
+	}
+	
+	@Path("/Projeto/AdicionarUsuarioProjeto")
+	public void AdicionarUsuarioProjeto(int id_projeto, int id_usuario){
+		
+		try {
+			try {
+				Projeto projeto = this.projetoDAO.getProjetoById(id_projeto);
+				Aluno aluno = this.alunoDAO.getAlunoById(id_usuario);
+				
+				projeto.getUsuarios_participantes().add(aluno);
+				this.projetoDAO.update(projeto);
+				
+				aluno.getProjetos_participantes().add(projeto);
+				this.alunoDAO.update(aluno);
+				
+				result.redirectTo(this).AdicionarUsuario(id_projeto);
+				
+			} catch (Exception e) {
+				Projeto projeto = this.projetoDAO.getProjetoById(id_projeto);
+				Professor prof = this.profDAO.getProfessorById(id_usuario);
+				
+				projeto.getUsuarios_participantes().add(prof);
+				this.projetoDAO.update(projeto);
+				
+				prof.getProjetos_participantes().add(projeto);
+				this.profDAO.update(prof);
+				
+				result.redirectTo(this).AdicionarUsuario(id_projeto);
+			}
+		} catch (Exception e) {
+			result.redirectTo(ProjetoController.class).Detalhes(id_projeto);
+		}
+	}
+	
+	
 	@Path("/Projeto/RemoverUsuarioProjeto")
 	public void RemoverUsuarioProjeto(int id_usuario, int id_projeto){
 		

@@ -1,8 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -12,7 +11,7 @@
 <link href="../css/Style.css" rel="stylesheet" type="text/css" />
 <link type="text/css" href="../css/menu.css" rel="stylesheet" />
 
-<title>Listar Usuarios Participantes</title>
+<title>Listar Usuarios</title>
 </head>
 <body>
 	<div id="tudo">
@@ -102,50 +101,40 @@
 
 				<div id="inner_top">
 					<div class="page_tittle">
-						<p>Listar Usuarios Participantes</p>
+						<p>Listar Usuarios</p>
 					</div>
 				</div>
 				<div id="inner_content">
 					<div id="lista">
-						<table align="center" id="lista_projetos">
-							<thead>
-								<tr>
-									<c:choose>
-										<c:when test="${usuarioWeb.id == projeto.criador.id}">
-											<td id = "top_usuario" colspan="3" style="font-size: 14px;"><b>Participantes</b>
-												<span onclick="location.href = '<c:url value="/Projeto/AdicionarUsuario?id_projeto=${projeto.id}"/>';"
-												id="addUsuario" style="cursor: pointer; padding: 1px 10px; background-color: rgb(82, 113, 0); color: white; 
+						<table style="width: 100%; float: right;" id="lista_projetos">
+								<thead>
+									<tr>
+										<td colspan="3" style="font-size: 14px;"><b>Participantes</b></td>
+									</tr>
+									<tr>
+										<td><label>Nome</label></td>
+										<td><label>Email</label></td>
+										<td><label>Projetos</label></td>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${usuarioWeb.usuarios}" var="user">
+										<tr>
+											<td onclick="location.href = '<c:url value="/Aluno/"/>DetalhesAluno?id=${user.id}';">${user.nome }</td>
+											<td onclick="location.href = '<c:url value="/Aluno/"/>DetalhesAluno?id=${user.id}';">${user.email }</td>
+											<td onclick="location.href = '<c:url value="/Aluno/"/>DetalhesAluno?id=${user.id}';">${fn:length(user.projetos_participantes) + fn:length(user.projetos)}</td>
+											
+											<td onclick="location.href = '<c:url value="/Projeto/AdicionarUsuarioProjeto?id_projeto=${projeto.id}&id_usuario=${user.id}"/>';" style = "width: 15px; padding: 0px;" class = "botton_user">
+												<span id="addUsuario" style="cursor: pointer; padding: 5px 10px; background-color: rgb(82, 113, 0); color: white; 
 												float: right; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; 
 												border-bottom-left-radius: 5px;">+</span>
 											</td>
-										</c:when>
-										<c:otherwise>
-											<td colspan="3" style="font-size: 14px;"><b>Participantes</b></td>
-										</c:otherwise>
-									</c:choose>
-								</tr>
-								<tr>
-									<td><label>Nome</label></td>
-									<td><label>Email</label></td>
-									<td><label>Qtd. Projetos</label></td>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${projeto.usuarios_participantes}" var="user">
-									<tr>
-										<td onclick="location.href = '<c:url value="/Aluno/"/>DetalhesAluno?id=${user.id}';">${user.nome }</td>
-										<td onclick="location.href = '<c:url value="/Aluno/"/>DetalhesAluno?id=${user.id}';">${user.email }</td>
-										<td onclick="location.href = '<c:url value="/Aluno/"/>DetalhesAluno?id=${user.id}';">${fn:length(user.projetos_participantes) + fn:length(user.projetos)}</td>
-										<c:choose>
-											<c:when test="${usuarioWeb.id == projeto.criador.id}">
-												<td onclick="location.href = '<c:url value="/Projeto/RemoverUsuarioProjeto?id_usuario=${user.id}&id_projeto=${projeto.id}"/>';" style = "width: 15px; padding: 0px;" class = "botton_user"></td>
-											</c:when>
-										</c:choose>
-									</tr>
-								</c:forEach>
-							</tbody>
+										</tr>
+																			
+									</c:forEach>
+								</tbody>
 
-						</table>
+							</table>
 					</div>
 				</div>
 
@@ -176,9 +165,4 @@
 		</div>
 	</div>
 </body>
-<script type="text/javascript">
-
-$('<span class="remUser">').text("-").css({cursor: 'pointer', padding:'5px 10px', backgroundColor:'red', color:'white', float: 'right'}).appendTo('.botton_user');
-$('.remUser').css({borderRadius:'5px'});
-</script>
 </html>

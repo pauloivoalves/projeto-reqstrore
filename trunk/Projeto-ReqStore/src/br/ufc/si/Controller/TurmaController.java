@@ -45,6 +45,7 @@ public class TurmaController {
 		Professor prof = profDAO.getProfessorById(id_usuario);
 		
 		turma.setResponsavel(prof);
+		turma.getUsuarios().add(prof);
 		this.turmaDAO.save(turma);
 
 		List<Turma> turmas = prof.getTurmas();
