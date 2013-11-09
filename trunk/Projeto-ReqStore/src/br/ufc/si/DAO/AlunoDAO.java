@@ -76,7 +76,7 @@ public class AlunoDAO implements IAluno {
 			for (Aluno aluno : alunos) {
 				Hibernate.initialize(aluno.getProjetos());
 			}
-
+			return alunos;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

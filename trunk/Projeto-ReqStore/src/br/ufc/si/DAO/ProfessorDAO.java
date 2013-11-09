@@ -64,8 +64,7 @@ public class ProfessorDAO implements IProfessor {
 	public List<Professor> List() {
 		Session session = HibernateUtil.getSession();
 		try {
-			List<Professor> professores = session.createCriteria(
-					Professor.class).list();
+			List<Professor> professores = session.createCriteria(Professor.class).list();
 
 			for (Professor professor : professores) {
 				Hibernate.initialize(professor.getProjetos());

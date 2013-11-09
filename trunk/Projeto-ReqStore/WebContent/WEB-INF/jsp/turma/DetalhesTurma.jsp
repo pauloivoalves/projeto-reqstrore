@@ -163,7 +163,7 @@
 									<tr>
 										<c:choose>
 										<c:when test="${usuarioWeb.id == turma.responsavel.id}">
-											<td id = "top_usuario" colspan="3" style="font-size: 14px;"><b>Participantes</b>
+											<td onclick="location.href = '<c:url value="/Turma/AdicionarUsuario?id_turma=${turma.id}"/>';" id = "top_usuario" colspan="3" style="font-size: 14px;"><b>Participantes</b>
 												<span id="addProjeto" style="cursor: pointer; padding: 1px 10px; background-color: rgb(82, 113, 0); color: white; 
 												float: right; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; 
 												border-bottom-left-radius: 5px;">+</span>

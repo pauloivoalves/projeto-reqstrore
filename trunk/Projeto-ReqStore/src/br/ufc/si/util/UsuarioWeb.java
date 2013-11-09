@@ -80,6 +80,13 @@ public class UsuarioWeb {
 
 		return usuarios;
 	}
+	
+	public List<Usuario>getAll(){
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+		usuarios.addAll(this.alunoDAO.List());
+		usuarios.addAll(this.profDAO.List());
+		return usuarios;
+	}
 
 	public int getId() {
 		return logado.getId();

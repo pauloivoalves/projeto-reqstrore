@@ -23,32 +23,4 @@ public class Professor extends Usuario {
 		this.turmas_proprietarias = turmas_proprietarias;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime
-				* result
-				+ ((turmas_proprietarias == null) ? 0 : turmas_proprietarias
-						.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Professor other = (Professor) obj;
-		if (turmas_proprietarias == null) {
-			if (other.turmas_proprietarias != null)
-				return false;
-		} else if (!turmas_proprietarias.equals(other.turmas_proprietarias))
-			return false;
-		return true;
-	}
-
 }
