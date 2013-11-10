@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -11,7 +12,7 @@
 <link href="../css/Style.css" rel="stylesheet" type="text/css" />
 <link type="text/css" href="../css/menu.css" rel="stylesheet" />
 
-<title>Listar Projetos</title>
+<title>Listar Usuarios</title>
 </head>
 <body>
 	<div id="tudo">
@@ -101,7 +102,7 @@
 
 				<div id="inner_top">
 					<div class="page_tittle">
-						<p>Listar projetos</p>
+						<p>Listar Usuarios</p>
 					</div>
 				</div>
 				<div id="inner_content">
@@ -109,24 +110,23 @@
 						<table align="center" id="lista_projetos">
 							<thead>
 								<tr>
-									<td colspan="3" style="font-size: 14px;"><b>Projetos</b></td>
+									<td colspan="3" style="font-size: 14px;"><b>Participantes</b></td>
 								</tr>
 								<tr>
-									<td><label>Projeto</label></td>
-									<td><label>Tipo</label></td>
-									<td><label>Dificuldade</label></td>
+									<td><label>Nome</label></td>
+									<td><label>Email</label></td>
+									<td><label>Qtd. Projetos</label></td>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${projetoList}" var="projeto">
-									<tr onclick="location.href = 'Detalhes?id=${projeto.id}';">
-										<td>${projeto.nome }</td>
-										<td>${projeto.tipoProjeto }</td>
-										<td>${projeto.dificuldade }</td>
+								<c:forEach items="${usuarioWeb.all}" var="user">
+									<tr>
+										<td onclick="location.href = '<c:url value="/Aluno/"/>DetalhesAluno?id=${user.id}';">${user.nome }</td>
+										<td onclick="location.href = '<c:url value="/Aluno/"/>DetalhesAluno?id=${user.id}';">${user.email }</td>
+										<td onclick="location.href = '<c:url value="/Aluno/"/>DetalhesAluno?id=${user.id}';">${fn:length(user.projetos_participantes) + fn:length(user.projetos)}</td>
 									</tr>
 								</c:forEach>
 							</tbody>
-
 						</table>
 					</div>
 				</div>
@@ -135,22 +135,17 @@
 			<div id="footer_menu">
 				<table>
 					<tr>
-						<td><a target="_blank"
-							href="https://sistemas.quixada.ufc.br/apps2/sippa/index.jsp">SIPPA</a></td>
+						<td><a target="_blank" href="https://sistemas.quixada.ufc.br/apps2/sippa/index.jsp">SIPPA</a></td>
 						<td>&bull;</td>
-						<td><a target="_blank"
-							href="https://sistemas.quixada.ufc.br/apps2/savi/index.jsp">SAVI</a></td>
+						<td><a target="_blank" href="https://sistemas.quixada.ufc.br/apps2/savi/index.jsp">SAVI</a></td>
 						<td>&bull;</td>
-						<td><a target="_blank"
-							href="https://sistemas.quixada.ufc.br/apps2/sisac/index.jsp">SISAC</a></td>
+						<td><a target="_blank" href="https://sistemas.quixada.ufc.br/apps2/sisac/index.jsp">SISAC</a></td>
 						<td>&bull;</td>
-						<td><a target="_blank"
-							href="https://sistemas.quixada.ufc.br/SEVEN/">SEVEN</a></td>
+						<td><a target="_blank" href="https://sistemas.quixada.ufc.br/SEVEN/">SEVEN</a></td>
 						<td>&bull;</td>
 						<td><a target="_blank" href="http://www.si3.ufc.br/">SIGAA</a></td>
 					</tr>
 				</table>
-
 			</div>
 			<div id="rodape">
 				<strong>&reg; Todos os Direitos Reservados</strong>

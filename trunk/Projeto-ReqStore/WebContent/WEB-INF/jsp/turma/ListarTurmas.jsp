@@ -36,7 +36,7 @@
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Usu&aacute;rios</a>
 								<ul class="submenu">
-									<li><a href="#">Listar Usu&aacute;rios</a></li>
+									<li><a href="<c:url value="/Usuarios/ListarUsuarios"/>">Listar Usu&aacute;rios</a></li>
 									<li><a href="#">Buscar Usu&aacute;rio</a>
 								</ul>
 							</li>
@@ -79,7 +79,7 @@
 							<li><img src="../imagens/separador.png"></li>
 							<li><a href="#">Usu&aacute;rios</a>
 								<ul class="submenu">
-									<li><a href="#">Listar Usu&aacute;rios</a></li>
+									<li><a href="<c:url value="/Usuarios/ListarUsuarios"/>">Listar Usu&aacute;rios</a></li>
 									<li><a href="#">Buscar Usu&aacute;rio</a>
 								</ul>
 							</li>

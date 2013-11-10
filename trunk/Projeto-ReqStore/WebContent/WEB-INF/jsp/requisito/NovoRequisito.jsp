@@ -17,45 +17,86 @@
 			<div id="topo">
 				<img alt="" src="../imagens/Logo.png">
 			</div>
-			<div id="menu">
-				<ul class="dropdown" style = "width: 65% !important;">
-
-					<li><a href="<c:url value="/Professor/ProfessorHome"/>">Home</a></li>
-					<li><img src="../imagens/separador.png"></li>
-					<li><a href="#">Projetos</a>
-						<ul class="submenu" style = "z-index: 100">
-							<li><a href="<c:url value="/Projeto/NovoProjeto"/>">Adicionar Projetos</a></li>
+			<c:choose>
+				<c:when test="${usuarioWeb.tipo == 1}">
+					<div id="menu">
+						<ul class="dropdown">
+							<li><a href="<c:url value="/Aluno/home"/>">Home</a></li>
+							<li><img src="../imagens/separador.png"></li>
+							<li><a href="#">Projetos</a>
+								<ul class="submenu" style = "z-index: 100">
 									<li><a href="<c:url value="/Projeto/lista?id_usuario=${usuarioWeb.id}"/>">Listar Projetos</a></li>
 									<li><a href="<c:url value="/Projeto/Busca"/>">Buscar Projetos</a></li>
 									<li><a href="<c:url value="/Projeto/MeusProjetos?id=${usuarioWeb.id}"/>">Meus Projetos</a></li>
-						</ul>
-					</li>
-					<li><img src="../imagens/separador.png"></li>
-					<li><a href="#">Turmas</a>
-						<ul class="submenu" style = "z-index: 100">
-							<li><a href="<c:url value="/Turma/TurmaForm"/>">Adicionar Turma</a></li>
-							<li><a href="<c:url value="/Turma/lista"/>">Listar Turmas</a></li>
-							<li><a href="#">Buscar Turmas</a></li>
-							<li><a href="<c:url value="/Turma/MinhasTurmas?id=${usuarioWeb.id}"/>">Minhas Turmas</a></li>
-						</ul>
-					</li>
-					<li><img src="../imagens/separador.png"></li>
-					<li><a href="#">Usu&aacute;rios</a>
-						<ul class="submenu" style = "z-index: 100">
-							<li><a href="#">Listar Usu&aacute;rios</a></li>
-							<li><a href="#">Buscar Usu&aacute;rio</a>
-						</ul>
-					</li>
-					<li><img src="../imagens/separador.png"></li>
-					<li><a href="#">Ajuda</a> <c:if test="${!usuarioWeb.logado}">
+								</ul></li>
 							<li><img src="../imagens/separador.png"></li>
-							<li><a href="<c:url value="/login"/>">Login</a></li>
-						</c:if> <c:if test="${usuarioWeb.logado}">
+							<li><a href="#">Usu&aacute;rios</a>
+								<ul class="submenu" style = "z-index: 100">
+									<li><a href="<c:url value="/Usuarios/ListarUsuarios"/>">Listar Usu&aacute;rios</a></li>
+									<li><a href="#">Buscar Usu&aacute;rio</a>
+								</ul>
+							</li>
 							<li><img src="../imagens/separador.png"></li>
-							<li><a href="<c:url value="/logout"/>">Logout</a></li>
-						</c:if>
-				</ul>
-			</div>
+							<li><a href="#">Ajuda</a></li> 
+								
+							<c:if test="${!usuarioWeb.logado}">
+								<li><img src="../imagens/separador.png"></li>
+								<li><a href="<c:url value="/login"/>">Login</a></li>
+							</c:if> <c:if test="${usuarioWeb.logado}">
+								<li><img src="../imagens/separador.png"></li>
+								<li><a href="<c:url value="/logout"/>">Logout</a></li>
+							</c:if>
+						</ul>
+					</div>
+				</c:when>
+				<c:when test="${usuarioWeb.tipo == 2}">
+					<div id="menu">
+						<ul class="dropdown" style="width: 65% !important;">
+
+							<li><a href="<c:url value="/Professor/ProfessorHome"/>">Home</a></li>
+							<li><img src="../imagens/separador.png"></li>
+							<li><a href="#">Projetos</a>
+								<ul class="submenu" style = "z-index: 100">
+									<li><a href="<c:url value="/Projeto/NovoProjeto"/>">Adicionar Projetos</a></li>
+									<li><a href="<c:url value="/Projeto/lista?id_usuario=${usuarioWeb.id}"/>">Listar Projetos</a></li>
+									<li><a href="<c:url value="/Projeto/Busca"/>">Buscar Projetos</a></li>
+									<li><a href="<c:url value="/Projeto/MeusProjetos?id=${usuarioWeb.id}"/>">Meus Projetos</a></li>
+								</ul>
+							</li>
+							<li><img src="../imagens/separador.png"></li>
+							<li><a href="#">Turmas</a>
+								<ul class="submenu" style = "z-index: 100">
+									<li><a href="<c:url value="/Turma/TurmaForm"/>">Adicionar Turma</a></li>
+									<li><a href="<c:url value="/Turma/lista"/>">Listar Turmas</a></li>
+									<li><a href="#">Buscar Turmas</a></li>
+									<li><a href="<c:url value="/Turma/MinhasTurmas?id=${usuarioWeb.id}"/>">Minhas Turmas</a></li>
+								</ul>
+							</li>
+							<li><img src="../imagens/separador.png"></li>
+							<li><a href="#">Usu&aacute;rios</a>
+								<ul class="submenu" style = "z-index: 100">
+									<li><a href="<c:url value="/Usuarios/ListarUsuarios"/>">Listar Usu&aacute;rios</a></li>
+									<li><a href="#">Buscar Usu&aacute;rio</a>
+								</ul>
+							</li>
+							<li><img src="../imagens/separador.png"></li>
+							<li><a href="#">Ajuda</a></li> 
+							
+							<c:if test="${!usuarioWeb.logado}">
+								<li><img src="../imagens/separador.png"></li>
+								<li><a href="<c:url value="/login"/>">Login</a></li>
+							</c:if> 
+							<c:if test="${usuarioWeb.logado}">
+								<li><img src="../imagens/separador.png"></li>
+								<li><a href="<c:url value="/logout"/>">Logout</a></li>
+							</c:if>
+						</ul>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<!-- Adicionar home de admin -->
+				</c:otherwise>
+			</c:choose>
 			<div id="inner_content_div">
 				<form name  = "cadastrarRequisito" id = "cadastrarRequisito" action="<c:url value="/Requisito/AdicionaRequisito"/>" method="POST">
 					<input type = "hidden" name = "requisito.tipoRequisito" id = "tipoRequisito" value = "">

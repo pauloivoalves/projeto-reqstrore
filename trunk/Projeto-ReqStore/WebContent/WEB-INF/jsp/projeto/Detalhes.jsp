@@ -37,7 +37,7 @@
 								<li><img src="../imagens/separador.png"></li>
 								<li><a href="#">Usu&aacute;rios</a>
 									<ul class="submenu">
-										<li><a href="#">Listar Usu&aacute;rios</a></li>
+										<li><a href="<c:url value="/Usuarios/ListarUsuarios"/>">Listar Usu&aacute;rios</a></li>
 										<li><a href="#">Buscar Usu&aacute;rio</a>
 									</ul>
 								</li>
@@ -80,7 +80,7 @@
 								<li><img src="../imagens/separador.png"></li>
 								<li><a href="#">Usu&aacute;rios</a>
 									<ul class="submenu">
-										<li><a href="#">Listar Usu&aacute;rios</a></li>
+										<li><a href="<c:url value="/Usuarios/ListarUsuarios"/>">Listar Usu&aacute;rios</a></li>
 										<li><a href="#">Buscar Usu&aacute;rio</a>
 									</ul></li>
 								<li><img src="../imagens/separador.png"></li>
@@ -105,9 +105,9 @@
 						<p>
 							<c:out value="${projeto.nome}"></c:out>
 						</p>
-						<img  title = "Participantes" style = "cursor: pointer; "src = "../imagens/usuarios_participantes.png" onclick="location.href = '<c:url value="/Projeto/RemoverUsuario"/>?id_projeto=${projeto.id}';">
 						
 					</div>
+					<img  title = "Participantes" style = "cursor: pointer; float: right; height: 50px; margin-top: 25px;"src = "../imagens/usuarios_participantes.png" onclick="location.href = '<c:url value="/Projeto/RemoverUsuario"/>?id_projeto=${projeto.id}';">
 				</div>
 
 				<div id="inner_content">
@@ -165,7 +165,7 @@
 										<c:choose>
 											<c:when test="${usuarioWeb.id == projeto.criador.id}">
 												<td onclick="location.href = '<c:url value="/Projeto/RemoverRequisito?id_requisito=${requisito.id}&id_projeto=${projeto.id}"/>';" style = "width: 15px; padding: 0px;" class = "botton_requisito">
-													<span class ="remUser" style = "cursor: pointer; padding:5px 10px; background-color:#527100; color:white; float: right; -webkit-border-radius: 5px;-moz-border-radius: 5px; border-radius: 5px;" >-</span>
+													<span class ="remUser" style = "cursor: pointer; padding:5px 10px; background-color:red; color:white; float: right; -webkit-border-radius: 5px;-moz-border-radius: 5px; border-radius: 5px;" >-</span>
 												</td>
 											</c:when>
 										</c:choose>

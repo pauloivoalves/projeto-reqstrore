@@ -42,6 +42,11 @@ public class UsuariosController {
 	public void loginForm() {
 
 	}
+	
+	@Path("/Usuarios/ListarUsuarios")
+	public void ListarUsuarios(){
+		
+	}
 
 	@Path("/logout")
 	public void logout() {
@@ -66,22 +71,16 @@ public class UsuariosController {
 			Aluno carregado = alunoDAO.carrega(aluno);
 
 			if (carregado == null) {
-				validator.add(new ValidationMessage(
-						"Login e/ou senha inv&aacute;lidos", ""));
-				validator.onErrorUsePageOf(UsuariosController.class)
-						.loginForm();
+				validator.add(new ValidationMessage("Login e/ou senha inv&aacute;lidos", ""));
+				validator.onErrorUsePageOf(UsuariosController.class).loginForm();
 			} else if (!carregado.isConfirmado()) {
 				System.out.println("numero : " + usuario.getNumero());
 				if (usuario.getNumero() == carregado.getNumero()) {
 					carregado.setConfirmado(true);
 					alunoDAO.update(carregado);
 				} else {
-					validator
-							.add(new ValidationMessage(
-									"O email informado ainda n&atilde;o foi confirmado",
-									""));
-					validator.onErrorUsePageOf(UsuariosController.class)
-							.loginForm();
+					validator.add(new ValidationMessage("O email informado ainda n&atilde;o foi confirmado",""));
+					validator.onErrorUsePageOf(UsuariosController.class).loginForm();
 				}
 			}
 
@@ -97,22 +96,16 @@ public class UsuariosController {
 			Professor carregado = professorDAO.carrega(professor);
 
 			if (carregado == null) {
-				validator.add(new ValidationMessage(
-						"Login e/ou senha inv&aacute;lidos", ""));
-				validator.onErrorUsePageOf(UsuariosController.class)
-						.loginForm();
+				validator.add(new ValidationMessage( "Login e/ou senha inv&aacute;lidos", ""));
+				validator.onErrorUsePageOf(UsuariosController.class) .loginForm();
 			} else if (!carregado.isConfirmado()) {
 				System.out.println("numero : " + usuario.getNumero());
 				if (usuario.getNumero() == carregado.getNumero()) {
 					carregado.setConfirmado(true);
 					professorDAO.update(carregado);
 				} else {
-					validator
-							.add(new ValidationMessage(
-									"O email informado ainda n&atilde;o foi confirmado",
-									""));
-					validator.onErrorUsePageOf(UsuariosController.class)
-							.loginForm();
+					validator.add(new ValidationMessage("O email informado ainda n&atilde;o foi confirmado",""));
+					validator.onErrorUsePageOf(UsuariosController.class).loginForm();
 				}
 			}
 

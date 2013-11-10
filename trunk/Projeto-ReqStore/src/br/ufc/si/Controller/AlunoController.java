@@ -34,6 +34,7 @@ public class AlunoController {
 	@Path("/Aluno/DetalhesAluno")
 	public Aluno DetalhesAluno(int id) {
 		System.out.println("ID: " + id);
+		
 		if (this.alunoDAO.getAlunoById(id) == null) {
 			result.redirectTo(ProfessorController.class).DetalhesProfessor(id);	
 		}else{
