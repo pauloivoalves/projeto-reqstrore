@@ -77,21 +77,20 @@ public class AlunoController {
 		aluno.setConfirmado(false);
 
 		String msg = "Bem vindo ao ReqStore!"
-				+ "\nSeu email : "
+				+ "<br>Seu email : "
 				+ aluno.getEmail()
-				+ "\nSua senha: "
+				+ "<br>Sua senha: "
 				+ aluno.getSenha()
-				+ "\nSeu número de confirmaçaõ é: "
+				+ "<br>Seu número de confirmaçaõ é: "
 				+ aluno.getNumero()
-				+ "\n Volte à tela de Login do ReqStore e utilize o seu número de confirmação para validar o seu email."
-				+ "\nSó é necessário utilizar esse número 1 vez. Após a confirmação, seu permanecerá validado. Bons estudos!";
+				+ "<br>Volte à tela de Login do ReqStore e utilize o seu número de confirmação para validar o seu email."
+				+ "<br>Só é necessário utilizar esse número 1 vez. Após a confirmação, seu permanecerá validado. Bons estudos!";
 
 		try {
 			if (alunoDAO.buscaPorEmail(aluno) != null) {
 				result.redirectTo(IndexController.class).ops();
 			} else {
-				SendMail.enviarEmail(aluno.getEmail(),
-						"Criação de Conta no ReqStore", msg);
+				SendMail.enviarEmail(aluno.getEmail(), "Criação de Conta no ReqStore", msg);
 				alunoDAO.save(aluno);
 				result.redirectTo(IndexController.class).ok();
 			}
