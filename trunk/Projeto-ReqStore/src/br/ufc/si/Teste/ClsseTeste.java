@@ -44,15 +44,13 @@ public class ClsseTeste {
 
 	public static void AdicionarProfessores(int quantidade) {
 		Professor prof;
-		for (int i = 0; i < quantidade; i++) {
 			prof = new Professor();
-			prof.setNome("Professor " + i);
-			prof.setEmail("email" + i + "@email.com");
-			prof.setSenha("senha");
+			prof.setNome("Paulo Ivo Alves Pordeus");
+			prof.setEmail("pauloivoalves@gmail.com");
+			prof.setSenha("071832");
 			prof.setConfirmado(true);
-			prof.setNumero(i);
+			prof.setNumero(123);
 			profDAO.save(prof);
-		}
 	}
 
 	public static List<Projeto> listarMeusprojetos(Usuario usuario) {
@@ -386,7 +384,7 @@ public class ClsseTeste {
 		Professor prof = new Professor();
 
 //		 AdicionarAlunos(10);
-//		 AdicionarProfessores(10);
+		 AdicionarProfessores(10);
 //		 AdicionarPeojetos(4);
 //		 adicionarRequisitoProjeto(8);
 
@@ -438,10 +436,10 @@ public class ClsseTeste {
 //			AdicionarUsuarioTurma(prof, turma);
 //		}
 
-		aluno = alunoDAO.getAlunoById(5);
+//		aluno = alunoDAO.getAlunoById(5);
 //		prof = profDAO.getProfessorById(13);
-		turma = turmaDAO.getTurmaById(712);
-		AdicionarUsuarioTurma(aluno, turma);
+//		turma = turmaDAO.getTurmaById(712);
+//		AdicionarUsuarioTurma(aluno, turma);
 //		System.out.println("Temrinou!");
 	}
 

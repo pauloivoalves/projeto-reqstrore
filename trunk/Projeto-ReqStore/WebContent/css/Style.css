@@ -235,6 +235,10 @@ a.btn-success{
 }
 
 #inner_content table thead tr td {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	
 	border-left: 0px;
 	border-right: 0px;
 	font-size: 14px;
@@ -256,7 +260,7 @@ a.btn-success{
 
 #requisitos {
 	overflow: auto;
-	height: 138px;
+	height: 110px;
 }
 
 #lista {
@@ -265,6 +269,9 @@ a.btn-success{
 }
 
 #inner_content table tbody tr td {
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
 	border-radius: 5px;
 	padding: 5px 0px 5px 0px;
 }

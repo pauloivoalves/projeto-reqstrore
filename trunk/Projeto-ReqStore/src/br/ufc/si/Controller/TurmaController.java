@@ -50,7 +50,6 @@ public class TurmaController {
 		List<Turma> turmas = prof.getTurmas();
 		turmas.add(turma);
 		prof.setTurmas(turmas);
-		prof.getTurmas_proprietarias().add(turma);
 		profDAO.update(prof);
 		
 		result.redirectTo(this).MinhasTurmas(id_usuario);

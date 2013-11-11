@@ -1,5 +1,6 @@
 package br.ufc.si.DAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Hibernate;
@@ -8,8 +9,12 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.caelum.vraptor.ioc.Component;
+import br.ufc.si.Interfaces.IAluno;
+import br.ufc.si.Interfaces.IProfessor;
 import br.ufc.si.Interfaces.IProjeto;
 import br.ufc.si.Tipos.TipoProjeto;
+import br.ufc.si.model.Aluno;
+import br.ufc.si.model.Professor;
 import br.ufc.si.model.Projeto;
 import br.ufc.si.model.Usuario;
 import br.ufc.si.util.HibernateUtil;
@@ -66,8 +71,7 @@ public class ProjetoDAO implements IProjeto {
 	public List<Projeto> List() {
 		Session session = HibernateUtil.getSession();
 		try {
-			List<Projeto> listaProjetos = session.createCriteria(Projeto.class)
-					.list();
+			List<Projeto> listaProjetos = session.createCriteria(Projeto.class).list();
 
 			for (Projeto projeto : listaProjetos) {
 				Hibernate.initialize(projeto.getRequisitos());
@@ -82,18 +86,55 @@ public class ProjetoDAO implements IProjeto {
 		return null;
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<Projeto> SearchByName(String name) {
+	public List<Projeto> SearchByName(int id_usuario, String name) {
 		Session session = HibernateUtil.getSession();
 		try {
-
-			List<Projeto> listaProjetos = session.createCriteria(Projeto.class)
-					.add(Restrictions.like("nome", "%" + name + "%")).list();
-
-			for (Projeto projeto : listaProjetos) {
-				Hibernate.initialize(projeto.getRequisitos());
+			try {
+				IAluno alunoDAO = new AlunoDAO();
+				Aluno aluno = alunoDAO.getAlunoById(id_usuario);
+				
+				List<Projeto> lista = new ArrayList<Projeto>();
+				for (Projeto projeto : aluno.getProjetos()) {
+					if(projeto.getNome().equalsIgnoreCase(name)){
+						lista.add(projeto);
+					}
+				}
+				
+				for (Projeto projeto : aluno.getProjetos_participantes()) {
+					if(projeto.getNome().equalsIgnoreCase(name)){
+						lista.add(projeto);
+					}
+				}
+				 
+				
+				for (Projeto projeto : lista) {
+					Hibernate.initialize(projeto);
+				}
+				return lista;
+			} catch (Exception e) {
+				
+				IProfessor professorDAO = new ProfessorDAO();
+				Professor professor = professorDAO.getProfessorById(id_usuario);
+				
+				List<Projeto> lista = new ArrayList<Projeto>();
+				
+				for (Projeto projeto : professor.getProjetos()) {
+					if(projeto.getNome().equalsIgnoreCase(name)){
+						lista.add(projeto);
+					}
+				}
+				
+				for (Projeto projeto : professor.getProjetos_participantes()) {
+					if(projeto.getNome().equalsIgnoreCase(name)){
+						lista.add(projeto);
+					}
+				}
+				
+				for (Projeto projeto : lista) {
+					Hibernate.initialize(projeto);
+				}
+				return lista;
 			}
-			return listaProjetos;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -102,18 +143,36 @@ public class ProjetoDAO implements IProjeto {
 		return null;
 	}
 
-	public List<Projeto> BuscaDificuldadeTipo(int dificuldade, TipoProjeto tipo) {
+	public List<Projeto> BuscaDificuldadeTipo(int id_usuario, int dificuldade, TipoProjeto tipo) {
 		Session session = HibernateUtil.getSession();
 		try {
-			@SuppressWarnings("unchecked")
-			List<Projeto> lista = session.createCriteria(Projeto.class)
-					.add(Restrictions.le("dificuldade", dificuldade))
-					.add(Restrictions.eq("tipoProjeto", tipo)).list();
-			
-			for (Projeto projeto : lista) {
-				Hibernate.initialize(projeto);
+			try {
+				IAluno alunoDAO = new AlunoDAO();
+				Aluno aluno = alunoDAO.getAlunoById(id_usuario);
+				
+				List<Projeto> lista = new ArrayList<Projeto>();
+				lista.addAll(aluno.getProjetos());
+				lista.addAll(aluno.getProjetos_participantes());
+				 
+				
+				for (Projeto projeto : lista) {
+					Hibernate.initialize(projeto);
+				}
+				return lista;
+			} catch (Exception e) {
+				IProfessor professorDAO = new ProfessorDAO();
+				Professor professor = professorDAO.getProfessorById(id_usuario);
+				
+				List<Projeto> lista = new ArrayList<Projeto>();
+				lista.addAll(professor.getProjetos());
+				lista.addAll(professor.getProjetos_participantes());
+				 
+				
+				for (Projeto projeto : lista) {
+					Hibernate.initialize(projeto);
+				}
+				return lista;
 			}
-			return lista;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

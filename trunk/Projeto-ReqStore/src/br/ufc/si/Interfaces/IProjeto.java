@@ -16,11 +16,11 @@ public interface IProjeto {
 
 	public List<Projeto> List();
 
-	public List<Projeto> SearchByName(String name);
-	
 	public Projeto getProjetoById(int id);
 
-	public List<Projeto> BuscaDificuldadeTipo(int dificuldade, TipoProjeto tipo);
+	public List<Projeto> MeusProjetos(Usuario user);
 
-	List<Projeto> MeusProjetos(Usuario user);
+	public List<Projeto> BuscaDificuldadeTipo(int id_usuario, int dificuldade, TipoProjeto tipo);
+
+	List<Projeto> SearchByName(int id_usuario, String name);
 }

@@ -25,7 +25,7 @@ public class Projeto {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int Id;
 
-	@Column(name = "Nome_Projeto", nullable = false, length = 30)
+	@Column(name = "Nome_Projeto", nullable = false, length = 100)
 	private String nome;
 
 	@ManyToOne

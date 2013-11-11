@@ -301,36 +301,24 @@ public class ProjetoController {
 	}
 
 	@Get("/Projeto/Busca")
-	public List<Projeto> Busca(String nomeProjeto, String dificuldadeProjeto,
-			String tipoProjeto) {
-		if ((nomeProjeto == null) && (dificuldadeProjeto == null)
-				&& (tipoProjeto == null)) {
+	public List<Projeto> Busca(int id_usuario, String nomeProjeto, String dificuldadeProjeto, String tipoProjeto) {
+		if ((nomeProjeto == null) && (dificuldadeProjeto == null) && (tipoProjeto == null)) {
 
 			return null;
 
-		} else if ((dificuldadeProjeto != null && tipoProjeto != null)
-				&& nomeProjeto == null) {
+		} else if ((dificuldadeProjeto != null && tipoProjeto != null) && nomeProjeto == null) {
 
-			List<Projeto> projetos = projetoDAO.BuscaDificuldadeTipo(
-					Integer.parseInt(dificuldadeProjeto),
-					TipoProjeto.valueOf(tipoProjeto));
+			List<Projeto> projetos = projetoDAO.BuscaDificuldadeTipo(id_usuario, Integer.parseInt(dificuldadeProjeto),TipoProjeto.valueOf(tipoProjeto));
 			return projetos;
 
-		} else if (dificuldadeProjeto != null && tipoProjeto != null
-				&& nomeProjeto != null) {
-			List<Projeto> projetos = projetoDAO.SearchByName(nomeProjeto);
+		} else if (dificuldadeProjeto != null && tipoProjeto != null && nomeProjeto != null) {
+			List<Projeto> projetos = projetoDAO.SearchByName(id_usuario, nomeProjeto);
 
 			if (projetos.size() != 0) {
 				List<Projeto> listRetorno = new ArrayList<Projeto>();
 
 				for (Projeto projeto : projetos) {
-					if (projeto.getDificuldade() <= Integer
-							.parseInt(dificuldadeProjeto)
-							&& projeto
-									.getTipoProjeto()
-									.toString()
-									.equals(TipoProjeto.valueOf(tipoProjeto)
-											.toString())) {
+					if (projeto.getDificuldade() <= Integer.parseInt(dificuldadeProjeto) && projeto.getTipoProjeto().toString().equals(TipoProjeto.valueOf(tipoProjeto).toString())) {
 						Hibernate.initialize(projeto);
 						listRetorno.add(projeto);
 					}

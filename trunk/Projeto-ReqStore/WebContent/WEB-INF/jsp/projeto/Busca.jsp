@@ -2,13 +2,12 @@
 <%@page import="br.ufc.si.Tipos.TipoProjeto"%>
 <%@page import="br.ufc.si.model.Requisito"%>
 <%@page import="br.ufc.si.model.Projeto"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-type" content="text/html; charset=iso-8859-1" />  
+    <meta http-equiv="Content-Language" content="pt-br" />
 	<script type="text/javascript" src="../js/Script.js"></script>
 	<script type="text/javascript" src="../js/JQuerry.js"></script>
 	<link href="../css/Style.css" rel="stylesheet" type="text/css" />
@@ -114,6 +113,7 @@
 					<div id="inner_content">
 						<form name = "formBuscarProjeto" action="/ReqStore/Projeto/Busca">
 						<input type="hidden" name = "primeira"  id = "peimeira" value = "1">
+						<input type="hidden" name = "id_usuario" id = "id_usuario" value = "${usuarioWeb.id}">
 							<div id="detalhes">
 								<div id = "tituloDificuldade">
 									<div id= "titulo" style = "width: 50%; float: left;">

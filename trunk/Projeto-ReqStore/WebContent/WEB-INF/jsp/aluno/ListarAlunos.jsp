@@ -2,10 +2,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="Content-type" content="text/html; charset=iso-8859-1" />  
+    <meta http-equiv="Content-Language" content="pt-br" />
 		<script type="text/javascript" src="js/Script.js"></script>
 		<link href="css/Style.css" rel="stylesheet" type="text/css"/>
-		<title>Home</title>
+		<title>Listar Usuários</title>
 	</head>
 	<body>
 		<div id = "tudo">
