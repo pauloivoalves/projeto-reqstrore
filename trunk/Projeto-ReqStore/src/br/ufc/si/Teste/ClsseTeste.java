@@ -384,7 +384,7 @@ public class ClsseTeste {
 		Professor prof = new Professor();
 
 //		 AdicionarAlunos(10);
-		 AdicionarProfessores(10);
+//		 AdicionarProfessores(10);
 //		 AdicionarPeojetos(4);
 //		 adicionarRequisitoProjeto(8);
 

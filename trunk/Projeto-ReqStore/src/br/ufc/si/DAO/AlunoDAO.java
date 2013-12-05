@@ -23,6 +23,7 @@ public class AlunoDAO implements IAluno {
 			t.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
+			t.rollback();
 		} finally {
 			session.close();
 		}
@@ -36,6 +37,7 @@ public class AlunoDAO implements IAluno {
 			t.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
+			t.rollback();
 		} finally {
 			session.close();
 		}
@@ -49,6 +51,7 @@ public class AlunoDAO implements IAluno {
 			t.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
+			t.rollback();
 		} finally {
 			session.close();
 		}

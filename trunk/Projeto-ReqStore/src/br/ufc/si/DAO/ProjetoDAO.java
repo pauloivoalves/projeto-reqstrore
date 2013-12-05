@@ -30,6 +30,7 @@ public class ProjetoDAO implements IProjeto {
 			session.save(projeto);
 			t.commit();
 		} catch (Exception e) {
+			t.rollback();
 			e.printStackTrace();
 		} finally {
 			session.close();
@@ -45,6 +46,7 @@ public class ProjetoDAO implements IProjeto {
 			session.update(projeto);
 			t.commit();
 		} catch (Exception e) {
+			t.rollback();
 			e.printStackTrace();
 		} finally {
 			session.close();
@@ -59,8 +61,8 @@ public class ProjetoDAO implements IProjeto {
 			session.delete(projeto);
 			t.commit();
 		} catch (Exception e) {
+			t.rollback();
 			e.printStackTrace();
-
 		} finally {
 			session.close();
 		}
@@ -79,6 +81,7 @@ public class ProjetoDAO implements IProjeto {
 
 			return listaProjetos;
 		} catch (Exception e) {
+			
 			e.printStackTrace();
 		} finally {
 			session.close();

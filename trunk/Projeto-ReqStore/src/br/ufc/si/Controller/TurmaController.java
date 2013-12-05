@@ -42,17 +42,22 @@ public class TurmaController {
 
 	@Post("/Turma/AdicionaTurma")
 	public void AdicionaTurma(Turma turma, int id_usuario) {
-		Professor prof = profDAO.getProfessorById(id_usuario);
 		
-		turma.setResponsavel(prof);
-		this.turmaDAO.save(turma);
-
-		List<Turma> turmas = prof.getTurmas();
-		turmas.add(turma);
-		prof.setTurmas(turmas);
-		profDAO.update(prof);
-		
-		result.redirectTo(this).MinhasTurmas(id_usuario);
+		try{
+			Professor prof = profDAO.getProfessorById(id_usuario);
+			
+			turma.setResponsavel(prof);
+			this.turmaDAO.save(turma);
+	
+			List<Turma> turmas = prof.getTurmas();
+			turmas.add(turma);
+			prof.setTurmas(turmas);
+			profDAO.update(prof);
+			
+			result.redirectTo(this).MinhasTurmas(id_usuario);
+		}catch(Exception e){
+			result.redirectTo(this).ListarTurmas();
+		}
 	}
 	
 	@Path("/Turma/TurmaForm")
@@ -96,7 +101,12 @@ public class TurmaController {
 		System.out.println("Id - " + id);
 		Usuario usuario = new Usuario();
 		usuario.setId(id);
-		return turmaDAO.MinhasTurmas(usuario);
+		if(turmaDAO.MinhasTurmas(usuario) != null){
+			return turmaDAO.MinhasTurmas(usuario);
+		}else{
+			result.redirectTo(this).ListarTurmas();
+		}
+		return null;
 	}
 
 	@Path("/Turma/RemoverTurma")
@@ -190,51 +200,53 @@ public class TurmaController {
 			System.out.println("Cheguei aqui 5!\n\n\n");
 			result.redirectTo(TurmaController.class).DetalhesTurma(id_turma);
 		} catch (Exception e) {
-			user = this.profDAO.getProfessorById(id_participante);
-			System.out.println("\n\n AQUi 3!");
-			
-			System.out.println("\n\n AQUi 4!");
-			Turma turma = this.turmaDAO.getTurmaById(id_turma);
+			try {
+				user = this.profDAO.getProfessorById(id_participante);
+				System.out.println("\n\n AQUi 3!");
+				
+				System.out.println("\n\n AQUi 4!");
+				Turma turma = this.turmaDAO.getTurmaById(id_turma);
 
-			System.out.println("\n\n AQUi 5!");
-			System.out.println("\n\n\nA turma tem o usuario: " + turma.getUsuarios().contains(user));
+				System.out.println("\n\n AQUi 5!");
+				System.out.println("\n\n\nA turma tem o usuario: " + turma.getUsuarios().contains(user));
 
-			for (Projeto projeto : turma.getProjetos()) {
-				System.out.println("\n\n O projeto: " + projeto.getId() + "possui o usuario - >" + projeto.getUsuarios_participantes().contains(user));
+				for (Projeto projeto : turma.getProjetos()) {
+					System.out.println("\n\n O projeto: " + projeto.getId() + "possui o usuario - >" + projeto.getUsuarios_participantes().contains(user));
 
-				projeto.getUsuarios_participantes().remove(user);
-				this.projDAO.update(projeto);
+					projeto.getUsuarios_participantes().remove(user);
+					this.projDAO.update(projeto);
 
-				user.getProjetos_participantes().remove(projeto);
+					user.getProjetos_participantes().remove(projeto);
 
+					if (user instanceof Aluno) {
+						this.alunoDAO.update((Aluno) user);
+						System.out.println("\n\n AQUi 7!");
+					} else if (user instanceof Professor) {
+						this.profDAO.update((Professor) user);
+						System.out.println("\n\n AQUi 8!");
+					}
+				}
+
+				System.out.println("Cheguei aqui!\n\n\n");
+				turma.getUsuarios().remove(user);
+				System.out.println("Cheguei aqui 2!\n\n\n");
+				this.turmaDAO.update(turma);
+				System.out.println("Cheguei aqui 3!\n\n\n");
+				
+				user.getTurmas().remove(turma);
+				System.out.println("Cheguei aqui 4!\n\n\n");
+				
 				if (user instanceof Aluno) {
 					this.alunoDAO.update((Aluno) user);
-					System.out.println("\n\n AQUi 7!");
 				} else if (user instanceof Professor) {
 					this.profDAO.update((Professor) user);
-					System.out.println("\n\n AQUi 8!");
 				}
+				System.out.println("Cheguei aqui 5!\n\n\n");
+				result.redirectTo(TurmaController.class).DetalhesTurma(id_turma);
+			} catch (Exception e2) {
+				result.redirectTo(TurmaController.class).ListarTurmas();
 			}
-
-			System.out.println("Cheguei aqui!\n\n\n");
-			turma.getUsuarios().remove(user);
-			System.out.println("Cheguei aqui 2!\n\n\n");
-			this.turmaDAO.update(turma);
-			System.out.println("Cheguei aqui 3!\n\n\n");
-			
-			user.getTurmas().remove(turma);
-			System.out.println("Cheguei aqui 4!\n\n\n");
-			
-			if (user instanceof Aluno) {
-				this.alunoDAO.update((Aluno) user);
-			} else if (user instanceof Professor) {
-				this.profDAO.update((Professor) user);
-			}
-			System.out.println("Cheguei aqui 5!\n\n\n");
-			result.redirectTo(TurmaController.class).DetalhesTurma(id_turma);
 		}
-
-
 	}
 	
 	@Get("/Turma/AdicionarUsuario")

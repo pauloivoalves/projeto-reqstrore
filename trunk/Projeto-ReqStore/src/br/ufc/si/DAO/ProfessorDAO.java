@@ -23,6 +23,7 @@ public class ProfessorDAO implements IProfessor {
 			session.save(professor);
 			t.commit();
 		} catch (Exception e) {
+			t.rollback();
 			e.printStackTrace();
 		} finally {
 			session.close();
@@ -38,6 +39,7 @@ public class ProfessorDAO implements IProfessor {
 			session.update(professor);
 			t.commit();
 		} catch (Exception e) {
+			t.rollback();
 			e.printStackTrace();
 		} finally {
 			session.close();
@@ -53,6 +55,7 @@ public class ProfessorDAO implements IProfessor {
 			session.delete(professor);
 			t.commit();
 		} catch (Exception e) {
+			t.rollback();
 			e.printStackTrace();
 		} finally {
 			session.close();

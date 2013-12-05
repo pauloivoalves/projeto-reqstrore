@@ -23,6 +23,7 @@ public class RequisitoDAO implements IRequisito {
 			session.save(requisito);
 			t.commit();
 		} catch (Exception e) {
+			t.rollback();
 			e.printStackTrace();
 		} finally {
 			session.close();
@@ -38,6 +39,7 @@ public class RequisitoDAO implements IRequisito {
 			session.update(requisito);
 			t.commit();
 		} catch (Exception e) {
+			t.rollback();
 			e.printStackTrace();
 		} finally {
 			session.close();
@@ -53,6 +55,7 @@ public class RequisitoDAO implements IRequisito {
 			session.delete(requisito);
 			t.commit();
 		} catch (Exception e) {
+			t.rollback();
 			e.printStackTrace();
 		} finally {
 			session.close();

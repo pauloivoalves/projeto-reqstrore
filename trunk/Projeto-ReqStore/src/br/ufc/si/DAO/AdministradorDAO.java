@@ -24,6 +24,7 @@ public class AdministradorDAO implements IAdministrador {
 			session.save(admin);
 			t.commit();
 		} catch (Exception e) {
+			t.rollback();
 			e.printStackTrace();
 
 		} finally {
@@ -40,6 +41,7 @@ public class AdministradorDAO implements IAdministrador {
 			session.update(admin);
 			t.commit();
 		} catch (Exception e) {
+			t.rollback();
 			e.printStackTrace();
 
 		} finally {
@@ -56,6 +58,7 @@ public class AdministradorDAO implements IAdministrador {
 			session.delete(admin);
 			t.commit();
 		} catch (Exception e) {
+			t.rollback();
 			e.printStackTrace();
 
 		} finally {

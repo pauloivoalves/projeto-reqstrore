@@ -28,6 +28,7 @@ public class TurmaDAO implements ITurma {
 			session.save(turma);
 			t.commit();
 		} catch (Exception e) {
+			t.rollback();
 			e.printStackTrace();
 		} finally {
 			session.close();
@@ -46,6 +47,7 @@ public class TurmaDAO implements ITurma {
 			session.delete(turma);
 			t.commit();
 		} catch (Exception e) {
+			t.rollback();
 			e.printStackTrace();
 		} finally {
 			session.close();
@@ -64,6 +66,7 @@ public class TurmaDAO implements ITurma {
 			session.update(turma);
 			t.commit();
 		} catch (Exception e) {
+			t.rollback();
 			e.printStackTrace();
 		} finally {
 			session.close();
@@ -83,6 +86,7 @@ public class TurmaDAO implements ITurma {
 			Hibernate.initialize(turma.getUsuarios());
 			return turma;
 		} catch (Exception e) {
+			
 			e.printStackTrace();
 		} finally {
 			session.close();

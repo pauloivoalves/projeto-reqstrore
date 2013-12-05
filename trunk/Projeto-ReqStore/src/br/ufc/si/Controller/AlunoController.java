@@ -3,6 +3,8 @@ package br.ufc.si.Controller;
 import java.util.List;
 import java.util.Random;
 
+import org.hibernate.HibernateException;
+
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
@@ -33,19 +35,23 @@ public class AlunoController {
 
 	@Path("/Aluno/DetalhesAluno")
 	public Aluno DetalhesAluno(int id) {
-		System.out.println("ID: " + id);
-		
-		if (this.alunoDAO.getAlunoById(id) == null) {
-			result.redirectTo(ProfessorController.class).DetalhesProfessor(id);	
-		}else{
-			return this.alunoDAO.getAlunoById(id);
+		try{
+			System.out.println("ID: " + id);
+			
+			if (this.alunoDAO.getAlunoById(id) == null) {
+				result.redirectTo(ProfessorController.class).DetalhesProfessor(id);	
+			}else{
+				return this.alunoDAO.getAlunoById(id);
+			}
+		}catch (HibernateException e){
+			
 		}
 		return null;
 	}
 
 	@Path("/Aluno/AlunoProjetos")
 	public void AlunoProjetos() {
-
+		result.redirectTo(this.ListarAlunos());
 	}
 
 	@Path("/Aluno/novo")
@@ -84,15 +90,19 @@ public class AlunoController {
 				+ "<br>Seu número de confirmaçaõ é: "
 				+ aluno.getNumero()
 				+ "<br>Volte à tela de Login do ReqStore e utilize o seu número de confirmação para validar o seu email."
-				+ "<br>Só é necessário utilizar esse número 1 vez. Após a confirmação, seu permanecerá validado. Bons estudos!";
+				+ "<br>Só é necessário utilizar esse número 1 vez. Após a confirmação, seu cadastro permanecerá validado. Bons estudos!";
 
 		try {
 			if (alunoDAO.buscaPorEmail(aluno) != null) {
 				result.redirectTo(IndexController.class).ops();
 			} else {
+				try{
 				SendMail.enviarEmail(aluno.getEmail(), "Criação de Conta no ReqStore", msg);
 				alunoDAO.save(aluno);
 				result.redirectTo(IndexController.class).ok();
+				}catch (Throwable e){
+					
+				}
 			}
 		} catch (Exception e) {
 			result.redirectTo(IndexController.class).ops();
