@@ -1,0 +1,1 @@
+Projeto Web desenvolvido para obtenção do grau de Bacharel em Sistemas de informação pela UFC-Quixadá. Projeto consiste em uma ferramenta Web que disponibiliza a alunos e professores um acervo de projetos mantido pela comunidade acadêmica.
